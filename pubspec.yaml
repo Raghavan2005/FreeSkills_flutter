@@ -31,6 +31,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_native_splash: ^2.4.0
+  easy_localization: ^3.0.7
+  easy_localization_loader: ^2.0.2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -38,6 +40,8 @@ dependencies:
   cupertino_icons: ^1.0.6
   get : any
   timelines: ^0.1.0
+  flutter_screenutil: ^5.9.3
+  flutter_animate: ^4.5.0
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +62,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/translations/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
