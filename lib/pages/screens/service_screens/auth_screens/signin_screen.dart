@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../../../core/constants/colorstheme.dart';
+import '../../../../core/utils/Validator.dart';
 
 class SigninScreen extends StatefulWidget {
   const SigninScreen({super.key});
@@ -12,11 +14,16 @@ class SigninScreen extends StatefulWidget {
 }
 
 class _SigninScreenState extends State<SigninScreen> {
+  bool _ispass = true;
+
+  TextEditingController _mailidxon = TextEditingController();
+  TextEditingController _passcon = TextEditingController();
+  List _error = [null, null];
+
   @override
   Widget build(BuildContext context) {
     ColorsTheme ct = new ColorsTheme();
-    int scw = MediaQuery.of(context).size.width.round();
-    int sch = MediaQuery.of(context).size.height.round();
+
     return SafeArea(
       child: Material(
         color: ct.backgroundColor,
@@ -53,8 +60,10 @@ class _SigninScreenState extends State<SigninScreen> {
                           Padding(
                             padding: EdgeInsets.all(8.0),
                             child: TextField(
+                              controller: _mailidxon,
+                              keyboardType: TextInputType.emailAddress,
                               style: TextStyle(
-                                  color: Colors.white, fontSize: 16.sp),
+                                  color: Colors.white, fontSize: 14.sp),
                               cursorColor: Colors.green,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
@@ -76,70 +85,126 @@ class _SigninScreenState extends State<SigninScreen> {
                                   borderSide: BorderSide(
                                       color: Colors.red), // Error border color
                                 ),
-                                hintText: "Mail ID",
+                                hintText: " ",
+                                labelText: "Mail ID",
                                 hintStyle: TextStyle(color: Colors.white),
-                                labelStyle: TextStyle(color: Colors.red),
-                                errorText: null,
+                                labelStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                                errorText: _error[0] != null ? _error[0] : null,
                               ),
-                              // Example validation
-                              // validator: (value) => value.isEmpty ? 'Username cannot be empty' : null,
+                              onSubmitted: (t) {
+                                setState(() {
+                                  _error[0] =
+                                      Validator.validatemail(_mailidxon);
+                                });
+                              },
                             ),
                           ),
                           SizedBox(
                             height: 10.h,
                           ),
                           Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: TextField(
+                              controller: _passcon,
+                              obscureText: _ispass,
+                              keyboardType: TextInputType.visiblePassword,
+                              textInputAction: TextInputAction.done,
                               style: TextStyle(
-                                  color: Colors.white, fontSize: 16.sp),
+                                  color: Colors.white, fontSize: 14.sp),
                               cursorColor: Colors.green,
                               decoration: InputDecoration(
-                                border: OutlineInputBorder(
+                                border: const OutlineInputBorder(
                                   borderSide: BorderSide(
                                       color:
                                           Colors.green), // Normal border color
                                 ),
-                                enabledBorder: OutlineInputBorder(
+                                enabledBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(
                                       color: Colors
                                           .green), // Unselected border color
                                 ),
-                                focusedBorder: OutlineInputBorder(
+                                focusedBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(
                                       color: Colors
                                           .green), // Selected border color
                                 ),
-                                errorBorder: OutlineInputBorder(
+                                errorBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(
                                       color: Colors.red), // Error border color
                                 ),
-                                hintText: "Password",
+                                hintText: " ",
+                                labelText: "Password",
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    !_ispass
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                    color: Colors.grey,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _ispass = !_ispass;
+                                    });
+                                  },
+                                ),
                                 hintStyle: TextStyle(color: Colors.white),
-                                labelStyle: TextStyle(color: Colors.red),
-                                errorText: null,
+                                labelStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                                errorText: _error[1],
                               ),
-                              // Example validation
-                              // validator: (value) => value.isEmpty ? 'Username cannot be empty' : null,
+                              onSubmitted: (t) {
+                                setState(() {
+                                  _error[1] = Validator.validatePassword(
+                                      _passcon, true, _mailidxon);
+                                });
+                              },
                             ),
                           ),
                           Spacer(),
                           Container(
-                            child: TextButton(
-                              onPressed: () {},
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.green,
-                                      borderRadius: BorderRadius.circular(15)),
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: 15.h, horizontal: 50.w),
-                                    child: Text(
-                                      "Login",
-                                      style: TextStyle(
-                                          fontSize: 20.sp, color: Colors.white),
-                                    ),
-                                  )),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: true
+                                  ? SizedBox(
+                                      width: 50.sw,
+                                      height: 0.08.sh,
+                                      child: TextButton(
+                                        style: ButtonStyle(
+                                            overlayColor:
+                                                WidgetStateProperty.all(
+                                                    const Color.fromRGBO(
+                                                        0, 94, 25, 100)),
+                                            backgroundColor:
+                                                WidgetStateProperty.all(
+                                                    Colors.green)),
+                                        onPressed: () {},
+                                        child: Text(
+                                          "Login",
+                                          style: TextStyle(
+                                              fontSize: 20.sp,
+                                              color: Colors.white),
+                                        ),
+                                      ),
+                                    )
+                                  : Stack(children: [
+                                      Container(
+                                        width: 50.sw,
+                                        height: 0.08.sh,
+                                        decoration: BoxDecoration(
+                                            color: Colors.green,
+                                            borderRadius:
+                                                BorderRadius.circular(50)),
+                                      ),
+                                      Center(
+                                          child: Container(
+                                              margin:
+                                                  EdgeInsets.only(top: 12.h),
+                                              child: CircularProgressIndicator(
+                                                  color: Colors.white)))
+                                    ]),
                             ),
                           )
                         ],
@@ -150,13 +215,15 @@ class _SigninScreenState extends State<SigninScreen> {
                       child: Row(
                     children: [
                       Text(
-                        "Already have a Account ?",
+                        "Don't have an account? ",
                         style: TextStyle(color: Colors.white, fontSize: 15.sp),
                       ),
                       TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.toNamed("/signup");
+                          },
                           child: Text(
-                            "Login",
+                            "Sign up now.",
                             style:
                                 TextStyle(color: Colors.red, fontSize: 15.sp),
                           )),
@@ -175,8 +242,7 @@ class _SigninScreenState extends State<SigninScreen> {
                                 child: Text(
                                   "or signup with",
                                   style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: scw / 40 * 2),
+                                      color: Colors.grey, fontSize: 18.sp),
                                 )))
                       ],
                     ),
