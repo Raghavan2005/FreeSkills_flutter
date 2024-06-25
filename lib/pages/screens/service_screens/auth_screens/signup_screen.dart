@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:freeskills/core/utils/Validator.dart';
-import 'package:get/get.dart';
 
 import '../../../../core/constants/colorstheme.dart';
 
@@ -36,7 +35,7 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Material(
-        color: ct.backgroundColor,
+        color: Color.fromRGBO(30, 30, 30, 1.0),
         child: Padding(
           padding: EdgeInsets.all(10.0.w),
           child: Center(
@@ -299,7 +298,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                       TextButton(
                           onPressed: () {
-                            Get.toNamed("/signin");
+                            //dfg
                           },
                           child: Text(
                             "Login",
@@ -328,7 +327,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   const Spacer(),
                   Padding(
-                    padding: EdgeInsets.only(bottom: 50.h),
+                    padding: EdgeInsets.only(bottom: 40.h),
                     child: Text(
                       "Google",
                       style: TextStyle(

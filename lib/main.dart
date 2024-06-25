@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:freeskills/pages/screens/home_screen.dart';
-import 'package:freeskills/pages/screens/player_screen.dart';
-import 'package:freeskills/pages/screens/profile_screen.dart';
-import 'package:freeskills/pages/screens/search_screen.dart';
-import 'package:freeskills/pages/screens/service_screens/auth_screens/signin_screen.dart';
-import 'package:freeskills/pages/screens/service_screens/auth_screens/signup_screen.dart';
-import 'package:get/get.dart';
+import 'package:freeskills/core/provider/SetupState_Provider.dart';
+import 'package:freeskills/pages/screens/service_screens/setup_screens/setupmain_screen.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,17 +24,17 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(375, 812), // Adjust to your design size
       builder: (context, child) {
-        return GetMaterialApp(
-          initialRoute: '/',
-          getPages: [
-            GetPage(name: '/', page: () => const home_screen()),
-            GetPage(name: '/search', page: () => const search_screen()),
-            GetPage(name: '/player', page: () => const player_screen()),
-            GetPage(name: '/profile', page: () => const profile_screen()),
-            GetPage(name: '/signin', page: () => const SigninScreen()),
-            GetPage(name: '/signup', page: () => const SignupScreen()),
+        return MultiProvider(
+          providers: [
+            ChangeNotifierProvider<SetupstateProvider>(
+              create: (c) => SetupstateProvider(),
+            )
           ],
-          home: child,
+          child: GetMaterialApp(
+            home: child,
+            theme: ThemeData(
+                scaffoldBackgroundColor: const Color.fromRGBO(30, 30, 30, 1.0)),
+          ),
         );
       },
       child: const App(),
@@ -45,16 +42,11 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class App extends StatefulWidget {
+class App extends StatelessWidget {
   const App({super.key});
 
   @override
-  State<App> createState() => _AppState();
-}
-
-class _AppState extends State<App> {
-  @override
   Widget build(BuildContext context) {
-    return const SignupScreen();
+    return const SetupmainScreen();
   }
 }
