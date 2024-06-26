@@ -5,10 +5,18 @@ class CompletedSixSub extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: const Text(
-      "Account Created",
-      style: TextStyle(color: Colors.white),
-    ));
+    return const Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Padding(
+          padding: EdgeInsets.all(10.0),
+          child: CircularProgressIndicator(),
+        ),
+        Text(
+          "Account Created",
+          style: TextStyle(color: Colors.white),
+        ),
+      ],
+    );
   }
 }

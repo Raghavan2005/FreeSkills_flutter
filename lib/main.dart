@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:freeskills/core/provider/SetupState_Provider.dart';
-import 'package:freeskills/pages/screens/service_screens/setup_screens/setupmain_screen.dart';
+import 'package:freeskills/pages/screens/home_screen.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
 
@@ -47,6 +47,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SetupmainScreen();
+    return const HomeScreen();
   }
 }

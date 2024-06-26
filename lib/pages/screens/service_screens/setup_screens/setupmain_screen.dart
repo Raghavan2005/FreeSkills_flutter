@@ -22,7 +22,7 @@ class _SetupmainScreenState extends State<SetupmainScreen> {
     Icons.local_post_office,
     Icons.copyright
   ];
-  ColorsTheme ct = new ColorsTheme();
+  ColorsTheme ct = ColorsTheme();
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +86,7 @@ class _SetupmainScreenState extends State<SetupmainScreen> {
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Visibility(
-                      visible: selectedindex == 50 ? false : true,
+                      visible: selectedindex == 5 ? false : true,
                       child: Row(
                         children: [
                           Visibility(
@@ -114,7 +114,7 @@ class _SetupmainScreenState extends State<SetupmainScreen> {
                           ),
                           Visibility(
                               visible: selectedindex > 0 ? true : false,
-                              child: Spacer()),
+                              child: const Spacer()),
                           SizedBox(
                             width: selectedindex == 0 ? 340.w : 200.w,
                             child: OutlinedButton(
