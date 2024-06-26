@@ -28,7 +28,7 @@ class SetupThree extends StatelessWidget {
                   style: TextStyle(color: Colors.white, fontSize: 38.sp),
                 ),
                 SizedBox(
-                  height: 50.h,
+                  height: 20.h,
                 ),
                 Expanded(
                   child: GridView.builder(

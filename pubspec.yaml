@@ -44,6 +44,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   flutter_animate: ^4.5.0
   flutter_cached_pdfview: ^0.4.2
+  toastification: ^2.0.0
 
 dev_dependencies:
   flutter_test:

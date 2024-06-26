@@ -36,7 +36,8 @@ class SetupFive extends StatelessWidget {
                     child: PDF(
                         nightMode: true,
                         onPageChanged: (int? current, int? total) {
-                          copyModel.updatecopyrightpage(current!, total!);
+                          print(current.toString());
+                          copyModel.updatecopyrightpage(current! + 1, total!);
                         }).cachedFromUrl(
                       'https://drive.google.com/u/0/uc?id=1ffuPWQ_b0Cz3v_50BP40RN0m4HHNtBdz&export=download',
                       placeholder: (progress) => Center(
@@ -66,11 +67,15 @@ class SetupFive extends StatelessWidget {
                     child: Row(
                       children: [
                         Checkbox(
-                          checkColor: Colors.blueAccent,
+                          activeColor: Colors.green,
+                          checkColor: Colors.white,
                           value: copyModel.usercopyright,
-                          onChanged: (bool? value) {
-                            copyModel.updatecopyright(value!);
-                          },
+                          onChanged:
+                              (copyModel.currentpage == copyModel.totalpage)
+                                  ? (bool? value) {
+                                      copyModel.updatecopyright(value!);
+                                    }
+                                  : null,
                         ),
                         Text(
                           maxLines: 3,

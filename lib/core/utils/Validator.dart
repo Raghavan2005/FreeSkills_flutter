@@ -41,4 +41,29 @@ class Validator {
       }
     }
   }
+
+  static String? isValidName(String name) {
+    // Check if the name is empty or null
+    if (name == null || name.isEmpty) {
+      return "Empty Value";
+    }
+
+    // Define a regular expression for valid names (only alphabetic characters and spaces)
+    final validNameRegExp = RegExp(r'^[a-zA-Z ]+$');
+
+    // Check if the name matches the regular expression
+    if (!validNameRegExp.hasMatch(name)) {
+      return "Regular Expression are Not allowed";
+    }
+
+    // Check for a minimum and maximum length constraint (optional)
+    const int minLength = 2;
+    const int maxLength = 50;
+
+    if (name.length < minLength || name.length > maxLength) {
+      return "You Name Must Be Min 2 to Max of 50 Constraint";
+    }
+
+    return null;
+  }
 }
