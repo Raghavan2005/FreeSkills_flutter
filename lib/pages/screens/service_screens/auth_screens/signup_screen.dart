@@ -35,7 +35,7 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Material(
-        color: Color.fromRGBO(30, 30, 30, 1.0),
+        color: const Color.fromRGBO(30, 30, 30, 1.0),
         child: Padding(
           padding: EdgeInsets.all(10.0.w),
           child: Center(

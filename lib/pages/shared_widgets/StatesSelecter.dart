@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:freeskills/core/provider/SetupState_Provider.dart';
 import 'package:provider/provider.dart';

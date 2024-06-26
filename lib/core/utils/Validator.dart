@@ -44,7 +44,7 @@ class Validator {
 
   static String? isValidName(String name) {
     // Check if the name is empty or null
-    if (name == null || name.isEmpty) {
+    if (name.isEmpty) {
       return "Empty Value";
     }
 

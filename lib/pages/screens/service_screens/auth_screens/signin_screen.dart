@@ -15,17 +15,17 @@ class SigninScreen extends StatefulWidget {
 class _SigninScreenState extends State<SigninScreen> {
   bool _ispass = true;
 
-  TextEditingController _mailidxon = TextEditingController();
-  TextEditingController _passcon = TextEditingController();
-  List _error = [null, null];
+  final TextEditingController _mailidxon = TextEditingController();
+  final TextEditingController _passcon = TextEditingController();
+  final List _error = [null, null];
 
   @override
   Widget build(BuildContext context) {
-    ColorsTheme ct = new ColorsTheme();
+    ColorsTheme ct = ColorsTheme();
 
     return SafeArea(
       child: Material(
-        color: Color.fromRGBO(30, 30, 30, 1.0),
+        color: const Color.fromRGBO(30, 30, 30, 1.0),
         child: Padding(
           padding: EdgeInsets.all(10.0.w),
           child: Center(
@@ -57,7 +57,7 @@ class _SigninScreenState extends State<SigninScreen> {
                             height: 10.h,
                           ),
                           Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: TextField(
                               controller: _mailidxon,
                               keyboardType: TextInputType.emailAddress,
@@ -65,32 +65,32 @@ class _SigninScreenState extends State<SigninScreen> {
                                   color: Colors.white, fontSize: 14.sp),
                               cursorColor: Colors.green,
                               decoration: InputDecoration(
-                                border: OutlineInputBorder(
+                                border: const OutlineInputBorder(
                                   borderSide: BorderSide(
                                       color:
                                           Colors.green), // Normal border color
                                 ),
-                                enabledBorder: OutlineInputBorder(
+                                enabledBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(
                                       color: Colors
                                           .green), // Unselected border color
                                 ),
-                                focusedBorder: OutlineInputBorder(
+                                focusedBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(
                                       color: Colors
                                           .green), // Selected border color
                                 ),
-                                errorBorder: OutlineInputBorder(
+                                errorBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(
                                       color: Colors.red), // Error border color
                                 ),
                                 hintText: " ",
                                 labelText: "Mail ID",
-                                hintStyle: TextStyle(color: Colors.white),
+                                hintStyle: const TextStyle(color: Colors.white),
                                 labelStyle: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
-                                errorText: _error[0] != null ? _error[0] : null,
+                                errorText: _error[0],
                               ),
                               onSubmitted: (t) {
                                 setState(() {
@@ -104,7 +104,7 @@ class _SigninScreenState extends State<SigninScreen> {
                             height: 10.h,
                           ),
                           Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(8.0),
                             child: TextField(
                               controller: _passcon,
                               obscureText: _ispass,
@@ -148,7 +148,7 @@ class _SigninScreenState extends State<SigninScreen> {
                                     });
                                   },
                                 ),
-                                hintStyle: TextStyle(color: Colors.white),
+                                hintStyle: const TextStyle(color: Colors.white),
                                 labelStyle: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
@@ -162,56 +162,52 @@ class _SigninScreenState extends State<SigninScreen> {
                               },
                             ),
                           ),
-                          Spacer(),
-                          Container(
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: true
-                                  ? SizedBox(
+                          const Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: true
+                                ? SizedBox(
+                                    width: 50.sw,
+                                    height: 0.08.sh,
+                                    child: TextButton(
+                                      style: ButtonStyle(
+                                          overlayColor: WidgetStateProperty.all(
+                                              const Color.fromRGBO(
+                                                  0, 94, 25, 100)),
+                                          backgroundColor:
+                                              WidgetStateProperty.all(
+                                                  Colors.green)),
+                                      onPressed: () {},
+                                      child: Text(
+                                        "Login",
+                                        style: TextStyle(
+                                            fontSize: 20.sp,
+                                            color: Colors.white),
+                                      ),
+                                    ),
+                                  )
+                                : Stack(children: [
+                                    Container(
                                       width: 50.sw,
                                       height: 0.08.sh,
-                                      child: TextButton(
-                                        style: ButtonStyle(
-                                            overlayColor:
-                                                WidgetStateProperty.all(
-                                                    const Color.fromRGBO(
-                                                        0, 94, 25, 100)),
-                                            backgroundColor:
-                                                WidgetStateProperty.all(
-                                                    Colors.green)),
-                                        onPressed: () {},
-                                        child: Text(
-                                          "Login",
-                                          style: TextStyle(
-                                              fontSize: 20.sp,
-                                              color: Colors.white),
-                                        ),
-                                      ),
-                                    )
-                                  : Stack(children: [
-                                      Container(
-                                        width: 50.sw,
-                                        height: 0.08.sh,
-                                        decoration: BoxDecoration(
-                                            color: Colors.green,
-                                            borderRadius:
-                                                BorderRadius.circular(50)),
-                                      ),
-                                      Center(
-                                          child: Container(
-                                              margin:
-                                                  EdgeInsets.only(top: 12.h),
-                                              child: CircularProgressIndicator(
-                                                  color: Colors.white)))
-                                    ]),
-                            ),
+                                      decoration: BoxDecoration(
+                                          color: Colors.green,
+                                          borderRadius:
+                                              BorderRadius.circular(50)),
+                                    ),
+                                    Center(
+                                        child: Container(
+                                            margin: EdgeInsets.only(top: 12.h),
+                                            child:
+                                                const CircularProgressIndicator(
+                                                    color: Colors.white)))
+                                  ]),
                           )
                         ],
                       ),
                     ),
                   ),
-                  Container(
-                      child: Row(
+                  Row(
                     children: [
                       Text(
                         "Don't have an account? ",
@@ -227,7 +223,7 @@ class _SigninScreenState extends State<SigninScreen> {
                                 TextStyle(color: Colors.red, fontSize: 15.sp),
                           )),
                     ],
-                  )),
+                  ),
                   Padding(
                     padding: EdgeInsets.only(top: 15.h),
                     child: Stack(
@@ -246,7 +242,7 @@ class _SigninScreenState extends State<SigninScreen> {
                       ],
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Padding(
                     padding: EdgeInsets.only(bottom: 50.h),
                     child: Text(

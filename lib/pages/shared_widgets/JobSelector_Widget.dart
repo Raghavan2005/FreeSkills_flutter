@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, file_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -51,7 +53,7 @@ class JobSelector_Widget extends StatelessWidget {
                       height: 100.h,
                       color: Colors.green,
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: Text(

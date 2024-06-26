@@ -19,7 +19,7 @@ class SetupFive extends StatelessWidget {
             child: Material(
           color: ct.backgroundColor,
           child: Padding(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -47,7 +47,7 @@ class SetupFive extends StatelessWidget {
                             padding: EdgeInsets.all(20.0),
                             child: CircularProgressIndicator(),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Text('Downlaoding From Our Server',
                               style: TextStyle(
                                   color: Colors.white, fontSize: 19.sp)),
@@ -91,6 +91,5 @@ class SetupFive extends StatelessWidget {
         ));
       },
     );
-    ;
   }
 }

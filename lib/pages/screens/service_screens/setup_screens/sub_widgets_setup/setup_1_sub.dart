@@ -19,7 +19,7 @@ class SetupOne extends StatelessWidget {
         builder:
             (BuildContext context, SetupstateProvider value, Widget? child) {
           return Padding(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -38,7 +38,7 @@ class SetupOne extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(12.0),
+                  padding: const EdgeInsets.all(12.0),
                   child: TextField(
                     controller: value.usernameconller,
                     keyboardType: TextInputType.emailAddress,
@@ -67,7 +67,7 @@ class SetupOne extends StatelessWidget {
                         color: Colors.grey,
                       ),
                       labelText: "Username",
-                      hintStyle: TextStyle(color: Colors.white),
+                      hintStyle: const TextStyle(color: Colors.white),
                       labelStyle: TextStyle(
                           fontSize: 17.sp,
                           color: Colors.white,

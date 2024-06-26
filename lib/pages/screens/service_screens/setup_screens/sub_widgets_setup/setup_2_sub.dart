@@ -15,7 +15,7 @@ class SetupTwo extends StatelessWidget {
         child: Material(
       color: ct.backgroundColor,
       child: Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -36,7 +36,7 @@ class SetupTwo extends StatelessWidget {
             SizedBox(
               height: 50.h,
             ),
-            LevelSelector()
+            const LevelSelector()
           ],
         ),
       ),
