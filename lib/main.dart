@@ -6,6 +6,7 @@ import 'package:freeskills/pages/routes/RoutesNames.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
 
+import 'core/provider/MainState_Provider.dart';
 import 'pages/routes/AppRoutes.dart';
 
 void main() {
@@ -30,10 +31,13 @@ class MyApp extends StatelessWidget {
           providers: [
             ChangeNotifierProvider<SetupstateProvider>(
               create: (c) => SetupstateProvider(),
+            ),
+            ChangeNotifierProvider<MainstateProvider>(
+              create: (c) => MainstateProvider(),
             )
           ],
           child: GetMaterialApp(
-            initialRoute: Routesnames.HomeScreen,
+            initialRoute: Routesnames.Homes,
             getPages: AppRoutes.appRoutes(),
             theme: ThemeData(
                 fontFamily: "Inter",

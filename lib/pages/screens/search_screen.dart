@@ -6,6 +6,10 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Center(
+        child: const Text(
+      "Search",
+      style: TextStyle(color: Colors.white),
+    ));
   }
 }
