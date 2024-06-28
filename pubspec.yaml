@@ -46,6 +46,8 @@ dependencies:
   flutter_cached_pdfview: ^0.4.2
   toastification: ^2.0.0
   google_nav_bar: ^5.0.6
+  carousel_slider: ^4.2.1
+
 
 dev_dependencies:
   flutter_test:
