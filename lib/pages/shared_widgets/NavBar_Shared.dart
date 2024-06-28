@@ -36,12 +36,12 @@ class NavBar_Shared extends StatelessWidget {
         // the tab button gap between icon and text
         color: Colors.grey,
         // unselected icon color
-        activeColor: Colors.greenAccent,
+        activeColor: Colors.green,
         // selected icon and text color
 
         iconSize: 28.sp,
         // tab button icon size
-        tabBackgroundColor: Colors.purple.withOpacity(0.1),
+        tabBackgroundColor: Colors.grey.withOpacity(0.1),
         // selected tab background color
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         // navigation bar padding

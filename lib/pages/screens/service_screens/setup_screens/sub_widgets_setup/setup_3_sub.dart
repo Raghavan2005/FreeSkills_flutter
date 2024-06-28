@@ -25,7 +25,10 @@ class SetupThree extends StatelessWidget {
               children: [
                 Text(
                   "Please Select Your Language",
-                  style: TextStyle(color: Colors.white, fontSize: 38.sp),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 38.sp,
+                      fontWeight: FontWeight.w900),
                 ),
                 SizedBox(
                   height: 20.h,

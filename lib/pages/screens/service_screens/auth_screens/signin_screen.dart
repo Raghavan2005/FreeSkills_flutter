@@ -46,7 +46,7 @@ class _SigninScreenState extends State<SigninScreen> {
                           Padding(
                             padding: EdgeInsets.only(top: 80.h),
                             child: Text(
-                              "Sign  In",
+                              "Sign In",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 30.sp,

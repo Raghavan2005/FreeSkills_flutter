@@ -59,7 +59,9 @@ class JobSelector_Widget extends StatelessWidget {
                       child: Text(
                         name,
                         style: TextStyle(
-                            color: Colors.white, fontSize: fontsize.sp),
+                            color: Colors.white,
+                            fontSize: fontsize.sp,
+                            fontWeight: FontWeight.w700),
                       ),
                     ),
                   ],

@@ -25,7 +25,10 @@ class SetupOne extends StatelessWidget {
               children: [
                 Text(
                   "Please Enter Your Name",
-                  style: TextStyle(color: Colors.white, fontSize: 38.sp),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 38.sp,
+                      fontWeight: FontWeight.w900),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -71,7 +74,7 @@ class SetupOne extends StatelessWidget {
                       labelStyle: TextStyle(
                           fontSize: 17.sp,
                           color: Colors.white,
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.w700),
                       errorText: value.errorList[0],
                     ),
                     onSubmitted: (val) {

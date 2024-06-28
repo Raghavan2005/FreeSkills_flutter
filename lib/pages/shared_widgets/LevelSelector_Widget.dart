@@ -48,7 +48,10 @@ class LevelSelector_Widget extends StatelessWidget {
             child: Center(
               child: Text(
                 name,
-                style: TextStyle(color: Colors.white, fontSize: fontsize.sp),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: fontsize.sp,
+                    fontWeight: FontWeight.w600),
               ),
             ),
           ),

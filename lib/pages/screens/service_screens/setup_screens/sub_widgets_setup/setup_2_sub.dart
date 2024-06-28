@@ -21,7 +21,10 @@ class SetupTwo extends StatelessWidget {
           children: [
             Text(
               "Please Enter Your Current States",
-              style: TextStyle(color: Colors.white, fontSize: 38.sp),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 38.sp,
+                  fontWeight: FontWeight.w900),
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),

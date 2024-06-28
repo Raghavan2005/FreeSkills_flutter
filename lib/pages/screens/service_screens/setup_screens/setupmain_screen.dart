@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:freeskills/core/provider/SetupState_Provider.dart';
 import 'package:provider/provider.dart';
@@ -28,11 +29,11 @@ class _SetupmainScreenState extends State<SetupmainScreen> {
   Widget build(BuildContext context) {
     return Consumer<SetupstateProvider>(
       builder: (BuildContext con, setupstateProvider, Widget? child) {
-        setupstateProvider.updatebuildcontext(context);
         int selectedindex = setupstateProvider.currentstate;
         return SafeArea(
           child: ToastificationWrapper(
             child: Material(
+              //textStyle: TextStyle(fontFamily: "RobotoFlex"),
               color: ct.backgroundColor,
               child: Column(
                 children: [
@@ -108,7 +109,8 @@ class _SetupmainScreenState extends State<SetupmainScreen> {
                                     "Back",
                                     style: TextStyle(
                                         color: Colors.lightGreen,
-                                        fontSize: 22.sp),
+                                        fontSize: 22.sp,
+                                        fontWeight: FontWeight.w500),
                                   ),
                                 )),
                           ),
@@ -118,25 +120,31 @@ class _SetupmainScreenState extends State<SetupmainScreen> {
                           SizedBox(
                             width: selectedindex == 0 ? 340.w : 200.w,
                             child: OutlinedButton(
-                                style: OutlinedButton.styleFrom(
-                                  foregroundColor: Colors.lightBlue,
-                                  side: const BorderSide(
-                                      width: 2.0, color: Colors.lightBlue),
-                                ),
-                                onPressed: () {
-                                  setupstateProvider.nextpage();
+                                    style: OutlinedButton.styleFrom(
+                                      foregroundColor: Colors.lightBlue,
+                                      side: const BorderSide(
+                                          width: 2.0, color: Colors.lightBlue),
+                                    ),
+                                    onPressed: () {
+                                      setupstateProvider.updateanim();
+                                      setupstateProvider.nextpage(context);
 
-                                  //  print(selectedindex);
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Text(
-                                    selectedindex == 4 ? "Submit" : "Next",
-                                    style: TextStyle(
-                                        color: Colors.lightBlue,
-                                        fontSize: 22.sp),
-                                  ),
-                                )),
+                                      //  print(selectedindex);
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: Text(
+                                        selectedindex == 4 ? "Submit" : "Next",
+                                        style: TextStyle(
+                                            color: Colors.lightBlue,
+                                            fontSize: 22.sp,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                    ))
+                                .animate(
+                                    target: setupstateProvider.butnanim ? 1 : 0)
+                                .fade(end: 0.9)
+                                .scaleXY(end: 1.05),
                           )
                         ],
                       ),

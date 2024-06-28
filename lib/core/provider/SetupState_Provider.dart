@@ -11,7 +11,7 @@ import '../../pages/screens/service_screens/setup_screens/sub_widgets_setup/setu
 import '../../pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_2_sub.dart';
 
 class SetupstateProvider extends ChangeNotifier {
-  List langlist = ['English', 'Tamil', 'Hindi'];
+  List langlist = ['English', 'தமிழ்', 'Hindi'];
   List jonlist = [
     'Android Application Developer',
     'Web Developer',
@@ -27,7 +27,12 @@ class SetupstateProvider extends ChangeNotifier {
   bool usercopyright = false;
   int currentpage = 0;
   int totalpage = 0;
-  late BuildContext ofsetupscreen;
+  bool butnanim = false;
+
+  void updateanim() {
+    butnanim = !butnanim;
+    notifyListeners();
+  }
 
   List<Widget> setuplistpages = [
     SetupOne(),
@@ -38,18 +43,13 @@ class SetupstateProvider extends ChangeNotifier {
     CompletedSixSub()
   ];
 
-  void nextpage() {
+  void nextpage(BuildContext ofsetupscreen) {
     if (currentstate != 5) {
-      updatethebutton();
+      updatethebutton(ofsetupscreen);
     }
   }
 
-  void updatebuildcontext(BuildContext con) {
-    ofsetupscreen = con;
-    notifyListeners();
-  }
-
-  void updatethebutton() {
+  void updatethebutton(BuildContext ofsetupscreen) {
     if (currentstate == 0 && errorList[0] == null) {
       if (username == null) {
         updatetherror("Empty Value", 0);
@@ -71,10 +71,11 @@ class SetupstateProvider extends ChangeNotifier {
     } else {
       if (currentstate > 0) {
         if (currentstate != 4) {
-          displaythemsg("Information", "Please Select Below Options", 1);
+          displaythemsg(
+              "Information", "Please Select Below Options", 1, ofsetupscreen);
         } else {
           displaythemsg("User Copyright Agreement",
-              "Please Click Accepts User Agreement", 1);
+              "Please Click Accepts User Agreement", 1, ofsetupscreen);
         }
       }
     }
@@ -136,7 +137,8 @@ class SetupstateProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void displaythemsg(String errortitle, String errordis, int time) {
+  void displaythemsg(
+      String errortitle, String errordis, int time, BuildContext c) {
     toastification.show(
       style: ToastificationStyle.flatColored,
       backgroundColor: Colors.redAccent,
@@ -148,7 +150,7 @@ class SetupstateProvider extends ChangeNotifier {
         size: 25.sp,
       ),
       pauseOnHover: true,
-      context: ofsetupscreen,
+      context: c,
       description: Padding(
         padding: const EdgeInsets.all(2.0),
         child: Text(

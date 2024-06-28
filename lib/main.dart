@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:freeskills/core/provider/SetupState_Provider.dart';
-import 'package:freeskills/pages/screens/home_screen.dart';
+import 'package:freeskills/pages/routes/RoutesNames.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
+
+import 'pages/routes/AppRoutes.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,11 +14,11 @@ void main() {
   // Than we setup preferred orientations,
   // and only after it finished we run our app
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((value) => runApp(const MyApp()));
+      .then((value) => runApp(MyApp()));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,22 +33,14 @@ class MyApp extends StatelessWidget {
             )
           ],
           child: GetMaterialApp(
-            home: child,
+            initialRoute: Routesnames.HomeScreen,
+            getPages: AppRoutes.appRoutes(),
             theme: ThemeData(
+                fontFamily: "Inter",
                 scaffoldBackgroundColor: const Color.fromRGBO(30, 30, 30, 1.0)),
           ),
         );
       },
-      child: const App(),
     );
-  }
-}
-
-class App extends StatelessWidget {
-  const App({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const HomeScreen();
   }
 }

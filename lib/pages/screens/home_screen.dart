@@ -9,10 +9,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: SafeArea(
-        child: Text(
-          "hello",
-          style: TextStyle(color: Colors.white),
-        ),
+        child: Text("sd"),
       ),
       bottomNavigationBar: NavBar_Shared(),
     );

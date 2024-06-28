@@ -25,7 +25,10 @@ class SetupFive extends StatelessWidget {
               children: [
                 Text(
                   "User Copyright Agreement",
-                  style: TextStyle(color: Colors.white, fontSize: 28.sp),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28.sp,
+                      fontWeight: FontWeight.w900),
                 ),
                 SizedBox(
                   height: 5.h,
@@ -80,8 +83,10 @@ class SetupFive extends StatelessWidget {
                         Text(
                           maxLines: 3,
                           "By clicking Accept or using the App,\nyou acknowledge that you have read, understood,\nand agree to be bound by the terms and conditions of this Agreement.",
-                          style:
-                              TextStyle(fontSize: 8.5.sp, color: Colors.white),
+                          style: TextStyle(
+                              fontSize: 8.5.sp,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500),
                         ),
                       ],
                     )),
