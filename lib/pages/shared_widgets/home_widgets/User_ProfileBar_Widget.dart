@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:freeskills/pages/routes/RoutesNames.dart';
+import 'package:get/get.dart';
 
 class UserProfilebar_Widget extends StatelessWidget {
   const UserProfilebar_Widget({super.key});
@@ -62,7 +64,9 @@ class UserProfilebar_Widget extends StatelessWidget {
                             color: Color.fromRGBO(1, 89, 24, 100),
                           ),
                           child: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.toNamed(Routesnames.NotificationScreen);
+                              },
                               icon: Icon(
                                 size: 20.sp,
                                 CupertinoIcons.bell,

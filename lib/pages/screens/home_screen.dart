@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
               children: value.screenlist,
             ),
           ),
-          bottomNavigationBar: NavBar_Shared(),
+          bottomNavigationBar: const NavBar_Shared(),
         );
       },
     );

@@ -10,6 +10,7 @@ class Routesnames {
   static final Player_Screen = const PlayerScreen();
   static final Profile_Screen = const ProfileScreen();
   static String SearchScreen = "/search";
+  static String NotificationScreen = "/notification";
   static String SignInScreen = "/signin";
   static String SignUpScreen = "/signup";
   static String SetupScreen = "/setup";

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:freeskills/pages/shared_widgets/search_widgets/SearchBar_Widget.dart';
 
 // ignore: camel_case_types
 class SearchScreen extends StatelessWidget {
@@ -6,10 +7,9 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-        child: const Text(
-      "Search",
-      style: TextStyle(color: Colors.white),
+    return const SafeArea(
+        child: Column(
+      children: [SearchbarWidget()],
     ));
   }
 }
