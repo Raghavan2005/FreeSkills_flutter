@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../core/provider/SetupState_Provider.dart';
+import '../../../core/provider/SetupState_Provider.dart';
 
 class JobSelector_Widget extends StatelessWidget {
   const JobSelector_Widget({

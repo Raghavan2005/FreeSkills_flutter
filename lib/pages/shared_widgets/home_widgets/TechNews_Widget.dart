@@ -26,7 +26,7 @@ class TechnewsWidget extends StatelessWidget {
               SizedBox(height: 4.h),
               SizedBox(
                 width: double.infinity,
-                height: 0.13.sh,
+                height: 0.15.sh,
                 child: Container(
                   decoration: BoxDecoration(
                     color: const Color.fromRGBO(90, 90, 90, 100),

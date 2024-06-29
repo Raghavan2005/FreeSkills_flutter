@@ -4,7 +4,7 @@ import 'package:freeskills/core/provider/SetupState_Provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../core/constants/colorstheme.dart';
-import '../../../../shared_widgets/LevelSelector_Widget.dart';
+import '../../../../shared_widgets/setup_page_widgets/LevelSelector_Widget.dart';
 
 class SetupThree extends StatelessWidget {
   SetupThree({super.key});

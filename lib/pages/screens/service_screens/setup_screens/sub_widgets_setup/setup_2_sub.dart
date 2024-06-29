@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:freeskills/pages/shared_widgets/StatesSelecter.dart';
+import 'package:freeskills/pages/shared_widgets/setup_page_widgets/StatesSelecter.dart';
 
 import '../../../../../core/constants/colorstheme.dart';
 

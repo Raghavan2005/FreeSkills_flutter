@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../../core/constants/colorstheme.dart';
 import '../../../../../core/provider/SetupState_Provider.dart';
-import '../../../../shared_widgets/JobSelector_Widget.dart';
+import '../../../../shared_widgets/setup_page_widgets/JobSelector_Widget.dart';
 
 class SetupFour extends StatelessWidget {
   SetupFour({super.key});

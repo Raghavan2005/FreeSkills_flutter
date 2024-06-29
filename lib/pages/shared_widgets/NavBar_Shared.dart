@@ -28,13 +28,13 @@ class NavBar_Shared extends StatelessWidget {
           tabBorder: Border.all(color: Colors.black, width: 1),
           // tab button border
           tabShadow: [
-            BoxShadow(color: Colors.black.withOpacity(0.5), blurRadius: 0)
+            BoxShadow(color: Colors.black.withOpacity(0.5), blurRadius: 1)
           ],
           // tab button shadow
           curve: Curves.easeOutExpo,
           backgroundColor: Colors.black,
           // tab animation curves
-          duration: const Duration(milliseconds: 300),
+          duration: const Duration(milliseconds: 250),
           // tab animation duration
           gap: 8,
           // the tab button gap between icon and text
