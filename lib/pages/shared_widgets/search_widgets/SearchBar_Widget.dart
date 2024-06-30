@@ -10,7 +10,7 @@ class SearchbarWidget extends StatelessWidget {
       width: double.infinity,
       height: 0.25.sh,
       child: Padding(
-        padding: const EdgeInsets.all(5.0),
+        padding: const EdgeInsets.all(9),
         child: Container(
           decoration: BoxDecoration(
             gradient: const LinearGradient(
@@ -92,23 +92,6 @@ class SearchbarWidget extends StatelessWidget {
                   onSubmitted: (t) {},
                 ),
               ),
-              Center(
-                child: SizedBox(
-                  width: 60.w,
-                  child: Container(
-                    padding: EdgeInsets.all(2.5),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Row(
-                      children: [
-                        Icon(Icons.close),
-                        Text("text"),
-                      ],
-                    ),
-                  ),
-                ),
-              )
             ],
           ),
         ),

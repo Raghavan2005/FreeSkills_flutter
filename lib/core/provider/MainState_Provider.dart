@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:freeskills/pages/screens/profile_screen.dart';
 import 'package:freeskills/pages/screens/search_screen.dart';
-import 'package:freeskills/pages/screens/shorts_screen.dart';
+import 'package:preload_page_view/preload_page_view.dart';
 
 import '../../pages/screens/home_screen.dart';
+import '../../pages/screens/shorts_screen.dart';
 
 class MainstateProvider extends ChangeNotifier {
   int currentnavtab = 0;
+
+  final PreloadPageController pageController =
+      PreloadPageController(keepPage: true);
   List<Color> nav_select = [
     Colors.blue,
     Colors.red,
@@ -15,7 +19,11 @@ class MainstateProvider extends ChangeNotifier {
   ];
   List<Widget> screenlist = [
     const Home(),
-    const ShortsScreen(),
+    //ShortsScreen(),
+    AboutTopic(
+      videoLink: 'na4lArVuv1A',
+    ),
+    //const Text("data"),
     const SearchScreen(),
     const ProfileScreen()
   ];
@@ -31,6 +39,7 @@ class MainstateProvider extends ChangeNotifier {
 
   void updatenavstate(int index) {
     currentnavtab = index;
+    pageController.jumpToPage(currentnavtab);
     notifyListeners();
   }
 }

@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:freeskills/core/provider/MainState_Provider.dart';
 import 'package:freeskills/pages/shared_widgets/home_widgets/Recommendation_Widget.dart';
 import 'package:freeskills/pages/shared_widgets/home_widgets/TechNews_Widget.dart';
+import 'package:preload_page_view/preload_page_view.dart';
 import 'package:provider/provider.dart';
+import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 import '../shared_widgets/NavBar_Shared.dart';
 import '../shared_widgets/home_widgets/Channels_List_Widget.dart';
@@ -17,14 +19,26 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<MainstateProvider>(
       builder: (BuildContext context, MainstateProvider value, Widget? child) {
-        return Scaffold(
+        return ScaffoldGradientBackground(
           body: SafeArea(
-            child: IndexedStack(
-              index: value.currentnavtab,
+            child: PreloadPageView(
+              physics: const NeverScrollableScrollPhysics(),
+              preloadPagesCount: 0,
+              controller: value.pageController,
               children: value.screenlist,
             ),
           ),
           bottomNavigationBar: const NavBar_Shared(),
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            tileMode: TileMode.decal,
+            stops: [0.0, 0.70],
+            colors: [
+              Colors.white12,
+              Colors.black12,
+            ],
+          ),
         );
       },
     );
@@ -40,6 +54,9 @@ class Home extends StatelessWidget {
       child: Column(
         children: [
           UserProfilebar_Widget(),
+          SizedBox(
+            height: 10.h,
+          ),
           TechnewsWidget(),
           Visibility(
             visible: true,
@@ -57,7 +74,7 @@ class Home extends StatelessWidget {
           SizedBox(
             height: 10.h,
           ),
-          ChannelsListWidget()
+          ChannelsListWidget(),
         ],
       ),
     );

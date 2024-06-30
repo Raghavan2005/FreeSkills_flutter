@@ -8,12 +8,15 @@ import 'package:freeskills/pages/routes/RoutesNames.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
 
+//import 'package:youtube_shorts/youtube_shorts.dart';
+
 import 'core/provider/MainState_Provider.dart';
 import 'pages/routes/AppRoutes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  // MediaKit.ensureInitialized();
 
   // Than we setup preferred orientations,
   // and only after it finished we run our app
@@ -48,12 +51,13 @@ class MyApp extends StatelessWidget {
           child: GetMaterialApp(
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
+            debugShowCheckedModeBanner: false,
             locale: context.locale,
             initialRoute: Routesnames.Homes,
             getPages: AppRoutes.appRoutes(),
             theme: ThemeData(
-                fontFamily: "Inter",
-                scaffoldBackgroundColor: const Color.fromRGBO(30, 30, 30, 1.0)),
+              fontFamily: "Inter",
+            ),
           ),
         );
       },

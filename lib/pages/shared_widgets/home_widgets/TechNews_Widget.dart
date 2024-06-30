@@ -21,15 +21,15 @@ class TechnewsWidget extends StatelessWidget {
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
-                    fontSize: 17.sp),
+                    fontSize: 19.sp),
               ),
-              SizedBox(height: 4.h),
+              SizedBox(height: 10.h),
               SizedBox(
                 width: double.infinity,
                 height: 0.15.sh,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: const Color.fromRGBO(90, 90, 90, 100),
+                    color: const Color.fromRGBO(90, 90, 90, 190),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.2), // Shadow color

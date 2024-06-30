@@ -27,30 +27,28 @@ class NavBar_Shared extends StatelessWidget {
           // tab button border
           tabBorder: Border.all(color: Colors.black, width: 1),
           // tab button border
-          tabShadow: [
-            BoxShadow(color: Colors.black.withOpacity(0.5), blurRadius: 1)
-          ],
+          tabShadow: const [BoxShadow(color: Colors.black, blurRadius: 1)],
           // tab button shadow
           curve: Curves.easeOutExpo,
           backgroundColor: Colors.black,
           // tab animation curves
-          duration: const Duration(milliseconds: 250),
+          duration: const Duration(milliseconds: 350),
           // tab animation duration
           gap: 8,
           // the tab button gap between icon and text
-          color: Colors.grey,
+          color: Colors.white60,
           // unselected icon color
           activeColor:
               mainStateProvider.nav_select[mainStateProvider.currentnavtab],
           // selected icon and text color
 
-          iconSize: 28.sp,
+          iconSize: 25.sp,
           // tab button icon size
           tabBackgroundColor: mainStateProvider
               .nav_select[mainStateProvider.currentnavtab]
               .withOpacity(0.1),
           // selected tab background color
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+          padding: const EdgeInsets.all(15),
           // navigation bar padding
           tabs: const [
             GButton(

@@ -9,7 +9,17 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const SafeArea(
         child: Column(
-      children: [SearchbarWidget()],
+      children: [
+        SearchbarWidget(),
+        Expanded(
+          child: Center(
+            child: Text(
+              "no Data Found",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        )
+      ],
     ));
   }
 }

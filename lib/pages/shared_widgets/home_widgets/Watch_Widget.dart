@@ -16,20 +16,21 @@ class WatchWidget extends StatelessWidget {
             style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w400,
-                fontSize: 17.sp),
+                fontSize: 19.sp),
           ),
           SizedBox(
             height: 10.h,
           ),
           Expanded(
             child: ListView.builder(
+              itemCount: 10,
               scrollDirection: Axis.horizontal,
               padding: EdgeInsets.all(1),
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
                   padding: const EdgeInsets.all(9.0),
                   child: Container(
-                    width: 0.5.sw,
+                    width: 0.6.sw,
                     height: 0.25.sh,
                     decoration: BoxDecoration(
                       color: const Color.fromRGBO(90, 90, 90, 100),
