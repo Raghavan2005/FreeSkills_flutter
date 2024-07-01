@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:freeskills/core/provider/MainState_Provider.dart';
+import 'package:freeskills/pages/routes/RoutesNames.dart';
 import 'package:freeskills/pages/shared_widgets/home_widgets/Recommendation_Widget.dart';
 import 'package:freeskills/pages/shared_widgets/home_widgets/TechNews_Widget.dart';
+import 'package:get/get.dart';
 import 'package:preload_page_view/preload_page_view.dart';
 import 'package:provider/provider.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
@@ -23,7 +25,7 @@ class HomeScreen extends StatelessWidget {
           body: SafeArea(
             child: PreloadPageView(
               physics: const NeverScrollableScrollPhysics(),
-              preloadPagesCount: 0,
+              preloadPagesCount: 1,
               controller: value.pageController,
               children: value.screenlist,
             ),
@@ -75,6 +77,11 @@ class Home extends StatelessWidget {
             height: 10.h,
           ),
           ChannelsListWidget(),
+          ElevatedButton(
+              onPressed: () {
+                Get.toNamed(Routesnames.Player_Screen);
+              },
+              child: Text("Next"))
         ],
       ),
     );

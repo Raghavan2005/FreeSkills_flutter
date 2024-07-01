@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 //import 'package:youtube_shorts/youtube_shorts.dart';
 
 import 'core/provider/MainState_Provider.dart';
+import 'core/provider/ShortsState_Provider.dart';
 import 'pages/routes/AppRoutes.dart';
 
 void main() async {
@@ -46,6 +47,9 @@ class MyApp extends StatelessWidget {
             ),
             ChangeNotifierProvider<MainstateProvider>(
               create: (c) => MainstateProvider(),
+            ),
+            ChangeNotifierProvider<ShortsstateProvider>(
+              create: (c) => ShortsstateProvider(),
             ),
           ],
           child: GetMaterialApp(

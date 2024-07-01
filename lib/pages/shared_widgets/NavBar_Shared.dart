@@ -32,7 +32,7 @@ class NavBar_Shared extends StatelessWidget {
           curve: Curves.easeOutExpo,
           backgroundColor: Colors.black,
           // tab animation curves
-          duration: const Duration(milliseconds: 350),
+          duration: const Duration(milliseconds: 150),
           // tab animation duration
           gap: 8,
           // the tab button gap between icon and text
@@ -56,8 +56,8 @@ class NavBar_Shared extends StatelessWidget {
               text: 'Home',
             ),
             GButton(
-              icon: Icons.slideshow_rounded,
-              text: 'Shorts',
+              icon: Icons.record_voice_over_rounded,
+              text: 'AI Chat',
             ),
             GButton(
               icon: Icons.search,

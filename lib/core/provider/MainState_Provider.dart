@@ -19,11 +19,7 @@ class MainstateProvider extends ChangeNotifier {
   ];
   List<Widget> screenlist = [
     const Home(),
-    //ShortsScreen(),
-    AboutTopic(
-      videoLink: 'na4lArVuv1A',
-    ),
-    //const Text("data"),
+    const ShortsScreen(),
     const SearchScreen(),
     const ProfileScreen()
   ];
