@@ -1,16 +1,17 @@
-# freeskills
+# **FreeSkills** [![Flutter CI](https://github.com/Raghavan2005/freeskills_flutter_android_iso/actions/workflows/FlutterCI.yml/badge.svg?branch=main)](https://github.com/Raghavan2005/freeskills_flutter_android_iso/actions/workflows/FlutterCI.yml)
 
-Freeskill made by raghavan android & iso
+![logo](https://github.com/Raghavan2005/freeskills_flutter_android_iso/assets/78393373/b5863d9c-979a-465c-8b74-5cd7dcd3c9bd)
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+Freeskill made by Raghavan android & iso
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+# **Tech Used**
+![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white) ![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+# **Platforms**
+![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white) ![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)
+
+# **Backend**
+![Firebase](https://img.shields.io/badge/firebase-a08021?style=for-the-badge&logo=firebase&logoColor=ffcd34)  ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
