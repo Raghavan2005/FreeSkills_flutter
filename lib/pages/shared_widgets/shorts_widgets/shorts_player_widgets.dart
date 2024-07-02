@@ -21,7 +21,7 @@ class _ShortsPlayerWidgetsState extends State<ShortsPlayerWidgets> {
     _controller = YoutubePlayerController(
       initialVideoId: widget.videoid,
       flags: const YoutubePlayerFlags(
-        autoPlay: false,
+        autoPlay: true,
         controlsVisibleAtStart: false,
         mute: false,
       ),
@@ -61,9 +61,6 @@ class _ShortsPlayerWidgetsState extends State<ShortsPlayerWidgets> {
             top: 15.0.h,
             right: 20.w,
             child: Image.asset('assets/icon/logo.png', width: 40, height: 40),
-          ),
-          Container(
-            color: Colors.transparent,
           ),
           Center(
             child: Visibility(

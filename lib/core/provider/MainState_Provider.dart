@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:freeskills/pages/screens/aichat_screen.dart';
 import 'package:freeskills/pages/screens/profile_screen.dart';
 import 'package:freeskills/pages/screens/search_screen.dart';
 import 'package:preload_page_view/preload_page_view.dart';
 
 import '../../pages/screens/home_screen.dart';
-import '../../pages/screens/shorts_screen.dart';
 
 class MainstateProvider extends ChangeNotifier {
   int currentnavtab = 0;
@@ -19,7 +19,8 @@ class MainstateProvider extends ChangeNotifier {
   ];
   List<Widget> screenlist = [
     const Home(),
-    const ShortsScreen(),
+    // const ShortsScreen(),
+    const AichatScreen(),
     const SearchScreen(),
     const ProfileScreen()
   ];

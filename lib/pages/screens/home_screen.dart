@@ -79,7 +79,7 @@ class Home extends StatelessWidget {
           ChannelsListWidget(),
           ElevatedButton(
               onPressed: () {
-                Get.toNamed(Routesnames.Player_Screen);
+                Get.offAndToNamed(Routesnames.Player_Screen);
               },
               child: Text("Next"))
         ],

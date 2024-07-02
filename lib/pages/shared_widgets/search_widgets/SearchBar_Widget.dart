@@ -79,7 +79,7 @@ class SearchbarWidget extends StatelessWidget {
                           color: Colors.black), // Error border color
                     ),
                     hintText: "Search here",
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.search,
                     ),
                     prefixIconColor: Colors.black,
