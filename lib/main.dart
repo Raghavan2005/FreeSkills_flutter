@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 //import 'package:youtube_shorts/youtube_shorts.dart';
 
 import 'core/provider/MainState_Provider.dart';
-import 'core/provider/MiniPlayerState_Provider.dart';
 import 'core/provider/ShortsState_Provider.dart';
 import 'pages/routes/AppRoutes.dart';
 
@@ -24,7 +23,7 @@ void main() async {
   // and only after it finished we run our app
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
       (value) => runApp(EasyLocalization(
-          supportedLocales: [Locale('en', 'US'), Locale('ta', 'IN')],
+          supportedLocales: const [Locale('en', 'US'), Locale('ta', 'IN')],
           path: 'assets/translations',
           assetLoader: JsonAssetLoader(),
           fallbackLocale: Locale('en', 'US'),
@@ -32,7 +31,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +51,9 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider<ShortsstateProvider>(
               create: (c) => ShortsstateProvider(),
             ),
-            ChangeNotifierProvider<MiniplayerstateProvider>(
+            /* ChangeNotifierProvider<MiniplayerstateProvider>(
               create: (c) => MiniplayerstateProvider(),
-            ),
+            ),*/
           ],
           child: GetMaterialApp(
             localizationsDelegates: context.localizationDelegates,

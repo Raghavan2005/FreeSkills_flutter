@@ -24,7 +24,7 @@ class SearchItemWidget extends StatelessWidget {
                 // Spread radius
                 blurRadius: 5,
                 // Blur radius
-                offset: Offset(0, 3), // Shadow offset (x, y)
+                offset: const Offset(0, 3), // Shadow offset (x, y)
               ),
             ],
             gradient: const LinearGradient(
@@ -63,7 +63,7 @@ class SearchItemWidget extends StatelessWidget {
                       fontSize: 25.sp,
                       fontWeight: FontWeight.w400),
                 ),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     TextdisplayWidget(

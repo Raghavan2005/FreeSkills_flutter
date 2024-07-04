@@ -28,7 +28,7 @@ class SearchbarWidget extends StatelessWidget {
                 color: Colors.black.withOpacity(0.2), // Shadow color
                 spreadRadius: 3, // Spread radius
                 blurRadius: 5, // Blur radius
-                offset: Offset(0, 3), // Shadow offset (x, y)
+                offset: const Offset(0, 3), // Shadow offset (x, y)
               ),
             ],
             borderRadius: BorderRadius.circular(25),
@@ -83,7 +83,7 @@ class SearchbarWidget extends StatelessWidget {
                       Icons.search,
                     ),
                     prefixIconColor: Colors.black,
-                    suffixIcon: Icon(Icons.filter_alt_rounded),
+                    suffixIcon: const Icon(Icons.filter_alt_rounded),
                     hintStyle: const TextStyle(color: Colors.black),
                     labelStyle: const TextStyle(
                         color: Colors.black, fontWeight: FontWeight.w500),

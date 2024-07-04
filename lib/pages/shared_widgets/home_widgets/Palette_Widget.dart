@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:palette_generator/palette_generator.dart';
 
 class PaletterGen extends StatefulWidget {
+  const PaletterGen({super.key});
+
   @override
   _PaletterGenState createState() => _PaletterGenState();
 }

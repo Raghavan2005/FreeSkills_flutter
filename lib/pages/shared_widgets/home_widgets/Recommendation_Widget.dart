@@ -5,9 +5,9 @@ class RecommendationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(9.0),
-      child: const Placeholder(),
+    return const Padding(
+      padding: EdgeInsets.all(9.0),
+      child: Placeholder(),
     );
   }
 }

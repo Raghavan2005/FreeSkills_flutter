@@ -186,6 +186,7 @@ class _SigninScreenState extends State<SigninScreen> {
                                       ),
                                     ),
                                   )
+                                // ignore: dead_code
                                 : Stack(children: [
                                     Container(
                                       width: 50.sw,

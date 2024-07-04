@@ -27,8 +27,8 @@ class YtdisplayerWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
                       color: Colors.black38),
-                  child: Padding(
-                    padding: const EdgeInsets.all(5.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(5.0),
                     child: Text(
                       "69:69",
                       style: TextStyle(color: Colors.white),

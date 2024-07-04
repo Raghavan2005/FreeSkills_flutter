@@ -31,7 +31,7 @@ class UserProfilebar_Widget extends StatelessWidget {
                 color: Colors.black.withOpacity(0.2), // Shadow color
                 spreadRadius: 3, // Spread radius
                 blurRadius: 5, // Blur radius
-                offset: Offset(0, 3), // Shadow offset (x, y)
+                offset: const Offset(0, 3), // Shadow offset (x, y)
               ),
             ],
             borderRadius: BorderRadius.circular(25),
@@ -43,7 +43,7 @@ class UserProfilebar_Widget extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 15, top: 15),
                 child: Row(
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     SizedBox(
                       width: 40.w,
                       height: 40.h,
@@ -57,11 +57,12 @@ class UserProfilebar_Widget extends StatelessWidget {
                                 // Spread radius
                                 blurRadius: 5,
                                 // Blur radius
-                                offset: Offset(0, 3), // Shadow offset (x, y)
+                                offset:
+                                    const Offset(0, 3), // Shadow offset (x, y)
                               ),
                             ],
                             borderRadius: BorderRadius.circular(100),
-                            color: Color.fromRGBO(1, 89, 24, 100),
+                            color: const Color.fromRGBO(1, 89, 24, 100),
                           ),
                           child: IconButton(
                               onPressed: () {

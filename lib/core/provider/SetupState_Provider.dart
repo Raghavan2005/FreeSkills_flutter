@@ -19,7 +19,7 @@ class SetupstateProvider extends ChangeNotifier {
   ];
   List errorList = [null, null, null, null, null];
   TextEditingController usernameconller = TextEditingController();
-  String? username = null;
+  String? username;
   int currentstate = 0;
   int selectedlevel = -1;
   int selectedlang = -1;

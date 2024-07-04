@@ -19,8 +19,11 @@ class _PlayerWidgetsState extends State<PlayerWidgets> {
     _controller = YoutubePlayerController(
       initialVideoId: 'iLnmTe5Q2Qw',
       flags: const YoutubePlayerFlags(
-        autoPlay: true,
-        mute: true,
+        hideControls: false,
+        controlsVisibleAtStart: false,
+        disableDragSeek: false,
+        autoPlay: false,
+        mute: false,
       ),
     );
   }
@@ -44,9 +47,7 @@ class _PlayerWidgetsState extends State<PlayerWidgets> {
         handleColor: Colors.amberAccent,
       ),
       onReady: () {
-        _controller.addListener(() {
-          print(_controller.value.isReady);
-        });
+        _controller.play();
       },
     );
   }

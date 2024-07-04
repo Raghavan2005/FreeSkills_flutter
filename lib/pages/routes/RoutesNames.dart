@@ -2,7 +2,7 @@ import '../screens/home_screen.dart';
 
 class Routesnames {
   static String Homes = "/";
-  static final Home_Screen = const Home();
+  static const Home_Screen = Home();
 
 //  static final Shorts_Screen = const ShortsScreen();
   static String Player_Screen = "/player";

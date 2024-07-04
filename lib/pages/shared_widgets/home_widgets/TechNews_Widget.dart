@@ -44,41 +44,39 @@ class TechnewsWidget extends StatelessWidget {
                     itemCount: value.newtemp.length,
                     itemBuilder: (BuildContext context, int itemIndex,
                             int pageViewIndex) =>
-                        Container(
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              value.newtemp[itemIndex],
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15.sp,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            Spacer(),
-                            Row(
-                              children: [
-                                Text(
-                                  "Source:google.com",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 10.sp,
-                                      fontWeight: FontWeight.w200),
-                                ),
-                                Spacer(),
-                                Text(
-                                  "Date:69/69/6969",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 10.sp,
-                                      fontWeight: FontWeight.w200),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
+                        Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            value.newtemp[itemIndex],
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15.sp,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          Spacer(),
+                          Row(
+                            children: [
+                              Text(
+                                "Source:google.com",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.w200),
+                              ),
+                              Spacer(),
+                              Text(
+                                "Date:69/69/6969",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.w200),
+                              ),
+                            ],
+                          )
+                        ],
                       ),
                     ),
                     options:
