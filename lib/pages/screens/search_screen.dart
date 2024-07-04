@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:freeskills/pages/shared_widgets/search_widgets/SearchBar_Widget.dart';
+
+import '../shared_widgets/search_widgets/search_item_widget.dart';
 
 // ignore: camel_case_types
 class SearchScreen extends StatelessWidget {
@@ -7,17 +10,16 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
         child: Column(
       children: [
         SearchbarWidget(),
         Expanded(
-          child: Center(
-            child: Text(
-              "no Data Found",
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
+          child: ListView.builder(
+              itemCount: 5,
+              itemBuilder: (c, i) {
+                return SearchItemWidget();
+              }),
         )
       ],
     ));

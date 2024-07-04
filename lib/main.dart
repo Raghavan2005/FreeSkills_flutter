@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 //import 'package:youtube_shorts/youtube_shorts.dart';
 
 import 'core/provider/MainState_Provider.dart';
+import 'core/provider/MiniPlayerState_Provider.dart';
 import 'core/provider/ShortsState_Provider.dart';
 import 'pages/routes/AppRoutes.dart';
 
@@ -50,6 +51,9 @@ class MyApp extends StatelessWidget {
             ),
             ChangeNotifierProvider<ShortsstateProvider>(
               create: (c) => ShortsstateProvider(),
+            ),
+            ChangeNotifierProvider<MiniplayerstateProvider>(
+              create: (c) => MiniplayerstateProvider(),
             ),
           ],
           child: GetMaterialApp(

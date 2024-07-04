@@ -38,6 +38,16 @@ class YtdisplayerWidget extends StatelessWidget {
               )
             ],
           ),
+          SizedBox(
+            height: 10.h,
+          ),
+          Text(
+            "TITLE",
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 25.sp,
+                fontWeight: FontWeight.w400),
+          ),
           const Row(
             children: [
               TextdisplayWidget(
@@ -49,13 +59,6 @@ class YtdisplayerWidget extends StatelessWidget {
                 iconData: Icons.chair,
               ),
             ],
-          ),
-          Text(
-            "TITLE",
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 25.sp,
-                fontWeight: FontWeight.w400),
           ),
         ],
       ),

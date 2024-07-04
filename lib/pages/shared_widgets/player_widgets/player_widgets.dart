@@ -15,6 +15,7 @@ class _PlayerWidgetsState extends State<PlayerWidgets> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
     _controller = YoutubePlayerController(
       initialVideoId: 'iLnmTe5Q2Qw',
       flags: const YoutubePlayerFlags(
@@ -28,6 +29,7 @@ class _PlayerWidgetsState extends State<PlayerWidgets> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
+
     _controller.dispose();
   }
 
