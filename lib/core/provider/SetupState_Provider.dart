@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:freeskills/core/utils/Validator.dart';
-import 'package:freeskills/pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_3_sub.dart';
-import 'package:freeskills/pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_4_sub.dart';
-import 'package:freeskills/pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_5_sub.dart';
+import 'package:FreeSkills/core/utils/Validator.dart';
+import 'package:FreeSkills/pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_3_sub.dart';
+import 'package:FreeSkills/pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_4_sub.dart';
+import 'package:FreeSkills/pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_5_sub.dart';
 import 'package:toastification/toastification.dart';
 
 import '../../pages/screens/service_screens/setup_screens/sub_widgets_setup/completed_6_sub.dart';

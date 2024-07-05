@@ -1,4 +1,4 @@
-package com.freeskills.raghavan.app.freeskills
+package com.FreeSkills.raghavan.app.FreeSkills
 
 import io.flutter.embedding.android.FlutterActivity
 

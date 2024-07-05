@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:freeskills/pages/screens/aichat_screen.dart';
-import 'package:freeskills/pages/screens/profile_screen.dart';
-import 'package:freeskills/pages/screens/search_screen.dart';
+import 'package:FreeSkills/pages/screens/aichat_screen.dart';
+import 'package:FreeSkills/pages/screens/profile_screen.dart';
+import 'package:FreeSkills/pages/screens/search_screen.dart';
 import 'package:preload_page_view/preload_page_view.dart';
 
 import '../../pages/screens/home_screen.dart';

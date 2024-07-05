@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:freeskills/pages/shared_widgets/player_widgets/responsivetextcontainer_widget.dart';
+import 'package:FreeSkills/pages/shared_widgets/player_widgets/responsivetextcontainer_widget.dart';
 
 class PlayerUserWidget extends StatelessWidget {
   const PlayerUserWidget({super.key});

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:freeskills/core/provider/MainState_Provider.dart';
-import 'package:freeskills/pages/shared_widgets/home_widgets/Recommendation_Widget.dart';
-import 'package:freeskills/pages/shared_widgets/home_widgets/TechNews_Widget.dart';
+import 'package:FreeSkills/core/provider/MainState_Provider.dart';
+import 'package:FreeSkills/pages/shared_widgets/home_widgets/Recommendation_Widget.dart';
+import 'package:FreeSkills/pages/shared_widgets/home_widgets/TechNews_Widget.dart';
 import 'package:get/get.dart';
 import 'package:preload_page_view/preload_page_view.dart';
 import 'package:provider/provider.dart';

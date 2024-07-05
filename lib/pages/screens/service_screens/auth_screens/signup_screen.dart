@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:freeskills/core/utils/Validator.dart';
+import 'package:FreeSkills/core/utils/Validator.dart';
 
 import '../../../../core/constants/colorstheme.dart';
 

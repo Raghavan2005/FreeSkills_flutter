@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:freeskills/core/provider/SetupState_Provider.dart';
+import 'package:FreeSkills/core/provider/SetupState_Provider.dart';
 import 'package:provider/provider.dart';
 import 'package:timelines/timelines.dart';
 import 'package:toastification/toastification.dart';

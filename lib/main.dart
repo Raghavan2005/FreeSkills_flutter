@@ -3,8 +3,8 @@ import 'package:easy_localization_loader/easy_localization_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:freeskills/core/provider/SetupState_Provider.dart';
-import 'package:freeskills/pages/routes/RoutesNames.dart';
+import 'package:FreeSkills/core/provider/SetupState_Provider.dart';
+import 'package:FreeSkills/pages/routes/RoutesNames.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
 

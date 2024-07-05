@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:freeskills/pages/shared_widgets/player_widgets/textdisplay_widget.dart';
+import 'package:FreeSkills/pages/shared_widgets/player_widgets/textdisplay_widget.dart';
 
 class YtdisplayerWidget extends StatelessWidget {
   const YtdisplayerWidget({super.key});

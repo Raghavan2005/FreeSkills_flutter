@@ -1,9 +1,9 @@
-import 'package:freeskills/pages/screens/home_screen.dart';
-import 'package:freeskills/pages/screens/player_screen.dart';
-import 'package:freeskills/pages/screens/service_screens/auth_screens/signin_screen.dart';
-import 'package:freeskills/pages/screens/service_screens/auth_screens/signup_screen.dart';
-import 'package:freeskills/pages/screens/service_screens/setup_screens/setupmain_screen.dart';
-import 'package:freeskills/pages/screens/sub_screen/notification_screen.dart';
+import 'package:FreeSkills/pages/screens/home_screen.dart';
+import 'package:FreeSkills/pages/screens/player_screen.dart';
+import 'package:FreeSkills/pages/screens/service_screens/auth_screens/signin_screen.dart';
+import 'package:FreeSkills/pages/screens/service_screens/auth_screens/signup_screen.dart';
+import 'package:FreeSkills/pages/screens/service_screens/setup_screens/setupmain_screen.dart';
+import 'package:FreeSkills/pages/screens/sub_screen/notification_screen.dart';
 import 'package:get/get.dart';
 
 class AppRoutes {

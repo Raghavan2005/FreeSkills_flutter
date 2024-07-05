@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:freeskills/pages/routes/RoutesNames.dart';
+import 'package:FreeSkills/pages/routes/RoutesNames.dart';
 import 'package:get/get.dart';
 
 class UserProfilebar_Widget extends StatelessWidget {
