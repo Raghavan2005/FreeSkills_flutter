@@ -33,6 +33,8 @@ dependencies:
   flutter_native_splash: 2.4.0
   easy_localization: 3.0.7
   easy_localization_loader: 2.0.2
+  firebase_core: any
+  firebase_auth: any
 
 
   # The following adds the Cupertino Icons font to your application.
