@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../player_widgets/textdisplay_widget.dart';
-
 class SearchItemWidget extends StatelessWidget {
   const SearchItemWidget({super.key});
 
@@ -48,11 +46,28 @@ class SearchItemWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: 0.9.sw,
-                  height: 0.21.sh,
-                  color: Colors.blue,
-                ),
+                Stack(alignment: Alignment.bottomRight, children: [
+                  Container(
+                    width: 0.9.sw,
+                    height: 0.21.sh,
+                    color: Colors.blue,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: Colors.black38),
+                      child: const Padding(
+                        padding: EdgeInsets.all(5.0),
+                        child: Text(
+                          "69:69",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  )
+                ]),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -63,23 +78,40 @@ class SearchItemWidget extends StatelessWidget {
                       fontSize: 25.sp,
                       fontWeight: FontWeight.w400),
                 ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                SizedBox(
+                  height: 10.h,
+                ),
+                Row(
                   children: [
-                    TextdisplayWidget(
-                      text: "Freecodecamp",
-                      iconData: Icons.youtube_searched_for,
+                    Text(
+                      "FreecodeCamp",
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400),
                     ),
-                    TextdisplayWidget(
-                      text: "Tamil",
-                      iconData: Icons.youtube_searched_for,
+                    SizedBox(
+                      width: 5.w,
                     ),
-                    TextdisplayWidget(
-                      text: "12.12.12",
-                      iconData: Icons.youtube_searched_for,
-                    )
+                    Text(
+                      "•",
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    SizedBox(
+                      width: 5.w,
+                    ),
+                    Text(
+                      "Tamil",
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400),
+                    ),
                   ],
-                )
+                ),
               ],
             ),
           ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:FreeSkills/pages/shared_widgets/player_widgets/textdisplay_widget.dart';
 
 class YtdisplayerWidget extends StatelessWidget {
   const YtdisplayerWidget({super.key});
@@ -41,24 +40,63 @@ class YtdisplayerWidget extends StatelessWidget {
           SizedBox(
             height: 10.h,
           ),
-          Text(
-            "TITLE",
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 25.sp,
-                fontWeight: FontWeight.w400),
-          ),
-          const Row(
-            children: [
-              TextdisplayWidget(
-                text: "Freecodecamp",
-                iconData: Icons.chair,
-              ),
-              TextdisplayWidget(
-                text: "Tamil",
-                iconData: Icons.chair,
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "TITLE",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25.sp,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "FreecodeCamp",
+                          style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        SizedBox(
+                          width: 5.w,
+                        ),
+                        Text(
+                          "•",
+                          style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        SizedBox(
+                          width: 5.w,
+                        ),
+                        Text(
+                          "Tamil",
+                          style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Spacer(),
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      size: 40.sp,
+                      Icons.arrow_drop_down,
+                      color: Colors.white,
+                    )),
+              ],
+            ),
           ),
         ],
       ),

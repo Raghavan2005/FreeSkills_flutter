@@ -25,7 +25,10 @@ class PlayerScreen extends StatelessWidget {
             const Divider(
               color: Colors.grey,
             ),
-            const PlayerUserWidget(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: const PlayerUserWidget(),
+            ),
             SizedBox(
               height: 25.h,
             ),

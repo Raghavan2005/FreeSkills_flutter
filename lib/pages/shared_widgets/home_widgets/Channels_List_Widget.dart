@@ -34,7 +34,7 @@ class ChannelsListWidget extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: PaletterGen(),
+                    child: const PaletterGen(),
                   );
                 },
               ),

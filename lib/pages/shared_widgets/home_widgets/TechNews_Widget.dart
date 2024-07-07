@@ -1,11 +1,12 @@
+import 'package:FreeSkills/core/provider/MainState_Provider.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:FreeSkills/core/provider/MainState_Provider.dart';
 import 'package:provider/provider.dart';
 
 class TechnewsWidget extends StatelessWidget {
-  const TechnewsWidget({super.key});
+  TechnewsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,47 +44,62 @@ class TechnewsWidget extends StatelessWidget {
                   child: CarouselSlider.builder(
                     itemCount: value.newtemp.length,
                     itemBuilder: (BuildContext context, int itemIndex,
-                            int pageViewIndex) =>
-                        Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            value.newtemp[itemIndex],
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15.sp,
-                                fontWeight: FontWeight.w600),
-                          ),
-                          Spacer(),
-                          Row(
-                            children: [
-                              Text(
-                                "Source:google.com",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 10.sp,
-                                    fontWeight: FontWeight.w200),
-                              ),
-                              Spacer(),
-                              Text(
-                                "Date:69/69/6969",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 10.sp,
-                                    fontWeight: FontWeight.w200),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                    options:
-                        CarouselOptions(viewportFraction: 1, autoPlay: true),
+                        int pageViewIndex) {
+                      return Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              value.newtemp[itemIndex],
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            Spacer(),
+                            Row(
+                              children: [
+                                Text(
+                                  "Source:google.com",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10.sp,
+                                      fontWeight: FontWeight.w200),
+                                ),
+                                Spacer(),
+                                Text(
+                                  "Date:69/69/6969",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10.sp,
+                                      fontWeight: FontWeight.w200),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                    options: CarouselOptions(
+                        onPageChanged: (i, m) {
+                          value.updatestatenews(i);
+                        },
+                        viewportFraction: 1,
+                        autoPlay: true),
                   ),
                 ),
               ),
+              Center(
+                child: new DotsIndicator(
+                  dotsCount: value.newtemp.length,
+                  position: value.currentiindexnews,
+                  decorator: DotsDecorator(
+                    color: Color.fromRGBO(33, 33, 33, 100), // Inactive color
+                    activeColor: Colors.white60,
+                  ),
+                ),
+              )
             ],
           ),
         );

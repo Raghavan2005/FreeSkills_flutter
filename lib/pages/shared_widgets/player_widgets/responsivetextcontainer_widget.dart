@@ -17,25 +17,34 @@ class ResponsiveTextContainer extends StatelessWidget {
     return GestureDetector(
       onTap: () => fun,
       child: Container(
-        padding: const EdgeInsets.all(6),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
+          color: Color.fromRGBO(48, 48, 48, 100),
+          borderRadius: BorderRadius.circular(25),
         ),
-        child: IntrinsicWidth(
-          child: Row(
-            children: [
-              Icon(seticon, color: Colors.black),
-              const SizedBox(width: 8),
-              Text(
-                text,
-                style: TextStyle(
-                  fontWeight: FontWeight.w300,
-                  color: Colors.black,
-                  fontSize: 16.sp,
-                ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Padding(
+            padding: const EdgeInsets.all(4.5),
+            child: IntrinsicWidth(
+              child: Row(
+                children: [
+                  Icon(
+                    seticon,
+                    color: Colors.white,
+                    size: 13.sp,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    text,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                      fontSize: 12.sp,
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
