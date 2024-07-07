@@ -17,7 +17,7 @@ class PlayerScreen extends StatelessWidget {
         scrollDirection: Axis.vertical,
         child: Column(
           children: [
-            const PlayerWidgets(),
+            Hero(tag: "player", child: const PlayerWidgets()),
             const AdsWidgets(height: 0.07),
             SizedBox(
               height: 5.h,
