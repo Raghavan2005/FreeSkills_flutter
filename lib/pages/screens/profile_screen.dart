@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../shared_widgets/profile_widgets/HistoryView_widget.dart';
 import '../shared_widgets/profile_widgets/Progressbar_widget.dart';
 import '../shared_widgets/profile_widgets/UserEditProfile_Widget.dart';
+import '../shared_widgets/profile_widgets/settings_unit1.dart';
 
 // ignore: camel_case_types
 class ProfileScreen extends StatelessWidget {
@@ -24,6 +25,7 @@ class ProfileScreen extends StatelessWidget {
               titlename: 'History',
             ),
           ),
+          SettingsUnit1()
         ],
       ),
     );
