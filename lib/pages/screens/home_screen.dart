@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
           body: SafeArea(
             child: PreloadPageView(
               physics: const NeverScrollableScrollPhysics(),
-              preloadPagesCount: 1,
+              preloadPagesCount: 0,
               controller: value.pageController,
               children: value.screenlist,
             ),

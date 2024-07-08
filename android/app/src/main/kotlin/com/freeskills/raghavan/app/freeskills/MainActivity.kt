@@ -1,5 +1,5 @@
-package com.FreeSkills.raghavan.app.FreeSkills
+package com.freeskills.raghavan.app.freeskills
 
 import io.flutter.embedding.android.FlutterActivity
 
-class MainActivity: FlutterActivity()
+class MainActivity : FlutterActivity()

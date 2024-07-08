@@ -37,6 +37,7 @@ dependencies:
   firebase_auth: any
   dots_indicator: ^3.0.0
   card_slider: ^1.0.5
+  fl_chart: ^0.68.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -46,7 +47,7 @@ dependencies:
   get: any
   timelines: 0.1.0
   flutter_screenutil: 5.9.3
-  flutter_animate: 4.5.0
+  #flutter_animate: 4.5.0
   flutter_cached_pdfview: 0.4.2
   toastification: 2.0.0
   google_nav_bar: 5.0.6
@@ -66,8 +67,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: 0.13.1
-  flutter_lints: 4.0.0
+  #flutter_launcher_icons: 0.13.1
+  # flutter_lints: 4.0.0
 
 
 
@@ -101,20 +102,7 @@ flutter:
     - family: Inter
       fonts:
         - asset: assets/fonts/Inter/Inter-Regular.ttf
-        - asset: assets/fonts/Inter/Inter-Black.ttf
-          weight: 900
-        - asset: assets/fonts/Inter/Inter-Bold.ttf
-          weight: 800
-        - asset: assets/fonts/Inter/Inter-ExtraBold.ttf
-          weight: 700
-        - asset: assets/fonts/Inter/Inter-Light.ttf
-          weight: 600
-        - asset: assets/fonts/Inter/Inter-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Inter/Inter-SemiBold.ttf
-          weight: 400
-        - asset: assets/fonts/Inter/Inter-Thin.ttf
-          weight: 300
+
 
 
   #   - family: Trajan Pro

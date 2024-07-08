@@ -39,7 +39,7 @@ class ResponsiveTextContainer extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
                       color: Colors.white,
-                      fontSize: 12.sp,
+                      fontSize: 15.sp,
                     ),
                   ),
                 ],

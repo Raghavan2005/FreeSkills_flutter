@@ -60,7 +60,7 @@ class YtdisplayerWidget extends StatelessWidget {
                           "FreecodeCamp",
                           style: TextStyle(
                               color: Colors.grey,
-                              fontSize: 12.sp,
+                              fontSize: 13.sp,
                               fontWeight: FontWeight.w400),
                         ),
                         SizedBox(
@@ -70,7 +70,7 @@ class YtdisplayerWidget extends StatelessWidget {
                           "•",
                           style: TextStyle(
                               color: Colors.grey,
-                              fontSize: 12.sp,
+                              fontSize: 13.sp,
                               fontWeight: FontWeight.w400),
                         ),
                         SizedBox(
@@ -80,7 +80,7 @@ class YtdisplayerWidget extends StatelessWidget {
                           "Tamil",
                           style: TextStyle(
                               color: Colors.grey,
-                              fontSize: 12.sp,
+                              fontSize: 13.sp,
                               fontWeight: FontWeight.w400),
                         ),
                       ],

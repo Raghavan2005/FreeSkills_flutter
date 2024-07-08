@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
+import '../../shared_widgets/home_widgets/Notification_item.dart';
+
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
 
@@ -32,16 +34,19 @@ class NotificationScreen extends StatelessWidget {
                 fontWeight: FontWeight.w600),
           ),
         ),
-        body: Center(
-          child: Text(
-            "No Notification",
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 19.sp,
-                fontWeight: FontWeight.w300),
-          ),
-        ),
+        body: Notification_item(),
       ),
     );
   }
 }
+
+/*
+Center(
+child: Text(
+"No Notification",
+style: TextStyle(
+color: Colors.white,
+fontSize: 19.sp,
+fontWeight: FontWeight.w300),
+),
+)*/

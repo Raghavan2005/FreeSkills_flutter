@@ -30,7 +30,7 @@ class PlayerUserWidget extends StatelessWidget {
                   "@FreeCodeCamp",
                   style: TextStyle(
                       color: Colors.grey,
-                      fontSize: 10.sp,
+                      fontSize: 13.sp,
                       fontWeight: FontWeight.w400),
                 ),
                 SizedBox(
@@ -40,7 +40,7 @@ class PlayerUserWidget extends StatelessWidget {
                   "•",
                   style: TextStyle(
                       color: Colors.grey,
-                      fontSize: 10.sp,
+                      fontSize: 13.sp,
                       fontWeight: FontWeight.w400),
                 ),
                 SizedBox(
@@ -50,7 +50,7 @@ class PlayerUserWidget extends StatelessWidget {
                   "Tamil",
                   style: TextStyle(
                       color: Colors.grey,
-                      fontSize: 10.sp,
+                      fontSize: 13.sp,
                       fontWeight: FontWeight.w400),
                 ),
                 SizedBox(
@@ -60,7 +60,7 @@ class PlayerUserWidget extends StatelessWidget {
                   "•",
                   style: TextStyle(
                       color: Colors.grey,
-                      fontSize: 10.sp,
+                      fontSize: 13.sp,
                       fontWeight: FontWeight.w400),
                 ),
                 SizedBox(
@@ -70,7 +70,7 @@ class PlayerUserWidget extends StatelessWidget {
                   "69:69:69",
                   style: TextStyle(
                       color: Colors.grey,
-                      fontSize: 10.sp,
+                      fontSize: 15.sp,
                       fontWeight: FontWeight.w400),
                 ),
               ],

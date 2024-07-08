@@ -38,7 +38,7 @@ class RecommendationWidget extends StatelessWidget {
               i.toString(),
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 90,
+                fontSize: 100,
                 fontWeight: FontWeight.bold,
               ),
             ),
