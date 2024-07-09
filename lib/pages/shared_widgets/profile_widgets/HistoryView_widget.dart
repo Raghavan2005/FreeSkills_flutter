@@ -48,55 +48,52 @@ class HistoryviewWidget extends StatelessWidget {
                   onTap: () {
                     Get.toNamed(Routesnames.Player_Screen);
                   },
-                  child: Hero(
-                    tag: "player",
-                    child: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: 0.4.sw,
-                            height: 0.13.sh,
-                            decoration: BoxDecoration(
-                              color: const Color.fromRGBO(90, 90, 90, 100),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.2),
-                                  // Shadow color
-                                  spreadRadius: 3,
-                                  // Spread radius
-                                  blurRadius: 5,
-                                  // Blur radius
-                                  offset: Offset(0, 3), // Shadow offset (x, y)
-                                ),
-                              ],
-                              borderRadius: BorderRadius.circular(12.5),
-                            ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 0.4.sw,
+                          height: 0.13.sh,
+                          decoration: BoxDecoration(
+                            color: const Color.fromRGBO(90, 90, 90, 100),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.2),
+                                // Shadow color
+                                spreadRadius: 3,
+                                // Spread radius
+                                blurRadius: 5,
+                                // Blur radius
+                                offset: Offset(0, 3), // Shadow offset (x, y)
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(12.5),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(6.0),
-                            child: SizedBox(
-                              width: 0.4.sw,
-                              child: RichText(
-                                textAlign: TextAlign.start,
-                                textWidthBasis: TextWidthBasis.parent,
-                                text: TextSpan(
-                                  text:
-                                      "Updated and added new Course On your Application",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600,
-                                    // You can customize the color and other text styles here
-                                    fontSize:
-                                        14.0, // Adjust the font size as needed
-                                  ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(6.0),
+                          child: SizedBox(
+                            width: 0.4.sw,
+                            child: RichText(
+                              textAlign: TextAlign.start,
+                              textWidthBasis: TextWidthBasis.parent,
+                              text: TextSpan(
+                                text:
+                                    "Updated and added new Course On your Application",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                  // You can customize the color and other text styles here
+                                  fontSize:
+                                      14.0, // Adjust the font size as needed
                                 ),
                               ),
                             ),
-                          )
-                        ],
-                      ),
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 );

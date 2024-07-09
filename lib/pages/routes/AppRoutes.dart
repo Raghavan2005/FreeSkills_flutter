@@ -3,6 +3,7 @@ import 'package:FreeSkills/pages/screens/player_screen.dart';
 import 'package:FreeSkills/pages/screens/service_screens/auth_screens/signin_screen.dart';
 import 'package:FreeSkills/pages/screens/service_screens/auth_screens/signup_screen.dart';
 import 'package:FreeSkills/pages/screens/service_screens/setup_screens/setupmain_screen.dart';
+import 'package:FreeSkills/pages/screens/sub_screen/about_screen.dart';
 import 'package:FreeSkills/pages/screens/sub_screen/notification_screen.dart';
 import 'package:FreeSkills/pages/screens/sub_screen/setting_screen.dart';
 import 'package:get/get.dart';
@@ -19,6 +20,11 @@ class AppRoutes {
             transitionDuration: const Duration(milliseconds: 190),
             name: '/settings',
             page: () => SettingScreen()),
+        GetPage(
+            transition: Transition.leftToRight,
+            transitionDuration: const Duration(milliseconds: 190),
+            name: '/about',
+            page: () => AboutScreen()),
         GetPage(
             transition: Transition.rightToLeft,
             transitionDuration: const Duration(milliseconds: 190),

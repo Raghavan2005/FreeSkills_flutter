@@ -1,6 +1,6 @@
+import 'package:FreeSkills/pages/shared_widgets/search_widgets/SearchBar_Widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:FreeSkills/pages/shared_widgets/search_widgets/SearchBar_Widget.dart';
 
 import '../shared_widgets/search_widgets/search_item_widget.dart';
 

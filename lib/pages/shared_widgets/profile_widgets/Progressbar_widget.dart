@@ -14,7 +14,7 @@ class ProgressbarWidget extends StatelessWidget {
           height: 10.h,
         ),
         SizedBox(
-            height: 0.40.sh, width: double.infinity, child: ProgressBarChart())
+            height: 0.45.sh, width: double.infinity, child: ProgressBarChart())
       ],
     );
   }

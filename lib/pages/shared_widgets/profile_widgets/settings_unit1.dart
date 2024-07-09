@@ -81,28 +81,26 @@ class SettingsUnit1 extends StatelessWidget {
               width: double.infinity,
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Expanded(
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 20.w,
-                      ),
-                      Icon(
-                        Icons.settings,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
-                        width: 30.w,
-                      ),
-                      Text(
-                        "Settings",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17.sp,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 20.w,
+                    ),
+                    Icon(
+                      Icons.settings,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 30.w,
+                    ),
+                    Text(
+                      "Settings",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 17.sp,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
                 ),
               ),
             ),

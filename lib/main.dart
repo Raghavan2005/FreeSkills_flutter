@@ -1,16 +1,17 @@
+import 'package:FreeSkills/core/provider/SetupState_Provider.dart';
+import 'package:FreeSkills/pages/routes/RoutesNames.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_localization_loader/easy_localization_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:FreeSkills/core/provider/SetupState_Provider.dart';
-import 'package:FreeSkills/pages/routes/RoutesNames.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
 
 //import 'package:youtube_shorts/youtube_shorts.dart';
 
 import 'core/provider/MainState_Provider.dart';
+import 'core/provider/SeetingsState_Provider.dart';
 import 'core/provider/ShortsState_Provider.dart';
 import 'pages/routes/AppRoutes.dart';
 
@@ -50,6 +51,9 @@ class MyApp extends StatelessWidget {
             ),
             ChangeNotifierProvider<ShortsstateProvider>(
               create: (c) => ShortsstateProvider(),
+            ),
+            ChangeNotifierProvider<SeetingsstateProvider>(
+              create: (c) => SeetingsstateProvider(),
             ),
             /* ChangeNotifierProvider<MiniplayerstateProvider>(
               create: (c) => MiniplayerstateProvider(),

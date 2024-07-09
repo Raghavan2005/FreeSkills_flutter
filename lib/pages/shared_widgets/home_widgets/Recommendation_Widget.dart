@@ -33,36 +33,13 @@ class RecommendationWidget extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: -20,
+            top: 0,
             child: Text(
               i.toString(),
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 100,
                 fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          Positioned(
-            right: 0,
-            bottom: 0,
-            child: GestureDetector(
-              onTap: () {
-                print("clicked");
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: Colors.black45,
-                  ),
-                  child: Icon(
-                    Icons.play_arrow,
-                    color: Colors.white70,
-                    size: 50.sp,
-                  ),
-                ),
               ),
             ),
           ),

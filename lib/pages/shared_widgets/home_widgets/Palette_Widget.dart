@@ -35,16 +35,16 @@ class _PaletterGenState extends State<PaletterGen> {
       alignment: Alignment.center,
       children: [
         Container(
-          width: 80.w,
-          height: 80.h,
+          width: 84.w,
+          height: 84.h,
           decoration: BoxDecoration(
               color: dominantColor ?? Colors.white.withOpacity(0.1),
               borderRadius: BorderRadius.circular(50)),
         ),
         Center(
             child: SizedBox(
-                width: 50.w,
-                height: 50.h,
+                width: 60.w,
+                height: 60.h,
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(50),
                     child: Image.network(imageUrl)))),
