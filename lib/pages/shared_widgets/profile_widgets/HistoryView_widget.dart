@@ -27,7 +27,9 @@ class HistoryviewWidget extends StatelessWidget {
               ),
               Spacer(),
               OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed(Routesnames.AllhistoryScreen);
+                  },
                   style: ButtonStyle(splashFactory: NoSplash.splashFactory),
                   child: Text(
                     "View all",

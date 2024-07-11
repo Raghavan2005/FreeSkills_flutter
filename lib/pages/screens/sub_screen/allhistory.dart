@@ -20,13 +20,13 @@ class Allhistory extends StatelessWidget {
               color: Colors.white54, fontWeight: FontWeight.bold, fontSize: 40),
         ),
       ),
-      body: Column(
-        children: [
-          Slidable(
-            key: const ValueKey(0),
+      body: ListView.builder(
+        itemCount: 4,
+        itemBuilder: (BuildContext context, int index) {
+          return Slidable(
+            key: ValueKey(index),
             startActionPane: ActionPane(
               motion: const ScrollMotion(),
-              dismissible: DismissiblePane(onDismissed: () {}),
               children: const [
                 SlidableAction(
                   onPressed: null,
@@ -37,12 +37,11 @@ class Allhistory extends StatelessWidget {
                 ),
               ],
             ),
-            endActionPane: const ActionPane(
+            endActionPane: ActionPane(
               motion: ScrollMotion(),
+              dismissible: DismissiblePane(onDismissed: () {}),
               children: [
                 SlidableAction(
-                  // An action can be bigger than the others.
-                  flex: 2,
                   onPressed: null,
                   backgroundColor: Colors.red,
                   foregroundColor: Colors.white,
@@ -53,17 +52,16 @@ class Allhistory extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.all(15.0),
-              child: SizedBox(
-                width: double.infinity,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 0.12.sh,
-                      width: 0.5.sw,
-                      color: Colors.green,
-                    ),
-                    Padding(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 0.12.sh,
+                    width: 0.5.sw,
+                    color: Colors.green,
+                  ),
+                  Expanded(
+                    child: Padding(
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,9 +69,13 @@ class Allhistory extends StatelessWidget {
                           RichText(
                             maxLines: 2,
                             text: TextSpan(
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 16.sp),
-                                text: "freecodecamp sad"),
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 16.sp),
+                              text:
+                                  "Updated and added new Course On your Application",
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            softWrap: true,
                           ),
                           Text(
                             "freecodecamp",
@@ -87,84 +89,13 @@ class Allhistory extends StatelessWidget {
                           ),
                         ],
                       ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Slidable(
-            key: const ValueKey(0),
-            startActionPane: ActionPane(
-              motion: const ScrollMotion(),
-              dismissible: DismissiblePane(onDismissed: () {}),
-              children: const [
-                SlidableAction(
-                  onPressed: null,
-                  backgroundColor: Color(0xFF21B7CA),
-                  foregroundColor: Colors.white,
-                  icon: Icons.share,
-                  label: 'Share',
-                ),
-              ],
-            ),
-            endActionPane: const ActionPane(
-              motion: ScrollMotion(),
-              children: [
-                SlidableAction(
-                  // An action can be bigger than the others.
-                  flex: 2,
-                  onPressed: null,
-                  backgroundColor: Colors.red,
-                  foregroundColor: Colors.white,
-                  icon: Icons.archive,
-                  label: 'Remove',
-                ),
-              ],
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: SizedBox(
-                width: double.infinity,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 0.12.sh,
-                      width: 0.5.sw,
-                      color: Colors.green,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          RichText(
-                            maxLines: 2,
-                            text: TextSpan(
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 16.sp),
-                                text: "freecodecamp sad"),
-                          ),
-                          Text(
-                            "freecodecamp",
-                            style:
-                                TextStyle(color: Colors.grey, fontSize: 13.sp),
-                          ),
-                          Text(
-                            "Tamil",
-                            style:
-                                TextStyle(color: Colors.grey, fontSize: 13.sp),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+                  )
+                ],
               ),
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

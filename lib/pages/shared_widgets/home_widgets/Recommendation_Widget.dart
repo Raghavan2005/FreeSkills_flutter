@@ -24,7 +24,7 @@ class RecommendationWidget extends StatelessWidget {
         alignment: Alignment.topLeft,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 30),
+            padding: const EdgeInsets.only(top: 20),
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.0),
@@ -56,8 +56,8 @@ class RecommendationWidget extends StatelessWidget {
             'Mobile App Developer',
             style: TextStyle(
               color: Colors.white,
-              fontWeight: FontWeight.w400,
-              fontSize: 19.sp,
+              fontWeight: FontWeight.bold,
+              fontSize: 22.sp,
             ),
           ),
           Stack(
@@ -66,8 +66,8 @@ class RecommendationWidget extends StatelessWidget {
               CardSlider(
                 cards: valuesWidget,
                 bottomOffset: .00003,
-                cardHeight: 0.7,
-                itemDotOffset: 0.30,
+                cardHeight: 0.6,
+                itemDotOffset: 0.20,
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
