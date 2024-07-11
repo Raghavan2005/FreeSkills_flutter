@@ -8,6 +8,8 @@ import 'package:FreeSkills/pages/screens/sub_screen/notification_screen.dart';
 import 'package:FreeSkills/pages/screens/sub_screen/setting_screen.dart';
 import 'package:get/get.dart';
 
+import '../screens/sub_screen/allhistory.dart';
+
 class AppRoutes {
   static appRoutes() => [
         GetPage(name: '/', page: () => const HomeScreen()),
@@ -15,6 +17,7 @@ class AppRoutes {
         GetPage(name: '/signup', page: () => const SignupScreen()),
         GetPage(name: '/setup', page: () => const SetupmainScreen()),
         GetPage(name: '/player', page: () => const PlayerScreen()),
+        GetPage(name: '/allhistory', page: () => const Allhistory()),
         GetPage(
             transition: Transition.size,
             transitionDuration: const Duration(milliseconds: 190),

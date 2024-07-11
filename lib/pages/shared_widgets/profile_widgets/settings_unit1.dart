@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../routes/RoutesNames.dart';
+import 'Styled_Setting_Btn.dart';
 
 class SettingsUnit1 extends StatelessWidget {
   const SettingsUnit1({super.key});
@@ -13,128 +14,43 @@ class SettingsUnit1 extends StatelessWidget {
       padding: const EdgeInsets.all(9.0),
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              width: double.infinity,
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 20.w,
-                  ),
-                  Icon(
-                    Icons.video_collection_outlined,
-                    color: Colors.white,
-                  ),
-                  SizedBox(
-                    width: 30.w,
-                  ),
-                  Text(
-                    "Saved Videos",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17.sp,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ],
-              ),
-            ),
+          Styled_Setting_Btn(
+            onTap: () {
+              print('object');
+            },
+            btntext: 'Saved Videos',
+            icondata: Icons.video_collection_outlined,
           ),
           SizedBox(
             height: 10.h,
           ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              width: double.infinity,
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 20.w,
-                  ),
-                  Icon(
-                    Icons.workspace_premium,
-                    color: Colors.white,
-                  ),
-                  SizedBox(
-                    width: 30.w,
-                  ),
-                  Text(
-                    "Get Premium",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17.sp,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ],
-              ),
-            ),
+          Styled_Setting_Btn(
+            onTap: () {
+              print('object');
+            },
+            btntext: 'Get Premium',
+            icondata: Icons.workspace_premium,
           ),
           SizedBox(
             height: 10.h,
           ),
-          GestureDetector(
+          Styled_Setting_Btn(
             onTap: () {
               Get.toNamed(Routesnames.SettingsScreen);
             },
-            child: Container(
-              width: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 20.w,
-                    ),
-                    Icon(
-                      Icons.settings,
-                      color: Colors.white,
-                    ),
-                    SizedBox(
-                      width: 30.w,
-                    ),
-                    Text(
-                      "Settings",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17.sp,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            btntext: 'Settings',
+            icondata: Icons.settings,
           ),
           SizedBox(
             height: 10.h,
           ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              width: double.infinity,
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 20.w,
-                  ),
-                  Icon(
-                    Icons.help_center,
-                    color: Colors.white,
-                  ),
-                  SizedBox(
-                    width: 30.w,
-                  ),
-                  Text(
-                    "Help and Feedback",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17.sp,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ],
-              ),
-            ),
-          )
+          Styled_Setting_Btn(
+            onTap: () {
+              print('object');
+            },
+            btntext: 'Help and Feedback',
+            icondata: Icons.help_center,
+          ),
         ],
       ),
     );

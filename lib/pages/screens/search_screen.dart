@@ -2,8 +2,6 @@ import 'package:FreeSkills/pages/shared_widgets/search_widgets/SearchBar_Widget.
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../shared_widgets/search_widgets/search_item_widget.dart';
-
 // ignore: camel_case_types
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -14,13 +12,13 @@ class SearchScreen extends StatelessWidget {
         child: Column(
       children: [
         SearchbarWidget(),
-        Expanded(
+        /*Expanded(
           child: ListView.builder(
               itemCount: 5,
               itemBuilder: (c, i) {
                 return SearchItemWidget();
               }),
-        )
+        )*/
       ],
     ));
   }

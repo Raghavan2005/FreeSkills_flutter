@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/provider/SeetingsState_Provider.dart';
+import '../../shared_widgets/profile_widgets/Custom_Settings_item_btn.dart';
+import '../../shared_widgets/profile_widgets/Unstyle_Settings_btn.dart';
 
 class SettingScreen extends StatelessWidget {
   SettingScreen({super.key});
@@ -30,162 +32,82 @@ class SettingScreen extends StatelessWidget {
           ),
           body: Column(
             children: [
-              Container(
-                width: double.infinity,
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        "App Language",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      Spacer(),
-                      DropdownButton(
-                        // Initial Value
-                        value: value.AppUIlang,
-                        dropdownColor: Colors.black,
-                        elevation: 10,
-                        // Down Arrow Icon
-                        icon: const Icon(
-                          Icons.language,
-                          color: Colors.white,
-                        ),
+              Custom_Settings_item_btn(
+                titlename: 'App Language',
+                endwidget: DropdownButton(
+                  // Initial Value
+                  value: value.AppUIlang,
+                  dropdownColor: Colors.black,
+                  elevation: 10,
+                  // Down Arrow Icon
+                  icon: const Icon(
+                    Icons.language,
+                    color: Colors.white,
+                  ),
 
-                        // Array list of items
-                        items: value.ListAppLang.map((String items) {
-                          return DropdownMenuItem(
-                            value: items,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                items,
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 15.sp),
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                        // After selecting the desired option,it will
-                        // change button value to selected value
-                        onChanged: (String? newValue) {
-                          value.updateAppUILang(newValue!);
-                        },
+                  // Array list of items
+                  items: value.ListAppLang.map((String items) {
+                    return DropdownMenuItem(
+                      value: items,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          items,
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 15.sp),
+                        ),
                       ),
-                    ],
+                    );
+                  }).toList(),
+                  // After selecting the desired option,it will
+                  // change button value to selected value
+                  onChanged: (String? newValue) {
+                    value.updateAppUILang(newValue!);
+                  },
+                ),
+              ),
+              Unstyle_Settings_btn(
+                btntext: 'Video Playback Rate',
+                onTap: () {},
+              ),
+              Custom_Settings_item_btn(
+                titlename: 'Autoplay',
+                endwidget: SizedBox(
+                  child: Switch.adaptive(
+                    activeColor: Colors.purpleAccent,
+                    activeTrackColor: Colors.purple,
+                    inactiveThumbColor: Colors.grey,
+                    value: value.autoplay,
+                    onChanged: (bool v) {
+                      value.updateautoplay();
+                    },
                   ),
                 ),
               ),
-              Container(
-                width: double.infinity,
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Video Playback",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ],
-                  ),
-                ),
+              Unstyle_Settings_btn(
+                btntext: 'Notification',
+                onTap: () {},
               ),
-              Container(
-                width: double.infinity,
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Notification",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ],
-                  ),
-                ),
+              Unstyle_Settings_btn(
+                btntext: 'Manage all history',
+                onTap: () {
+                  Get.toNamed(Routesnames.AllhistoryScreen);
+                },
               ),
-              Container(
-                width: double.infinity,
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Manage all history",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ],
-                  ),
-                ),
+              Unstyle_Settings_btn(
+                btntext: 'Purchase Premium',
+                onTap: () {},
               ),
-              Container(
-                width: double.infinity,
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Purchase Premium",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              GestureDetector(
+              Unstyle_Settings_btn(
+                btntext: 'About',
                 onTap: () {
                   Get.toNamed(Routesnames.AboutScreen);
                 },
-                child: Container(
-                  width: double.infinity,
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Row(
-                      children: [
-                        Text(
-                          "About",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
               ),
-              Container(
-                width: double.infinity,
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Signout",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ],
-                  ),
-                ),
-              )
+              Unstyle_Settings_btn(
+                btntext: 'Signout',
+                onTap: () {},
+              ),
             ],
           ),
         );

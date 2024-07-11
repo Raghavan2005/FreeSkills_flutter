@@ -21,7 +21,6 @@ class _PlayerWidgetsState extends State<PlayerWidgets> {
       flags: const YoutubePlayerFlags(
         hideControls: false,
         controlsVisibleAtStart: false,
-        disableDragSeek: false,
         autoPlay: false,
         mute: false,
       ),

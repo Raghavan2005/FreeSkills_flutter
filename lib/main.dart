@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 //import 'package:youtube_shorts/youtube_shorts.dart';
 
 import 'core/provider/MainState_Provider.dart';
+import 'core/provider/SearchState_Provider.dart';
 import 'core/provider/SeetingsState_Provider.dart';
 import 'core/provider/ShortsState_Provider.dart';
 import 'pages/routes/AppRoutes.dart';
@@ -54,6 +55,9 @@ class MyApp extends StatelessWidget {
             ),
             ChangeNotifierProvider<SeetingsstateProvider>(
               create: (c) => SeetingsstateProvider(),
+            ),
+            ChangeNotifierProvider<SearchstateProvider>(
+              create: (c) => SearchstateProvider(),
             ),
             /* ChangeNotifierProvider<MiniplayerstateProvider>(
               create: (c) => MiniplayerstateProvider(),
