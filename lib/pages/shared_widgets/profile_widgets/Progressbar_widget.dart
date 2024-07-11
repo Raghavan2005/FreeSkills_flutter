@@ -49,7 +49,7 @@ class ProgressBarChartState extends State<ProgressBarChart> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 const Text(
-                  'Progress',
+                  'Weekly Performance',
                   style: TextStyle(
                     color: Colors.green,
                     fontSize: 24,

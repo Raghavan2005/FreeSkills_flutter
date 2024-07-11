@@ -3,15 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:palette_generator/palette_generator.dart';
 
 class PaletterGen extends StatefulWidget {
-  const PaletterGen({super.key});
+  const PaletterGen({super.key, required this.imageUrl});
+
+  final String imageUrl;
 
   @override
   _PaletterGenState createState() => _PaletterGenState();
 }
 
 class _PaletterGenState extends State<PaletterGen> {
-  final String imageUrl =
-      "https://yt3.googleusercontent.com/4X_ATxXu9nbdogbMjXcPOJLD5sqEfaqGwO5qqk3ZVklpIuq1m_FLRKbu3WZA3dkjHD2b8-KNrQ=s160-c-k-c0x00ffffff-no-rj";
   Color? dominantColor;
 
   @override
@@ -22,7 +22,7 @@ class _PaletterGenState extends State<PaletterGen> {
 
   Future<void> _updatePaletteGenerator() async {
     final paletteGenerator = await PaletteGenerator.fromImageProvider(
-      NetworkImage(imageUrl),
+      NetworkImage(widget.imageUrl),
     );
     setState(() {
       dominantColor = paletteGenerator.dominantColor?.color ?? Colors.white;
@@ -47,7 +47,7 @@ class _PaletterGenState extends State<PaletterGen> {
                 height: 60.h,
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(50),
-                    child: Image.network(imageUrl)))),
+                    child: Image.network(widget.imageUrl)))),
       ],
     );
   }

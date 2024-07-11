@@ -88,14 +88,14 @@ class _HomeState extends State<Home> {
                 width: double.infinity,
                 height: 0.26.sh, // or any height you need
                 child: const WatchWidget(
-                  titlename: 'Trending',
+                  titlename: 'Top Trends',
                 ),
               ),
               SizedBox(
                 width: double.infinity,
                 height: 0.26.sh, // or any height you need
                 child: const WatchWidget(
-                  titlename: 'Try Your Self',
+                  titlename: 'Experiment Yourself',
                 ),
               ),
               SizedBox(

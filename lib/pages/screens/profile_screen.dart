@@ -22,7 +22,7 @@ class ProfileScreen extends StatelessWidget {
             width: double.infinity,
             height: 0.35.sh, // or any height you need
             child: const HistoryviewWidget(
-              titlename: 'History',
+              titlename: 'Recent Activity',
             ),
           ),
           SettingsUnit1()

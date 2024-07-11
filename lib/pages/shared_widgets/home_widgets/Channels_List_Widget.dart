@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
+import '../../../core/provider/MainState_Provider.dart';
 import 'Palette_Widget.dart';
 
 class ChannelsListWidget extends StatelessWidget {
@@ -17,7 +19,7 @@ class ChannelsListWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Channels",
+              "Featured Channels",
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w400,
@@ -27,14 +29,20 @@ class ChannelsListWidget extends StatelessWidget {
               height: 10.h,
             ),
             Expanded(
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 6,
-                padding: EdgeInsets.all(1),
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: const PaletterGen(),
+              child: Consumer<MainstateProvider>(
+                builder: (BuildContext context, value, Widget? child) {
+                  return ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 6,
+                    padding: EdgeInsets.all(1),
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: PaletterGen(
+                          imageUrl: value.channeltempurl[index],
+                        ),
+                      );
+                    },
                   );
                 },
               ),
