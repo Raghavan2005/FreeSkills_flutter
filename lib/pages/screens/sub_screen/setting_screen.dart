@@ -66,10 +66,6 @@ class SettingScreen extends StatelessWidget {
                   },
                 ),
               ),
-              Unstyle_Settings_btn(
-                btntext: 'Video Playback Rate',
-                onTap: () {},
-              ),
               Custom_Settings_item_btn(
                 titlename: 'Autoplay',
                 endwidget: SizedBox(

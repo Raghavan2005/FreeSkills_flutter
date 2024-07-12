@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
+import '../../core/provider/PlayerState_Provider.dart';
 import '../shared_widgets/ads_widgets/ads_widget.dart';
 import '../shared_widgets/player_widgets/player_user_widget.dart';
 import '../shared_widgets/player_widgets/player_widgets.dart';
@@ -13,44 +15,62 @@ class PlayerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
-            const PlayerWidgets(),
-            const AdsWidgets(height: 0.07),
-            SizedBox(
-              height: 5.h,
-            ),
-            const Divider(
-              color: Colors.grey,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: const PlayerUserWidget(),
-            ),
-            SizedBox(
-              height: 25.h,
-            ),
-            const AdsWidgets(height: 0.25),
-            SizedBox(
-              height: 25.h,
-            ),
-            const YtdisplayerWidget(),
-            SizedBox(
-              height: 0.02.sh,
-            ),
-            YtdisplayerWidget(),
-            SizedBox(
-              height: 0.02.sh,
-            ),
-            YtdisplayerWidget(),
-            SizedBox(
-              height: 0.02.sh,
-            ),
-          ],
+        child: Consumer<PlayerstateProvider>(
+          builder: (BuildContext context, value, Widget? child) {
+            return SingleChildScrollView(
+              physics:
+                  value.isFullscreen ? NeverScrollableScrollPhysics() : null,
+              scrollDirection: Axis.vertical,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Center(child: const PlayerWidgets()),
+                  Offstage(
+                    offstage: value.isFullscreen,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 2.h,
+                        ),
+                        AdsWidgets(height: 0.07),
+                        SizedBox(
+                          height: 2.h,
+                        ),
+                        const Divider(
+                          color: Colors.grey,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: const PlayerUserWidget(),
+                        ),
+                        SizedBox(
+                          height: 25.h,
+                        ),
+                        AdsWidgets(height: 0.25),
+                        SizedBox(
+                          height: 25.h,
+                        ),
+                        const YtdisplayerWidget(),
+                        SizedBox(
+                          height: 0.02.sh,
+                        ),
+                        const YtdisplayerWidget(),
+                        SizedBox(
+                          height: 0.02.sh,
+                        ),
+                        const YtdisplayerWidget(),
+                        SizedBox(
+                          height: 0.02.sh,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
         ),
-      )),
+      ),
       backgroundColor: Colors.black,
     );
   }

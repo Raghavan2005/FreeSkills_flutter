@@ -49,7 +49,11 @@ class _AboutScreenState extends State<AboutScreen> {
               padding: const EdgeInsets.all(15.0),
               child: RichText(
                   text: TextSpan(
-                      text: _deviceInfo,
+                      text: _deviceInfo +
+                          "\n Width : " +
+                          MediaQuery.of(context).size.width.toString() +
+                          "\n Height : " +
+                          MediaQuery.of(context).size.height.toString(),
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 16.sp,
