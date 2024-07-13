@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 
 class Validator {
   static String? validatemail(TextEditingController tc) {
-    // return GetUtils.isEmail(mailid);
-    if (GetUtils.isEmail(tc.text.toLowerCase().trim())) {
+    final emailPattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
+    final regex = RegExp(emailPattern);
+
+    if (regex.hasMatch(tc.text.toLowerCase().trim())) {
       return null;
     } else {
       return "This doesn't look like a valid email.";

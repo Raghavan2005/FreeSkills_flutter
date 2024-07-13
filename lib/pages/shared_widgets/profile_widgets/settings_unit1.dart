@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../routes/RoutesNames.dart';
 import 'Styled_Setting_Btn.dart';
@@ -36,7 +36,7 @@ class SettingsUnit1 extends StatelessWidget {
           ),
           Styled_Setting_Btn(
             onTap: () {
-              Get.toNamed(Routesnames.SettingsScreen);
+              context.push(Routesnames.SettingsScreen);
             },
             btntext: 'Settings',
             icondata: Icons.settings,

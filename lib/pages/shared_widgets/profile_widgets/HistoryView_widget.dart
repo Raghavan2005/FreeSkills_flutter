@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../routes/RoutesNames.dart';
 
@@ -28,7 +28,7 @@ class HistoryviewWidget extends StatelessWidget {
               Spacer(),
               OutlinedButton(
                   onPressed: () {
-                    Get.toNamed(Routesnames.AllhistoryScreen);
+                    context.push(Routesnames.AllhistoryScreen);
                   },
                   style: ButtonStyle(splashFactory: NoSplash.splashFactory),
                   child: Text(
@@ -48,7 +48,7 @@ class HistoryviewWidget extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
                   onTap: () {
-                    Get.toNamed(Routesnames.Player_Screen);
+                    context.push(Routesnames.Player_Screen);
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),

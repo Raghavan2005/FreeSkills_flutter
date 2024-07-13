@@ -1,11 +1,9 @@
 import 'package:FreeSkills/core/provider/SetupState_Provider.dart';
-import 'package:FreeSkills/pages/routes/RoutesNames.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_localization_loader/easy_localization_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
 
 //import 'package:youtube_shorts/youtube_shorts.dart';
@@ -67,13 +65,13 @@ class MyApp extends StatelessWidget {
               create: (c) => MiniplayerstateProvider(),
             ),*/
           ],
-          child: GetMaterialApp(
+          child: MaterialApp.router(
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             debugShowCheckedModeBanner: false,
             locale: context.locale,
-            initialRoute: Routesnames.Homes,
-            getPages: AppRoutes.appRoutes(),
+            //initialRoute: Routesnames.Homes,
+            routerConfig: AppRoutes.router,
             theme: ThemeData(
               fontFamily: "Inter",
             ),
