@@ -71,24 +71,38 @@ class _ChatPageState extends State<ChatPage> {
     setState(() {
       isloading = true;
     });
-    var content = Content.text(text.toString());
-    response = await _chat.sendMessage(content);
-
-    setState(() {
-      DateTime time = DateTime.now();
-      String formattedTime = '${time.hour}:${time.minute}';
-      _chatHistory.add({
-        "time": formattedTime,
-        "message": response.text,
-        "isSender": false,
-        "isImage": false,
+    try {
+      var content = Content.text(text.toString());
+      response = await _chat.sendMessage(content);
+      setState(() {
+        DateTime time = DateTime.now();
+        String formattedTime = '${time.hour}:${time.minute}';
+        _chatHistory.add({
+          "time": formattedTime,
+          "message": response.text,
+          "isSender": false,
+          "isImage": false,
+        });
+        isloading = false;
       });
-      isloading = false;
-    });
 
-    _scrollController.jumpTo(
-      _scrollController.position.maxScrollExtent,
-    );
+      _scrollController.jumpTo(
+        _scrollController.position.maxScrollExtent,
+      );
+    } on FormatException catch (e) {
+      setState(() {
+        DateTime time = DateTime.now();
+        String formattedTime = '${time.hour}:${time.minute}';
+        _chatHistory.add({
+          "time": formattedTime,
+          "message":
+              "I'm having trouble understanding your input. Could you please rewrite the sentence?",
+          "isSender": false,
+          "isImage": false,
+        });
+        isloading = false;
+      });
+    }
   }
 
   TextSpan parseBoldText(String text) {
