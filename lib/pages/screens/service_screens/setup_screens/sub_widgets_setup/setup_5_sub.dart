@@ -13,6 +13,10 @@ class SetupFive extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cm = Provider.of<SetupstateProvider>(context, listen: false);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      cm.displaythemsg("Information", "Scroll Down To Last Page", 3, context);
+    });
     return Consumer<SetupstateProvider>(
       builder: (BuildContext context, copyModel, Widget? child) {
         return SafeArea(

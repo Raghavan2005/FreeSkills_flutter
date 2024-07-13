@@ -46,7 +46,7 @@ class _SetupmainScreenState extends State<SetupmainScreen> {
                             connectionDirection: ConnectionDirection.before,
                             indicatorBuilder: (c, i) {
                               return Icon(
-                                setupIcons[i],
+                                setupIcons.elementAt(i),
                                 size: 35.sp,
                                 color: selectedindex <= i
                                     ? selectedindex >= i
@@ -82,7 +82,12 @@ class _SetupmainScreenState extends State<SetupmainScreen> {
                   SizedBox(
                       width: double.infinity,
                       height: 0.75.sh,
-                      child: setupstateProvider.setuplistpages[selectedindex]),
+                      child: PageView(
+                        controller: setupstateProvider.pc,
+                        pageSnapping: false,
+                        physics: NeverScrollableScrollPhysics(),
+                        children: [...setupstateProvider.setuplistpages],
+                      )),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Visibility(

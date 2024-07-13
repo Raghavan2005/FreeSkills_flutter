@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:FreeSkills/core/utils/Validator.dart';
 import 'package:FreeSkills/pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_3_sub.dart';
 import 'package:FreeSkills/pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_4_sub.dart';
 import 'package:FreeSkills/pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_5_sub.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:toastification/toastification.dart';
 
 import '../../pages/screens/service_screens/setup_screens/sub_widgets_setup/completed_6_sub.dart';
@@ -17,6 +17,7 @@ class SetupstateProvider extends ChangeNotifier {
     'Web Developer',
     'AI-ML Developer',
   ];
+  PageController pc = PageController();
   List errorList = [null, null, null, null, null];
   TextEditingController usernameconller = TextEditingController();
   String? username;
@@ -55,19 +56,49 @@ class SetupstateProvider extends ChangeNotifier {
         updatetherror("Empty Value", 0);
       } else {
         currentstate++;
+        pc.animateToPage(
+          currentstate,
+          duration: Duration(milliseconds: 300),
+          // Specify the duration of the animation
+          curve: Curves.easeInOut, // Specify the curve of the animation
+        );
       }
     } else if (currentstate == 1 &&
         errorList[1] == null &&
         selectedlevel != -1) {
       currentstate++;
+      pc.animateToPage(
+        currentstate,
+        duration: Duration(milliseconds: 300),
+        // Specify the duration of the animation
+        curve: Curves.easeInOut, // Specify the curve of the animation
+      );
     } else if (currentstate == 2 &&
         errorList[2] == null &&
         selectedlang != -1) {
       currentstate++;
+      pc.animateToPage(
+        currentstate,
+        duration: Duration(milliseconds: 300),
+        // Specify the duration of the animation
+        curve: Curves.easeInOut, // Specify the curve of the animation
+      );
     } else if (currentstate == 3 && errorList[3] == null && selectedjob != -1) {
       currentstate++;
+      pc.animateToPage(
+        currentstate,
+        duration: Duration(milliseconds: 300),
+        // Specify the duration of the animation
+        curve: Curves.easeInOut, // Specify the curve of the animation
+      );
     } else if (currentstate == 4 && errorList[4] == null && usercopyright) {
       currentstate++;
+      pc.animateToPage(
+        currentstate,
+        duration: Duration(milliseconds: 300),
+        // Specify the duration of the animation
+        curve: Curves.easeInOut, // Specify the curve of the animation
+      );
     } else {
       if (currentstate > 0) {
         if (currentstate != 4) {
@@ -86,6 +117,12 @@ class SetupstateProvider extends ChangeNotifier {
   void backpage() {
     if (currentstate >= 0) {
       currentstate--;
+      pc.animateToPage(
+        currentstate,
+        duration: Duration(milliseconds: 300),
+        // Specify the duration of the animation
+        curve: Curves.easeInOut, // Specify the curve of the animation
+      );
     }
     notifyListeners();
   }
