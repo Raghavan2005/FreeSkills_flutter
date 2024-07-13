@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../routes/RoutesNames.dart';
 
 class UsereditprofileWidget extends StatelessWidget {
   const UsereditprofileWidget({super.key});
@@ -61,10 +64,15 @@ class UsereditprofileWidget extends StatelessWidget {
                           borderRadius: BorderRadius.circular(100),
                           color: const Color.fromRGBO(1, 89, 24, 100),
                         ),
-                        child: Icon(
-                          Icons.edit,
-                          color: Colors.white,
-                        ),
+                        child: IconButton(
+                            onPressed: () {
+                              context.push(Routesnames.UserdataEditScreen);
+                            },
+                            icon: Icon(
+                              size: 20.sp,
+                              Icons.edit,
+                              color: Colors.grey,
+                            )),
                       ),
                     ),
                   ],

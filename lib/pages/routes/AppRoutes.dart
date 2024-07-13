@@ -10,6 +10,7 @@ import '../screens/sub_screen/about_screen.dart';
 import '../screens/sub_screen/allhistory.dart';
 import '../screens/sub_screen/notification_screen.dart';
 import '../screens/sub_screen/setting_screen.dart';
+import '../screens/sub_screen/userdata_edit.dart';
 
 class AppRoutes {
   static final GoRouter router = GoRouter(
@@ -77,6 +78,24 @@ class AppRoutes {
         pageBuilder: (context, state) => CustomTransitionPage(
           key: state.pageKey,
           child: NotificationScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(1, 0),
+                end: Offset.zero,
+              ).animate(animation),
+              child: child,
+            );
+          },
+          transitionDuration: const Duration(milliseconds: 190),
+        ),
+      ),
+      GoRoute(
+        path: '/userdataedit',
+        builder: (context, state) => UserdataEdit(),
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: UserdataEdit(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position: Tween<Offset>(

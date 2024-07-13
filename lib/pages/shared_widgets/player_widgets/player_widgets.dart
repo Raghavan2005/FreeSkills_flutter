@@ -22,7 +22,7 @@ class _PlayerWidgetsState extends State<PlayerWidgets> {
     super.initState();
 
     _controller = YoutubePlayerController(
-      initialVideoId: 'B_Ffu0CPYJ4',
+      initialVideoId: 'VPvVD8t02U8',
       flags: const YoutubePlayerFlags(
         showLiveFullscreenButton: false,
         hideControls: false,
@@ -30,7 +30,7 @@ class _PlayerWidgetsState extends State<PlayerWidgets> {
         autoPlay: false,
         useHybridComposition: true,
         disableDragSeek: false,
-        forceHD: true,
+        forceHD: false,
         mute: false,
       ),
     )..addListener(listener);
@@ -40,6 +40,7 @@ class _PlayerWidgetsState extends State<PlayerWidgets> {
     final fullscreenProvider =
         Provider.of<PlayerstateProvider>(context, listen: false);
 
+    print(_controller.value.playbackQuality);
     if (_controller.value.isFullScreen != fullscreenProvider.isFullscreen) {
       fullscreenProvider.updateIsFullscreen(_controller.value.isFullScreen);
     }
@@ -69,9 +70,10 @@ class _PlayerWidgetsState extends State<PlayerWidgets> {
 
   void forceHD() {
     final webViewController = _controller.value.webViewController;
+
     if (webViewController != null) {
       webViewController.evaluateJavascript(
-        source: 'player.setPlaybackQuality("hd1080");',
+        source: 'player.setPlaybackQuality("hd720");',
       );
     }
   }

@@ -58,7 +58,9 @@ dependencies:
   scaffold_gradient_background: any
   palette_generator: ^0.3.3+4
   # youtube_shorts: ^4.0.2
+  http: ^1.2.1
   youtube_player_flutter: any
+  google_generative_ai: ^0.2.2
 
 
   #pod_player: ^0.2.2

@@ -35,6 +35,7 @@ class SettingScreen extends StatelessWidget {
               Custom_Settings_item_btn(
                 titlename: 'App Language',
                 endwidget: DropdownButton(
+                  underline: Container(),
                   // Initial Value
                   value: value.AppUIlang,
                   dropdownColor: Colors.black,
@@ -76,6 +77,20 @@ class SettingScreen extends StatelessWidget {
                     value: value.autoplay,
                     onChanged: (bool v) {
                       value.updateautoplay();
+                    },
+                  ),
+                ),
+              ),
+              Custom_Settings_item_btn(
+                titlename: 'Classic View',
+                endwidget: SizedBox(
+                  child: Switch.adaptive(
+                    activeColor: Colors.greenAccent,
+                    activeTrackColor: Colors.green,
+                    inactiveThumbColor: Colors.grey,
+                    value: value.isoldrecom,
+                    onChanged: (bool v) {
+                      value.updateoldrecom();
                     },
                   ),
                 ),

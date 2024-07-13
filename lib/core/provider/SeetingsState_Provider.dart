@@ -7,9 +7,15 @@ class SeetingsstateProvider extends ChangeNotifier {
   ];
   bool autoplay = true;
   String AppUIlang = 'en-(English)';
+  bool isoldrecom = false;
 
   void updateAppUILang(String ui) {
     AppUIlang = ui;
+    notifyListeners();
+  }
+
+  void updateoldrecom() {
+    isoldrecom = !isoldrecom;
     notifyListeners();
   }
 

@@ -68,43 +68,47 @@ class SearchbarWidget extends StatelessWidget {
                               itemCount: value.lastword.length,
                               itemBuilder: (d, v) {
                                 return Padding(
-                                  padding: const EdgeInsets.all(7.0),
-                                  child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: 10.h, horizontal: 10.w),
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(50)),
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Center(
-                                          child: GestureDetector(
-                                            child: Text(
-                                              value.lastword[v],
-                                              style: TextStyle(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: IntrinsicWidth(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(50)),
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 8.0),
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Center(
+                                            child: GestureDetector(
+                                              child: Text(
+                                                value.lastword[v],
+                                                style: TextStyle(
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 13.sp),
+                                                  fontSize: 11.sp,
+                                                ),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        SizedBox(
-                                          width: 20,
-                                        ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            value.removelastword(v);
-                                          },
-                                          child: Center(
-                                            child: Icon(
-                                              Icons.close,
-                                              size: 13.sp,
+                                          SizedBox(
+                                            width:
+                                                8.0, // Adjusted the width for better spacing
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              value.removelastword(v);
+                                            },
+                                            child: Center(
+                                              child: Icon(
+                                                Icons.close,
+                                                size: 13.sp,
+                                              ),
                                             ),
                                           ),
-                                        )
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 );

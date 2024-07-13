@@ -8,6 +8,7 @@ import 'package:preload_page_view/preload_page_view.dart';
 import 'package:provider/provider.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
+import '../../core/provider/SeetingsState_Provider.dart';
 import '../shared_widgets/NavBar_Shared.dart';
 import '../shared_widgets/home_widgets/Channels_List_Widget.dart';
 import '../shared_widgets/home_widgets/User_ProfileBar_Widget.dart';
@@ -56,6 +57,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    final fullscreenProvider =
+        Provider.of<SeetingsstateProvider>(context, listen: false);
     return Stack(
       children: <Widget>[
         SingleChildScrollView(
@@ -79,7 +82,17 @@ class _HomeState extends State<Home> {
               SizedBox(
                 height: 10.h,
               ),
-              RecommendationWidget(),
+              !fullscreenProvider.isoldrecom
+                  ? RecommendationWidget(
+                      titlename: 'Modile App Development',
+                    )
+                  : SizedBox(
+                      width: double.infinity,
+                      height: 0.26.sh, // or any height you need
+                      child: const WatchOldWidget(
+                        titlename: 'Modile App Development',
+                      ),
+                    ),
               SizedBox(
                 height: 10.h,
               ),
@@ -97,11 +110,6 @@ class _HomeState extends State<Home> {
                 child: const WatchWidget(
                   titlename: 'Experiment Yourself',
                 ),
-              ),
-              SizedBox(
-                width: double.infinity,
-                height: 0.26.sh, // or any height you need
-                child: const RecommendationoldWidget(),
               ),
             ],
           ),

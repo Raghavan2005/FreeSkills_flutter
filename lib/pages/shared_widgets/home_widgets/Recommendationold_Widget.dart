@@ -4,15 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../routes/RoutesNames.dart';
 
-class RecommendationoldWidget extends StatelessWidget {
-  const RecommendationoldWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const WatchOldWidget(titlename: "old Recome");
-  }
-}
-
 class WatchOldWidget extends StatelessWidget {
   final String titlename;
 

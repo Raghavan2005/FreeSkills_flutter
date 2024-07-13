@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RecommendationWidget extends StatelessWidget {
-  const RecommendationWidget({super.key});
+  const RecommendationWidget({super.key, required this.titlename});
+
+  final String titlename;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +55,7 @@ class RecommendationWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Mobile App Developer',
+            titlename,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
