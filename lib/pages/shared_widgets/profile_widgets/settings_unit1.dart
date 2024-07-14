@@ -16,7 +16,7 @@ class SettingsUnit1 extends StatelessWidget {
         children: [
           Styled_Setting_Btn(
             onTap: () {
-              print('object');
+              context.push(Routesnames.SavedScreen);
             },
             btntext: 'Saved Videos',
             icondata: Icons.video_collection_outlined,
@@ -26,7 +26,7 @@ class SettingsUnit1 extends StatelessWidget {
           ),
           Styled_Setting_Btn(
             onTap: () {
-              print('object');
+              context.push(Routesnames.PremiumScreen);
             },
             btntext: 'Get Premium',
             icondata: Icons.workspace_premium,

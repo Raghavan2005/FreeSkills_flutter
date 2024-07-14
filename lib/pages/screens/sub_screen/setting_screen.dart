@@ -1,3 +1,14 @@
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ +   Freeskills (Andorid&iso)                                                 +
+ +   Copyright (c) 2024 Raghavan                                              +
+ +   GitHub: https://github.com/raghavan2005                                  +
+ +   All rights reserved..                                                    +
+ +                                                                            +
+ +                                                                            +
+ +                                                                            +
+ +                                                                            +
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 import 'package:FreeSkills/pages/routes/RoutesNames.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

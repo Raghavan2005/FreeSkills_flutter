@@ -1,3 +1,14 @@
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ +   Freeskills (Andorid&iso)                                                 +
+ +   Copyright (c) 2024 Raghavan                                              +
+ +   GitHub: https://github.com/raghavan2005                                  +
+ +   All rights reserved..                                                    +
+ +                                                                            +
+ +                                                                            +
+ +                                                                            +
+ +                                                                            +
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
 import 'package:flutter/material.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 

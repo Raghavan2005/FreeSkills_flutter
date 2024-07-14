@@ -15,4 +15,6 @@ class Routesnames {
   static String AboutScreen = "/about";
   static String AllhistoryScreen = "/allhistory";
   static String UserdataEditScreen = "/userdataedit";
+  static String SavedScreen = "/savescreen";
+  static String PremiumScreen = "/premiumscreen";
 }
