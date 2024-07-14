@@ -1,4 +1,5 @@
 import 'package:FreeSkills/pages/routes/RoutesNames.dart';
+import 'package:FreeSkills/pages/screens/service_screens/ChatPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
@@ -97,6 +98,10 @@ class AppRoutes {
       GoRoute(
         path: Routesnames.PremiumScreen,
         builder: (context, state) => const Premium(),
+      ),
+      GoRoute(
+        path: Routesnames.ChatScreen,
+        builder: (context, state) => const ChatPage(),
       ),
       GoRoute(
         path: Routesnames.UserdataEditScreen,
