@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class YtdisplayerWidget extends StatelessWidget {
-  const YtdisplayerWidget({super.key});
+  const YtdisplayerWidget(
+      {super.key,
+      required this.title,
+      required this.channelname,
+      required this.lang});
+
+  final String title, channelname, lang;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 0.35.sh,
+      height: 0.36.sh,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -88,15 +94,11 @@ class YtdisplayerWidget extends StatelessWidget {
                   ],
                 ),
                 Spacer(),
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      size: 40.sp,
-                      Icons.arrow_drop_down,
-                      color: Colors.white,
-                    )),
               ],
             ),
+          ),
+          SizedBox(
+            height: 0.02.sh,
           ),
         ],
       ),

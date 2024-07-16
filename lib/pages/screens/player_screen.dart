@@ -50,17 +50,20 @@ class PlayerScreen extends StatelessWidget {
                         SizedBox(
                           height: 25.h,
                         ),
-                        const YtdisplayerWidget(),
-                        SizedBox(
-                          height: 0.02.sh,
+                        const YtdisplayerWidget(
+                          title: 'sdfsdf',
+                          channelname: 'dsfsdf',
+                          lang: 'dsfdsfsd',
                         ),
-                        const YtdisplayerWidget(),
-                        SizedBox(
-                          height: 0.02.sh,
+                        const YtdisplayerWidget(
+                          title: 'sdfsdf',
+                          channelname: 'dsfsdf',
+                          lang: 'dsfdsfsd',
                         ),
-                        const YtdisplayerWidget(),
-                        SizedBox(
-                          height: 0.02.sh,
+                        const YtdisplayerWidget(
+                          title: 'sdfsdf',
+                          channelname: 'dsfsdf',
+                          lang: 'dsfdsfsd',
                         ),
                       ],
                     ),

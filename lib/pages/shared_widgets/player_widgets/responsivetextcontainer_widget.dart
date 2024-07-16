@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ResponsiveTextContainer extends StatelessWidget {
   final String text;
   final IconData seticon;
-  final Function fun;
+  final VoidCallback fun;
 
   const ResponsiveTextContainer(
       {super.key,
@@ -15,7 +15,7 @@ class ResponsiveTextContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => fun,
+      onTap: fun,
       child: Container(
         decoration: BoxDecoration(
           color: Color.fromRGBO(48, 48, 48, 100),

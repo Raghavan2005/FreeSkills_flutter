@@ -3,7 +3,6 @@ import 'package:FreeSkills/pages/screens/service_screens/ChatPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
-import '../screens/home_screen.dart';
 import '../screens/player_screen.dart';
 import '../screens/service_screens/auth_screens/signin_screen.dart';
 import '../screens/service_screens/auth_screens/signup_screen.dart';
@@ -21,8 +20,8 @@ class AppRoutes {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const HomeScreen(),
-        // builder: (context, state) => const SetupmainScreen(),
+        //   builder: (context, state) => const HomeScreen(),
+        builder: (context, state) => const SignupScreen(),
       ),
       GoRoute(
         path: Routesnames.SignInScreen,

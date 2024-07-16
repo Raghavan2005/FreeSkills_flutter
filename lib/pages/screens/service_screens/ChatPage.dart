@@ -23,6 +23,7 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   late final GenerativeModel _model;
+  late FocusNode _focusNode;
 
   //late final GenerativeModel _visionModel;
   late final ChatSession _chat;
@@ -31,10 +32,23 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   void initState() {
+    _focusNode = FocusNode();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      FocusScope.of(context).requestFocus(_focusNode);
+    });
     _model = GenerativeModel(
         model: 'gemini-pro', apiKey: 'AIzaSyBmkxJUigrir4AtdjQfS_GxnEOrSQ8vj98');
     _chat = _model.startChat();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _focusNode.dispose();
+    _chatController.dispose();
+    _scrollController.dispose();
   }
 
   final TextEditingController _chatController = TextEditingController();
@@ -52,14 +66,13 @@ class _ChatPageState extends State<ChatPage> {
           "isSender": true,
           "isImage": false
         });
+        getAnswer(_chatController.text);
+        _chatController.clear();
+        _scrollController.jumpTo(
+          _scrollController.position.maxScrollExtent,
+        );
       }
     });
-
-    getAnswer(_chatController.text);
-    _chatController.clear();
-    _scrollController.jumpTo(
-      _scrollController.position.maxScrollExtent,
-    );
   }
 
   void getAnswer(String text) async {
@@ -244,20 +257,16 @@ class _ChatPageState extends State<ChatPage> {
                                           ],
                                         ),
                                       ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                              _chatHistory[index]["time"]
-                                                  .toString(),
-                                              style: TextStyle(
-                                                  fontSize: 12.sp,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: _chatHistory[index]
-                                                          ["isSender"]
-                                                      ? Colors.white
-                                                      : Colors.grey)),
-                                        ],
-                                      ),
+                                      Text(
+                                          _chatHistory[index]["time"]
+                                              .toString(),
+                                          style: TextStyle(
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w500,
+                                              color: _chatHistory[index]
+                                                      ["isSender"]
+                                                  ? Colors.white
+                                                  : Colors.grey)),
                                     ],
                                   ),
                                 ),
@@ -294,6 +303,7 @@ class _ChatPageState extends State<ChatPage> {
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: TextField(
+                          focusNode: _focusNode,
                           onSubmitted: (v) {
                             //  _sendMessage();
                           },

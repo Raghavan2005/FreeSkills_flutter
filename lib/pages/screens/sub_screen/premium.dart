@@ -109,7 +109,7 @@ class Premium extends StatelessWidget {
                         ],
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 10.h,
                       ),
                       Text(
                         "Premium",
@@ -127,7 +127,7 @@ class Premium extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
-                              height: 0.04.sh,
+                              height: 0.01.sh,
                             ),
                             Text(
                               "● Ad-Free",

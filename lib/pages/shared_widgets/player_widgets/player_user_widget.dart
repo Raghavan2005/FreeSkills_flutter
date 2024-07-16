@@ -1,6 +1,7 @@
 import 'package:FreeSkills/pages/shared_widgets/player_widgets/responsivetextcontainer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class PlayerUserWidget extends StatelessWidget {
   const PlayerUserWidget({super.key});
@@ -86,7 +87,7 @@ class PlayerUserWidget extends StatelessWidget {
                 children: [
                   ResponsiveTextContainer(
                     text: 'Donate',
-                    seticon: Icons.heart_broken,
+                    seticon: MdiIcons.cup,
                     fun: () => print("object"),
                   ),
                   SizedBox(
@@ -102,7 +103,7 @@ class PlayerUserWidget extends StatelessWidget {
                   ),
                   ResponsiveTextContainer(
                     text: 'Save',
-                    seticon: Icons.save_as,
+                    seticon: MdiIcons.bookmarkOutline,
                     fun: () => print("object"),
                   ),
                   SizedBox(
@@ -110,7 +111,7 @@ class PlayerUserWidget extends StatelessWidget {
                   ),
                   ResponsiveTextContainer(
                     text: 'Stop Ads',
-                    seticon: Icons.circle,
+                    seticon: MdiIcons.stopCircleOutline,
                     fun: () => print("object"),
                   ),
                   SizedBox(
@@ -118,7 +119,7 @@ class PlayerUserWidget extends StatelessWidget {
                   ),
                   ResponsiveTextContainer(
                     text: 'Report',
-                    seticon: Icons.circle,
+                    seticon: MdiIcons.flag,
                     fun: () => print("object"),
                   ),
                 ],

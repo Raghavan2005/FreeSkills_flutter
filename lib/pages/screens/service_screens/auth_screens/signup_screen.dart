@@ -1,7 +1,9 @@
+import 'package:FreeSkills/core/utils/Validator.dart';
+import 'package:FreeSkills/pages/routes/RoutesNames.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:FreeSkills/core/utils/Validator.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/colorstheme.dart';
 
@@ -58,9 +60,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             child: Text(
                               "Sign Up",
                               style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 30.sp,
-                              ),
+                                  color: Colors.white,
+                                  fontSize: 30.sp,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                           SizedBox(
@@ -297,8 +299,10 @@ class _SignupScreenState extends State<SignupScreen> {
                         style: TextStyle(color: Colors.white, fontSize: 15.sp),
                       ),
                       TextButton(
+                          style: ButtonStyle(
+                              splashFactory: NoSplash.splashFactory),
                           onPressed: () {
-                            //dfg
+                            context.push(Routesnames.SignInScreen);
                           },
                           child: Text(
                             "Login",

@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/colorstheme.dart';
 import '../../../../core/utils/Validator.dart';
+import '../../../routes/RoutesNames.dart';
 
 class SigninScreen extends StatefulWidget {
   const SigninScreen({super.key});
@@ -43,15 +45,15 @@ class _SigninScreenState extends State<SigninScreen> {
                       padding: const EdgeInsets.all(5.0),
                       child: Column(
                         children: [
-                          Padding(
-                            padding: EdgeInsets.only(top: 80.h),
-                            child: Text(
-                              "Sign In",
-                              style: TextStyle(
+                          SizedBox(
+                            height: 0.09.sh,
+                          ),
+                          Text(
+                            "Sign In",
+                            style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 30.sp,
-                              ),
-                            ),
+                                fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: 10.h,
@@ -215,8 +217,10 @@ class _SigninScreenState extends State<SigninScreen> {
                         style: TextStyle(color: Colors.white, fontSize: 15.sp),
                       ),
                       TextButton(
+                          style: ButtonStyle(
+                              splashFactory: NoSplash.splashFactory),
                           onPressed: () {
-                            //fdb
+                            context.push(Routesnames.SignUpScreen);
                           },
                           child: Text(
                             "Sign up now.",
