@@ -21,15 +21,15 @@ class AppRoutes {
       GoRoute(
         path: '/',
         //   builder: (context, state) => const HomeScreen(),
-        builder: (context, state) => const SignupScreen(),
+        builder: (context, state) => SignupScreen(),
       ),
       GoRoute(
         path: Routesnames.SignInScreen,
-        builder: (context, state) => const SigninScreen(),
+        builder: (context, state) => SigninScreen(),
       ),
       GoRoute(
         path: Routesnames.SignUpScreen,
-        builder: (context, state) => const SignupScreen(),
+        builder: (context, state) => SignupScreen(),
       ),
       GoRoute(
         path: Routesnames.SetupScreen,

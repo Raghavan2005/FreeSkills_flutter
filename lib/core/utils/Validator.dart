@@ -29,15 +29,13 @@ class Validator {
       }
     } else {
       if (password.isEmpty) {
-        return "Password  be empty.";
+        return "Password cannot be empty.";
       } else if (password.length < 8) {
         return "Invailed Password";
       } else if (!RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@#$%^&+=!]{8,}$')
           .hasMatch(password)) {
         return "Invailed Password.";
       } else {
-        //exxecte the login process here
-
         return null;
       }
     }

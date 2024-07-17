@@ -1,56 +1,52 @@
-import 'package:FreeSkills/core/utils/Validator.dart';
-import 'package:FreeSkills/pages/routes/RoutesNames.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
-import '../../../../core/constants/colorstheme.dart';
+import '../../../../core/provider/AuthState_Provider.dart';
+import '../../../routes/RoutesNames.dart';
 
-class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key});
+class SignupScreen extends StatelessWidget {
+  SignupScreen({super.key});
 
-  @override
-  State<SignupScreen> createState() => _SignupScreenState();
-}
-
-class _SignupScreenState extends State<SignupScreen> {
-  bool _ispass1 = true;
-  bool _ispass2 = true;
-  ColorsTheme ct = ColorsTheme();
-  List error = [null, null, null];
-  bool islogin = true;
-
-  final TextEditingController _mailidtxt = TextEditingController();
-  final TextEditingController _passwordtxt = TextEditingController();
-  final TextEditingController _repasstxt = TextEditingController();
-
-  @override
-  void dispose() {
-    super.dispose();
-    _mailidtxt.dispose();
-    _passwordtxt.dispose();
-    _repasstxt.dispose();
-  }
+  bool isKeyboardOpen = false;
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Material(
-        color: const Color.fromRGBO(30, 30, 30, 1.0),
-        child: Padding(
-          padding: EdgeInsets.all(10.0.w),
-          child: Center(
-            child: Padding(
-              padding: EdgeInsets.only(top: 50.h),
-              child: Column(
-                children: [
-                  Container(
-                    width: double.infinity,
-                    height: 0.61.sh,
+    isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom != 0;
+    return ScaffoldGradientBackground(
+      gradient: const LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        tileMode: TileMode.decal,
+        stops: [0.0, 2],
+        colors: [
+          Colors.white24,
+          Colors.black12,
+        ],
+      ),
+      body: Consumer<AuthstateCreateProvider>(builder: (context, authState, _) {
+        return SingleChildScrollView(
+          physics: isKeyboardOpen ? null : NeverScrollableScrollPhysics(),
+          scrollDirection: Axis.vertical,
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 0.1.sh,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Container(
+                    //width: double.infinity,
+                    height: 0.55.sh,
                     decoration: BoxDecoration(
-                        color: CupertinoColors.darkBackgroundGray,
-                        borderRadius: BorderRadius.circular(10)),
+                      color: CupertinoColors.darkBackgroundGray,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: Column(
@@ -60,292 +56,256 @@ class _SignupScreenState extends State<SignupScreen> {
                             child: Text(
                               "Sign Up",
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 30.sp,
-                                  fontWeight: FontWeight.bold),
+                                color: Colors.white,
+                                fontSize: 30.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
+                          SizedBox(height: 10.h),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: TextField(
                               expands: false,
-                              enabled: islogin,
-                              controller: _mailidtxt,
+                              enabled: authState.isLogin,
+                              controller: authState.mailController,
                               style: TextStyle(
-                                  color: Colors.white, fontSize: 16.sp),
+                                color: Colors.white,
+                                fontSize: 16.sp,
+                              ),
                               cursorColor: Colors.green,
                               decoration: InputDecoration(
-                                border: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color:
-                                          Colors.green), // Normal border color
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.green),
                                 ),
-                                enabledBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors
-                                          .green), // Unselected border color
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.green),
                                 ),
-                                focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors
-                                          .green), // Selected border color
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.green),
                                 ),
-                                errorBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.red), // Error border color
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.red),
                                 ),
                                 labelText: "Mail ID",
-                                hintStyle: const TextStyle(color: Colors.white),
-                                labelStyle: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                                errorText: error[0],
+                                labelStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                errorText: authState.errorMessages[0],
                               ),
                               onSubmitted: (t) {
-                                setState(() {
-                                  error[0] = Validator.validatemail(_mailidtxt);
-                                });
+                                authState.validateMail();
                               },
                             ),
                           ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
+                          SizedBox(height: 10.h),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: TextField(
                               expands: false,
-                              enabled: islogin,
-                              controller: _passwordtxt,
-                              obscureText: _ispass1,
+                              enabled: authState.isLogin,
+                              controller: authState.passwordController,
+                              obscureText: authState.isPasswordObscured,
                               keyboardType: TextInputType.visiblePassword,
                               textInputAction: TextInputAction.done,
                               style: TextStyle(
-                                  color: Colors.white, fontSize: 14.sp),
+                                color: Colors.white,
+                                fontSize: 14.sp,
+                              ),
                               cursorColor: Colors.green,
                               decoration: InputDecoration(
-                                border: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color:
-                                          Colors.green), // Normal border color
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.green),
                                 ),
-                                enabledBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors
-                                          .green), // Unselected border color
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.green),
                                 ),
-                                focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors
-                                          .green), // Selected border color
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.green),
                                 ),
-                                errorBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.red), // Error border color
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.red),
                                 ),
                                 suffixIcon: IconButton(
                                   icon: Icon(
-                                    !_ispass1
+                                    authState.isPasswordObscured
                                         ? Icons.visibility
                                         : Icons.visibility_off,
                                     color: Colors.grey,
                                   ),
                                   onPressed: () {
-                                    setState(() {
-                                      _ispass1 = !_ispass1;
-                                    });
+                                    authState.togglePasswordVisibility();
                                   },
                                 ),
                                 labelText: "Password",
-                                hintStyle: const TextStyle(color: Colors.white),
-                                labelStyle: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                                errorText: error[1],
+                                labelStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                errorText: authState.errorMessages[1],
                               ),
                               onSubmitted: (t) {
-                                setState(() {
-                                  error[1] =
-                                      Validator.validatePassword(_passwordtxt);
-                                });
+                                authState.validatePassword();
                               },
                             ),
                           ),
-                          SizedBox(
-                            height: 10.h,
-                          ),
+                          SizedBox(height: 10.h),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: TextField(
                               expands: false,
-                              enabled: islogin,
-                              controller: _repasstxt,
-                              obscureText: _ispass2,
+                              enabled: authState.isLogin,
+                              controller: authState.rePasswordController,
+                              obscureText: authState.isRePasswordObscured,
                               keyboardType: TextInputType.visiblePassword,
                               textInputAction: TextInputAction.done,
                               style: TextStyle(
-                                  color: Colors.white, fontSize: 14.sp),
+                                color: Colors.white,
+                                fontSize: 14.sp,
+                              ),
                               cursorColor: Colors.green,
                               decoration: InputDecoration(
-                                border: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color:
-                                          Colors.green), // Normal border color
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.green),
                                 ),
-                                enabledBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors
-                                          .green), // Unselected border color
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.green),
                                 ),
-                                focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors
-                                          .green), // Selected border color
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.green),
                                 ),
-                                errorBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.red), // Error border color
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.red),
                                 ),
                                 suffixIcon: IconButton(
                                   icon: Icon(
-                                    !_ispass2
+                                    authState.isRePasswordObscured
                                         ? Icons.visibility
                                         : Icons.visibility_off,
                                     color: Colors.grey,
                                   ),
                                   onPressed: () {
-                                    setState(() {
-                                      _ispass2 = !_ispass2;
-                                    });
+                                    authState.toggleRePasswordVisibility();
                                   },
                                 ),
                                 labelText: "Re-Password",
-                                hintStyle: const TextStyle(color: Colors.white),
-                                labelStyle: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                                errorText: error[2],
+                                labelStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                errorText: authState.errorMessages[2],
                               ),
                               onSubmitted: (t) {
-                                setState(() {
-                                  if (_passwordtxt.text.toString() ==
-                                      _repasstxt.text.toString()) {
-                                    error[2] = null;
-                                    error[2] =
-                                        Validator.validatePassword(_repasstxt);
-                                  } else {
-                                    error[2] = "Passwords do not match";
-                                  }
-                                });
-                              }, // validator: (value) => value.isEmpty ? 'Username cannot be empty' : null,
+                                authState.validateRePassword();
+                              },
                             ),
                           ),
-                          const Spacer(),
+                          Spacer(),
                           Padding(
                             padding: const EdgeInsets.all(10.0),
-                            child: islogin
+                            child: !authState.isLoading
                                 ? SizedBox(
-                                    width: 50.sw,
-                                    height: 0.08.sh,
+                                    width: 0.6.sw,
+                                    height: 0.06.sh,
                                     child: TextButton(
-                                      style: ButtonStyle(
-                                          overlayColor: WidgetStateProperty.all(
-                                              const Color.fromRGBO(
-                                                  0, 94, 25, 100)),
-                                          backgroundColor:
-                                              WidgetStateProperty.all(
-                                                  Colors.green)),
-                                      onPressed: () {
-                                        setState(() {
-                                          islogin = false;
-                                        });
-                                      },
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: Colors.green,
+                                        splashFactory: NoSplash.splashFactory,
+                                      ),
+                                      onPressed: !authState.isLoading
+                                          ? () async {
+                                              await authState.register(context);
+                                            }
+                                          : null,
                                       child: Text(
                                         "Register",
                                         style: TextStyle(
-                                            fontSize: 20.sp,
-                                            color: Colors.white),
+                                          fontSize: 20.sp,
+                                          color: Colors.white,
+                                        ),
                                       ),
                                     ),
                                   )
-                                : Stack(children: [
-                                    Container(
-                                      width: 50.sw,
-                                      height: 0.08.sh,
-                                      decoration: BoxDecoration(
+                                : Stack(
+                                    children: [
+                                      Container(
+                                        width: 50.sw,
+                                        height: 0.08.sh,
+                                        decoration: BoxDecoration(
                                           color: Colors.green,
                                           borderRadius:
-                                              BorderRadius.circular(50)),
-                                    ),
-                                    Center(
+                                              BorderRadius.circular(50),
+                                        ),
+                                      ),
+                                      Center(
                                         child: Container(
-                                            margin: EdgeInsets.only(top: 12.h),
-                                            child:
-                                                const CircularProgressIndicator(
-                                                    color: Colors.white)))
-                                  ]),
-                          )
+                                          margin: EdgeInsets.only(top: 12.h),
+                                          child: CircularProgressIndicator(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                          ),
                         ],
                       ),
                     ),
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        "Already have a Account ?",
-                        style: TextStyle(color: Colors.white, fontSize: 15.sp),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Already have an Account ?",
+                      style: TextStyle(color: Colors.white, fontSize: 15.sp),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        context.push(Routesnames.SignInScreen);
+                      },
+                      child: Text(
+                        "Login",
+                        style: TextStyle(color: Colors.red, fontSize: 15.sp),
                       ),
-                      TextButton(
-                          style: ButtonStyle(
-                              splashFactory: NoSplash.splashFactory),
-                          onPressed: () {
-                            context.push(Routesnames.SignInScreen);
-                          },
-                          child: Text(
-                            "Login",
-                            style:
-                                TextStyle(color: Colors.red, fontSize: 15.sp),
-                          )),
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 15.h),
-                    child: Stack(
-                      children: [
-                        const Divider(
-                          color: Colors.white,
+                    ),
+                  ],
+                ),
+                SizedBox(height: 0.04.sh),
+                Stack(
+                  children: [
+                    Divider(
+                      color: Colors.white,
+                    ),
+                    Center(
+                      child: Container(
+                        color: Colors.grey[800],
+                        child: Text(
+                          "or signup with",
+                          style: TextStyle(color: Colors.grey, fontSize: 18.sp),
                         ),
-                        Center(
-                            child: Container(
-                                color: ct.backgroundColor,
-                                child: Text(
-                                  "or signup with",
-                                  style: TextStyle(
-                                      color: Colors.grey, fontSize: 18.sp),
-                                )))
-                      ],
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 0.06.sh),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 40.h),
+                  child: Text(
+                    "Google",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 40.sp,
+                      backgroundColor: Colors.blue,
                     ),
                   ),
-                  const Spacer(),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 40.h),
-                    child: Text(
-                      "Google",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 40.sp,
-                          backgroundColor: Colors.blue),
-                    ),
-                  )
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }

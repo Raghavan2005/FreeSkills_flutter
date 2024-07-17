@@ -1,6 +1,8 @@
 import 'package:FreeSkills/core/provider/SetupState_Provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_localization_loader/easy_localization_loader.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +10,8 @@ import 'package:provider/provider.dart';
 
 //import 'package:youtube_shorts/youtube_shorts.dart';
 
+import 'core/config/firebase_options.dart';
+import 'core/provider/AuthState_Provider.dart';
 import 'core/provider/MainState_Provider.dart';
 import 'core/provider/PlayerState_Provider.dart';
 import 'core/provider/SearchState_Provider.dart';
@@ -15,9 +19,23 @@ import 'core/provider/SeetingsState_Provider.dart';
 import 'core/provider/ShortsState_Provider.dart';
 import 'pages/routes/AppRoutes.dart';
 
+bool shouldUseFirebaseEmulator = false;
+
+late final FirebaseApp app;
+late final FirebaseAuth auth;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+
+  app = await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  auth = FirebaseAuth.instanceFor(app: app);
+
+  if (shouldUseFirebaseEmulator) {
+    await auth.useAuthEmulator('localhost', 9099);
+  }
   // MediaKit.ensureInitialized();
 
   // Than we setup preferred orientations,
@@ -61,6 +79,8 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider<PlayerstateProvider>(
               create: (c) => PlayerstateProvider(),
             ),
+            ChangeNotifierProvider(create: (_) => AuthStateLoginProvider()),
+            ChangeNotifierProvider(create: (_) => AuthstateCreateProvider()),
             /* ChangeNotifierProvider<MiniplayerstateProvider>(
               create: (c) => MiniplayerstateProvider(),
             ),*/

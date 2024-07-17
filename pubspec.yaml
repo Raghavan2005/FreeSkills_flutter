@@ -40,7 +40,7 @@ dependencies:
   #utils
   preload_page_view: 0.2.0
   firebase_core: any
-  firebase_auth: any
+  firebase_auth: ^5.1.2
   youtube_player_flutter: any
   google_generative_ai: ^0.2.2
   palette_generator: ^0.3.3+4
