@@ -18,4 +18,5 @@ class Routesnames {
   static String SavedScreen = "/savescreen";
   static String PremiumScreen = "/premiumscreen";
   static String ChatScreen = "/chatscreen";
+  static String EmailScreen = "/emailscreen";
 }

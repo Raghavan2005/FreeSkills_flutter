@@ -12,8 +12,10 @@
 import 'package:FreeSkills/core/services/auth/UserLogin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:toastification/toastification.dart';
 
+import '../../pages/routes/RoutesNames.dart';
 import '../utils/Validator.dart';
 
 class AuthStateLoginProvider extends ChangeNotifier {
@@ -158,12 +160,19 @@ class AuthstateCreateProvider extends ChangeNotifier {
       Userlogin userlogin = Userlogin();
       String info = await userlogin.createUserWithEmailAndPassword(
           mailController.text, rePasswordController.text);
-      if (info.isNotEmpty) {
+
+      if (info == "User registered successfully") {
         displaythemsg("Account Created", info, 4, context);
+        context.push(Routesnames.EmailScreen);
         _isLoading = false;
         //redirect
+      } else {
+        displaythemsg("Account Error", info, 4, context);
       }
     }
+    _isLoading = false;
+
+    notifyListeners();
   }
 
   @override

@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 
 //import 'package:youtube_shorts/youtube_shorts.dart';
@@ -27,7 +28,8 @@ late final FirebaseAuth auth;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-
+  await Hive.initFlutter();
+  var box = await Hive.openBox('UserData');
   app = await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -37,9 +39,6 @@ void main() async {
     await auth.useAuthEmulator('localhost', 9099);
   }
   // MediaKit.ensureInitialized();
-
-  // Than we setup preferred orientations,
-  // and only after it finished we run our app
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
       (value) => runApp(EasyLocalization(
           supportedLocales: const [Locale('en', 'US'), Locale('ta', 'IN')],

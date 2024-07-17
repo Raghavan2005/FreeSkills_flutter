@@ -45,6 +45,7 @@ class Userlogin {
         email: emailAddress,
         password: password,
       );
+      FirebaseAuth.instance.currentUser?.sendEmailVerification();
       return 'User registered successfully';
     } on FirebaseAuthException catch (e) {
       switch (e.code) {

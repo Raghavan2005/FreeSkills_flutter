@@ -1,8 +1,10 @@
 import 'package:FreeSkills/pages/routes/RoutesNames.dart';
 import 'package:FreeSkills/pages/screens/service_screens/ChatPage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
+import '../screens/home_screen.dart';
 import '../screens/player_screen.dart';
 import '../screens/service_screens/auth_screens/email_verfiy_screen.dart';
 import '../screens/service_screens/auth_screens/signin_screen.dart';
@@ -21,8 +23,8 @@ class AppRoutes {
     routes: [
       GoRoute(
         path: '/',
-        //   builder: (context, state) => const HomeScreen(),
-        builder: (context, state) => EmailVerifyScreen(),
+        //  builder: (context, state) => const HomeScreen(),
+        builder: (context, state) => _userRedirect(),
       ),
       GoRoute(
         path: Routesnames.SignInScreen,
@@ -43,6 +45,10 @@ class AppRoutes {
       GoRoute(
         path: Routesnames.AllhistoryScreen,
         builder: (context, state) => const Allhistory(),
+      ),
+      GoRoute(
+        path: Routesnames.EmailScreen,
+        builder: (context, state) => const EmailVerifyScreen(),
       ),
       GoRoute(
         path: Routesnames.SettingsScreen,
@@ -141,4 +147,17 @@ class AppRoutes {
       ),
     ],
   );
+
+  static Widget _userRedirect() {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      return SignupScreen();
+    } else {
+      if (FirebaseAuth.instance.currentUser!.emailVerified) {
+        return HomeScreen();
+      } else {
+        return EmailVerifyScreen();
+      }
+    }
+  }
 }

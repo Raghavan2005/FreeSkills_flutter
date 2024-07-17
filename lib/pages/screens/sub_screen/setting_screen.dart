@@ -10,6 +10,7 @@
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 import 'package:FreeSkills/pages/routes/RoutesNames.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -128,7 +129,12 @@ class SettingScreen extends StatelessWidget {
               ),
               Unstyle_Settings_btn(
                 btntext: 'Signout',
-                onTap: () {},
+                onTap: () async {
+                  await FirebaseAuth.instance.signOut();
+                  if (FirebaseAuth.instance.currentUser == null) {
+                    context.go(Routesnames.SignUpScreen);
+                  }
+                },
               ),
             ],
           ),
