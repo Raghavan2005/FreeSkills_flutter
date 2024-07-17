@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
 import '../screens/player_screen.dart';
+import '../screens/service_screens/auth_screens/email_verfiy_screen.dart';
 import '../screens/service_screens/auth_screens/signin_screen.dart';
 import '../screens/service_screens/auth_screens/signup_screen.dart';
 import '../screens/service_screens/setup_screens/setupmain_screen.dart';
@@ -21,7 +22,7 @@ class AppRoutes {
       GoRoute(
         path: '/',
         //   builder: (context, state) => const HomeScreen(),
-        builder: (context, state) => SignupScreen(),
+        builder: (context, state) => EmailVerifyScreen(),
       ),
       GoRoute(
         path: Routesnames.SignInScreen,
