@@ -13,6 +13,7 @@ import 'package:FreeSkills/core/services/auth/UserLogin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive/hive.dart';
 import 'package:toastification/toastification.dart';
 
 import '../../pages/routes/RoutesNames.dart';
@@ -55,7 +56,13 @@ class AuthStateLoginProvider extends ChangeNotifier {
       String info = await userlogin.getUserSignIn(
           mailController.text, passController.text);
       if (info == "User Logged In") {
-        c.go(Routesnames.HomeScreen);
+        mailController.clear();
+        passController.clear();
+        var box = Hive.box('UserData');
+        if (box.get('data') == null)
+          c.go(Routesnames.SetupScreen);
+        else
+          c.go(Routesnames.HomeScreen);
         _isLoading = false;
       } else {
         displaythemsg("Login", info, 4, c);
@@ -166,6 +173,8 @@ class AuthstateCreateProvider extends ChangeNotifier {
 
       if (info == "User registered successfully") {
         displaythemsg("Account Created", info, 4, context);
+        mailController.clear();
+        passwordController.clear();
         context.push(Routesnames.EmailScreen);
         _isLoading = false;
         //redirect

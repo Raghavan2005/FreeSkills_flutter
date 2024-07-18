@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
+import '../../../core/provider/UserDataState_Provider.dart';
 import '../../routes/RoutesNames.dart';
 
 class UsereditprofileWidget extends StatelessWidget {
@@ -9,6 +11,7 @@ class UsereditprofileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sup = Provider.of<UserdatastateProvider>(context, listen: false);
     return SizedBox(
       width: double.infinity,
       height: 0.23.sh,
@@ -97,7 +100,7 @@ class UsereditprofileWidget extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                "Raghavan",
+                                sup.getUsername!,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 17.sp,

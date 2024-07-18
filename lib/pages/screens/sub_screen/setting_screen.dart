@@ -14,6 +14,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/provider/SeetingsState_Provider.dart';
@@ -132,6 +133,8 @@ class SettingScreen extends StatelessWidget {
                 onTap: () async {
                   await FirebaseAuth.instance.signOut();
                   if (FirebaseAuth.instance.currentUser == null) {
+                    var box = await Hive.openBox('UserData');
+                    box.clear();
                     context.go(Routesnames.SignUpScreen);
                   }
                 },

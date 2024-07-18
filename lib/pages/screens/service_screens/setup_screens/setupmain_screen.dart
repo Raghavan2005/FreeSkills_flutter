@@ -2,6 +2,7 @@ import 'package:FreeSkills/core/provider/SetupState_Provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:timelines/timelines.dart';
 import 'package:toastification/toastification.dart';
 
@@ -23,6 +24,20 @@ class _SetupmainScreenState extends State<SetupmainScreen> {
     Icons.copyright
   ];
   ColorsTheme ct = ColorsTheme();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchAndPrintData();
+  }
+
+  Future<void> fetchAndPrintData() async {
+    final response = await Supabase.instance.client.from('info_table').select();
+
+    final sup = Provider.of<SetupstateProvider>(context, listen: false);
+    sup.updatedatainfo(response[0]);
+  }
 
   @override
   Widget build(BuildContext context) {

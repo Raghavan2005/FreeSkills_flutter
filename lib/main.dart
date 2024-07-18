@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 //import 'package:youtube_shorts/youtube_shorts.dart';
 
@@ -18,6 +19,7 @@ import 'core/provider/PlayerState_Provider.dart';
 import 'core/provider/SearchState_Provider.dart';
 import 'core/provider/SeetingsState_Provider.dart';
 import 'core/provider/ShortsState_Provider.dart';
+import 'core/provider/UserDataState_Provider.dart';
 import 'pages/routes/AppRoutes.dart';
 
 bool shouldUseFirebaseEmulator = false;
@@ -33,10 +35,15 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   auth = FirebaseAuth.instanceFor(app: app);
-
   if (shouldUseFirebaseEmulator) {
     await auth.useAuthEmulator('localhost', 9099);
   }
+  await Supabase.initialize(
+    url: 'https://tbvsfzhfdziuqoghbatx.supabase.co',
+    anonKey:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRidnNmemhmZHppdXFvZ2hiYXR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjEyODU3OTksImV4cCI6MjAzNjg2MTc5OX0.pPhq3PFu8pOyznrXzZI-A-5O3oJML_wgajkUwQkfmzY',
+  );
+  await Hive.openBox("UserData");
   // MediaKit.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
       (value) => runApp(EasyLocalization(
@@ -79,6 +86,7 @@ class MyApp extends StatelessWidget {
             ),
             ChangeNotifierProvider(create: (_) => AuthStateLoginProvider()),
             ChangeNotifierProvider(create: (_) => AuthstateCreateProvider()),
+            ChangeNotifierProvider(create: (_) => UserdatastateProvider()),
             /* ChangeNotifierProvider<MiniplayerstateProvider>(
               create: (c) => MiniplayerstateProvider(),
             ),*/

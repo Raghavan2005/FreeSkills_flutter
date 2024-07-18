@@ -1,43 +1,22 @@
 import 'package:FreeSkills/core/provider/MainState_Provider.dart';
-import 'package:FreeSkills/pages/routes/RoutesNames.dart';
 import 'package:FreeSkills/pages/shared_widgets/home_widgets/Recommendation_Widget.dart';
 import 'package:FreeSkills/pages/shared_widgets/home_widgets/Recommendationold_Widget.dart';
 import 'package:FreeSkills/pages/shared_widgets/home_widgets/TechNews_Widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
-import 'package:hive/hive.dart';
 import 'package:preload_page_view/preload_page_view.dart';
 import 'package:provider/provider.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 import '../../core/provider/SeetingsState_Provider.dart';
+import '../../core/provider/UserDataState_Provider.dart';
 import '../shared_widgets/NavBar_Shared.dart';
 import '../shared_widgets/home_widgets/Channels_List_Widget.dart';
 import '../shared_widgets/home_widgets/User_ProfileBar_Widget.dart';
 import '../shared_widgets/home_widgets/Watch_Widget.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _checkUserData();
-  }
-
-  void _checkUserData() async {
-    var box = await Hive.openBox('UserData');
-    if (box.isEmpty) {
-      context.go(Routesnames.SetupScreen);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,12 +60,14 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final fullscreenProvider =
         Provider.of<SeetingsstateProvider>(context, listen: false);
+    final usp = Provider.of<UserdatastateProvider>(context, listen: false);
+    usp.updatedata();
     return Stack(
       children: <Widget>[
         SingleChildScrollView(
           child: Column(
             children: [
-              UserProfilebar_Widget(),
+              UserProfilebar_Widget(username: usp.getUsername),
               SizedBox(
                 height: 10.h,
               ),

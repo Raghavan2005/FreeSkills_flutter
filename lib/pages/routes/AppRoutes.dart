@@ -4,6 +4,7 @@ import 'package:FreeSkills/pages/screens/service_screens/ChatPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive/hive.dart';
 
 import '../screens/player_screen.dart';
 import '../screens/service_screens/auth_screens/email_verfiy_screen.dart';
@@ -23,8 +24,8 @@ class AppRoutes {
     routes: [
       GoRoute(
         path: '/',
-        //  builder: (context, state) => const HomeScreen(),
-        builder: (context, state) => _userRedirect(context),
+        //builder: (context, state) => const SetupmainScreen(),
+        builder: (context, state) => _userRedirect(),
       ),
       GoRoute(
         path: Routesnames.SignInScreen,
@@ -57,53 +58,59 @@ class AppRoutes {
       GoRoute(
         path: Routesnames.SettingsScreen,
         builder: (context, state) => SettingScreen(),
-        pageBuilder: (context, state) => CustomTransitionPage(
-          key: state.pageKey,
-          child: SettingScreen(),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return SizeTransition(
-              sizeFactor: animation,
-              child: child,
-            );
-          },
-          transitionDuration: const Duration(milliseconds: 190),
-        ),
+        pageBuilder: (context, state) =>
+            CustomTransitionPage(
+              key: state.pageKey,
+              child: SettingScreen(),
+              transitionsBuilder: (context, animation, secondaryAnimation,
+                  child) {
+                return SizeTransition(
+                  sizeFactor: animation,
+                  child: child,
+                );
+              },
+              transitionDuration: const Duration(milliseconds: 190),
+            ),
       ),
       GoRoute(
         path: Routesnames.AboutScreen,
         builder: (context, state) => AboutScreen(),
-        pageBuilder: (context, state) => CustomTransitionPage(
-          key: state.pageKey,
-          child: AboutScreen(),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(-1, 0),
-                end: Offset.zero,
-              ).animate(animation),
-              child: child,
-            );
-          },
-          transitionDuration: const Duration(milliseconds: 190),
-        ),
+        pageBuilder: (context, state) =>
+            CustomTransitionPage(
+              key: state.pageKey,
+              child: AboutScreen(),
+              transitionsBuilder: (context, animation, secondaryAnimation,
+                  child) {
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(-1, 0),
+                    end: Offset.zero,
+                  ).animate(animation),
+                  child: child,
+                );
+              },
+              transitionDuration: const Duration(milliseconds: 190),
+            ),
       ),
       GoRoute(
         path: Routesnames.NotificationScreen,
         builder: (context, state) => const NotificationScreen(),
-        pageBuilder: (context, state) => CustomTransitionPage(
-          key: state.pageKey,
-          child: NotificationScreen(),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(1, 0),
-                end: Offset.zero,
-              ).animate(animation),
-              child: child,
-            );
-          },
-          transitionDuration: const Duration(milliseconds: 190),
-        ),
+        pageBuilder: (context, state) =>
+            CustomTransitionPage(
+              key: state.pageKey,
+              child: NotificationScreen(),
+              transitionsBuilder: (context, animation, secondaryAnimation,
+                  child) {
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(1, 0),
+                    end: Offset.zero,
+                  ).animate(animation),
+                  child: child,
+                );
+              },
+              transitionDuration: const Duration(milliseconds: 190),
+            ),
       ),
       GoRoute(
         path: Routesnames.PremiumScreen,
@@ -116,49 +123,60 @@ class AppRoutes {
       GoRoute(
         path: Routesnames.UserdataEditScreen,
         builder: (context, state) => UserdataEdit(),
-        pageBuilder: (context, state) => CustomTransitionPage(
-          key: state.pageKey,
-          child: UserdataEdit(),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(1, 0),
-                end: Offset.zero,
-              ).animate(animation),
-              child: child,
-            );
-          },
-          transitionDuration: const Duration(milliseconds: 190),
-        ),
+        pageBuilder: (context, state) =>
+            CustomTransitionPage(
+              key: state.pageKey,
+              child: UserdataEdit(),
+              transitionsBuilder: (context, animation, secondaryAnimation,
+                  child) {
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(1, 0),
+                    end: Offset.zero,
+                  ).animate(animation),
+                  child: child,
+                );
+              },
+              transitionDuration: const Duration(milliseconds: 190),
+            ),
       ),
       GoRoute(
         path: Routesnames.SavedScreen,
         builder: (context, state) => SavedScreen(),
-        pageBuilder: (context, state) => CustomTransitionPage(
-          key: state.pageKey,
-          child: SavedScreen(),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(1, 0),
-                end: Offset.zero,
-              ).animate(animation),
-              child: child,
-            );
-          },
-          transitionDuration: const Duration(milliseconds: 190),
-        ),
+        pageBuilder: (context, state) =>
+            CustomTransitionPage(
+              key: state.pageKey,
+              child: SavedScreen(),
+              transitionsBuilder: (context, animation, secondaryAnimation,
+                  child) {
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(1, 0),
+                    end: Offset.zero,
+                  ).animate(animation),
+                  child: child,
+                );
+              },
+              transitionDuration: const Duration(milliseconds: 190),
+            ),
       ),
     ],
   );
 
-  static Widget _userRedirect(BuildContext c) {
+
+  static Widget _userRedirect() {
     final user = FirebaseAuth.instance.currentUser;
+    var box = Hive.box('UserData');
+
     if (user == null) {
       return SignupScreen();
     } else {
       if (FirebaseAuth.instance.currentUser!.emailVerified) {
-        return HomeScreen();
+        //    print(box.get('data')['username']);
+        if (box.get('data') == null)
+          return SetupmainScreen();
+        else
+          return HomeScreen();
       } else {
         return EmailVerifyScreen();
       }

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:toastification/toastification.dart';
 
 import '../../pages/routes/RoutesNames.dart';
@@ -15,13 +16,10 @@ import '../../pages/screens/service_screens/setup_screens/sub_widgets_setup/setu
 import '../../pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_2_sub.dart';
 
 class SetupstateProvider extends ChangeNotifier {
-  List langlist = ['English', 'தமிழ்', 'Hindi'];
-  List jonlist = [
-    'Android Application Developer',
-    'Web Developer',
-    'AI-ML Developer',
-  ];
+  List langlist = [];
+  List jonlist = [];
   Map<String, dynamic> userData = {};
+  Map<String, dynamic> datainfo = {};
   PageController pc = PageController();
   List errorList = [null, null, null, null, null];
   TextEditingController usernameconller = TextEditingController();
@@ -86,11 +84,16 @@ class SetupstateProvider extends ChangeNotifier {
         selectedlang != -1) {
       currentstate++;
       changepage();
-      userData["lang"] = selectedlang;
+      //   print(findKeyByValue(datainfo["datainfo"], langlist[selectedlang]));
+      userData["lang"] =
+          findKeyByValue(datainfo["datainfo"], langlist[selectedlang])
+              .toString();
     } else if (currentstate == 3 && errorList[3] == null && selectedjob != -1) {
       currentstate++;
       changepage();
-      userData["job"] = selectedjob;
+      //  print(findKeyByValue(datainfo["jobinfo"], jonlist[selectedjob]));
+      userData["job"] =
+          findKeyByValue(datainfo["jobinfo"], jonlist[selectedjob]).toString();
     } else if (currentstate == 4 && errorList[4] == null && usercopyright) {
       currentstate++;
       changepage();
@@ -98,7 +101,8 @@ class SetupstateProvider extends ChangeNotifier {
       tryagain = await us.addUserData(userData);
       if (tryagain) {
         var box = await Hive.openBox('UserData');
-        box.add(userData);
+        box.put("data", userData);
+        box.put("info", datainfo);
         ofsetupscreen.go(Routesnames.HomeScreen);
       }
     } else {
@@ -117,6 +121,7 @@ class SetupstateProvider extends ChangeNotifier {
   }
 
   void backpage() {
+    final _future = Supabase.instance.client.from('info_table').select();
     if (currentstate >= 0) {
       currentstate--;
       pc.animateToPage(
@@ -127,6 +132,20 @@ class SetupstateProvider extends ChangeNotifier {
       );
     }
     notifyListeners();
+  }
+
+  void updatedatainfo(Map<String, dynamic> m) {
+    datainfo = m;
+    langlist = datainfo["datainfo"].values.toList();
+    jonlist = datainfo["jobinfo"].values.toList();
+    notifyListeners();
+  }
+
+  String? findKeyByValue(Map<String, dynamic> map, String value) {
+    return map.entries
+        .firstWhere((entry) => entry.value == value,
+            orElse: () => MapEntry('', ''))
+        .key;
   }
 
   void updatetheusername(String name) {
