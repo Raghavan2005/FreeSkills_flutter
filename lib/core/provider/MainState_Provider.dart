@@ -2,15 +2,13 @@ import 'package:FreeSkills/pages/screens/aichat_screen.dart';
 import 'package:FreeSkills/pages/screens/profile_screen.dart';
 import 'package:FreeSkills/pages/screens/search_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:preload_page_view/preload_page_view.dart';
 
 import '../../pages/screens/home_screen.dart';
 
 class MainstateProvider extends ChangeNotifier {
   int currentnavtab = 0;
   int currentiindexnews = 0;
-  final PreloadPageController pageController =
-      PreloadPageController(keepPage: true);
+  final PageController pageController = PageController(keepPage: true);
   List<Color> nav_select = [
     Colors.blue,
     Colors.red,

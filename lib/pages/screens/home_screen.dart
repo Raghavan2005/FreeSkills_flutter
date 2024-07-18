@@ -4,7 +4,6 @@ import 'package:FreeSkills/pages/shared_widgets/home_widgets/Recommendationold_W
 import 'package:FreeSkills/pages/shared_widgets/home_widgets/TechNews_Widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:preload_page_view/preload_page_view.dart';
 import 'package:provider/provider.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
@@ -24,9 +23,8 @@ class HomeScreen extends StatelessWidget {
       builder: (BuildContext context, MainstateProvider value, Widget? child) {
         return ScaffoldGradientBackground(
           body: SafeArea(
-            child: PreloadPageView(
+            child: PageView(
               physics: const NeverScrollableScrollPhysics(),
-              preloadPagesCount: 0,
               controller: value.pageController,
               children: value.screenlist,
             ),
@@ -58,8 +56,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    final fullscreenProvider =
-        Provider.of<SeetingsstateProvider>(context, listen: false);
+    final set = Provider.of<SeetingsstateProvider>(context, listen: false);
     final usp = Provider.of<UserdatastateProvider>(context, listen: false);
     usp.updatedata();
     return Stack(
@@ -85,7 +82,7 @@ class _HomeState extends State<Home> {
               SizedBox(
                 height: 10.h,
               ),
-              !fullscreenProvider.isoldrecom
+              !set.isoldrecom
                   ? RecommendationWidget(
                       titlename: 'Modile App Development',
                     )
