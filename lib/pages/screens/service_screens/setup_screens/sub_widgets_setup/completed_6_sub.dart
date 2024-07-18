@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../../core/provider/SetupState_Provider.dart';
 
 class CompletedSixSub extends StatelessWidget {
   const CompletedSixSub({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    final setupmain = Provider.of<SetupstateProvider>(context, listen: false);
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Padding(
@@ -13,7 +17,7 @@ class CompletedSixSub extends StatelessWidget {
           child: CircularProgressIndicator(),
         ),
         Text(
-          "Account Created",
+          setupmain.tryagain ? "Account Created" : "Done",
           style: TextStyle(color: Colors.white),
         ),
       ],

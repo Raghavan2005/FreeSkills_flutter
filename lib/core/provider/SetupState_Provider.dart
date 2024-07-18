@@ -1,11 +1,15 @@
+import 'package:FreeSkills/core/services/auth/UserDataPack.dart';
 import 'package:FreeSkills/core/utils/Validator.dart';
 import 'package:FreeSkills/pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_3_sub.dart';
 import 'package:FreeSkills/pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_4_sub.dart';
 import 'package:FreeSkills/pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_5_sub.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hive/hive.dart';
 import 'package:toastification/toastification.dart';
 
+import '../../pages/routes/RoutesNames.dart';
 import '../../pages/screens/service_screens/setup_screens/sub_widgets_setup/completed_6_sub.dart';
 import '../../pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_1_sub.dart';
 import '../../pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_2_sub.dart';
@@ -17,6 +21,7 @@ class SetupstateProvider extends ChangeNotifier {
     'Web Developer',
     'AI-ML Developer',
   ];
+  Map<String, dynamic> userData = {};
   PageController pc = PageController();
   List errorList = [null, null, null, null, null];
   TextEditingController usernameconller = TextEditingController();
@@ -29,6 +34,8 @@ class SetupstateProvider extends ChangeNotifier {
   int currentpage = 0;
   int totalpage = 0;
   bool butnanim = false;
+  bool tryagain = false;
+  Userdatapack us = Userdatapack();
 
   void updateanim() {
     butnanim = !butnanim;
@@ -50,55 +57,50 @@ class SetupstateProvider extends ChangeNotifier {
     }
   }
 
-  void updatethebutton(BuildContext ofsetupscreen) {
+  void changepage() {
+    pc.animateToPage(
+      currentstate,
+      duration: Duration(milliseconds: 300),
+      // Specify the duration of the animation
+      curve: Curves.easeInOut, // Specify the curve of the animation
+    );
+  }
+
+  Future<void> updatethebutton(BuildContext ofsetupscreen) async {
     if (currentstate == 0 && errorList[0] == null) {
       if (username == null) {
         updatetherror("Empty Value", 0);
       } else {
         currentstate++;
-        pc.animateToPage(
-          currentstate,
-          duration: Duration(milliseconds: 300),
-          // Specify the duration of the animation
-          curve: Curves.easeInOut, // Specify the curve of the animation
-        );
+        changepage();
+        userData["username"] = username;
       }
     } else if (currentstate == 1 &&
         errorList[1] == null &&
         selectedlevel != -1) {
       currentstate++;
-      pc.animateToPage(
-        currentstate,
-        duration: Duration(milliseconds: 300),
-        // Specify the duration of the animation
-        curve: Curves.easeInOut, // Specify the curve of the animation
-      );
+      changepage();
+      userData["level"] = selectedlevel;
     } else if (currentstate == 2 &&
         errorList[2] == null &&
         selectedlang != -1) {
       currentstate++;
-      pc.animateToPage(
-        currentstate,
-        duration: Duration(milliseconds: 300),
-        // Specify the duration of the animation
-        curve: Curves.easeInOut, // Specify the curve of the animation
-      );
+      changepage();
+      userData["lang"] = selectedlang;
     } else if (currentstate == 3 && errorList[3] == null && selectedjob != -1) {
       currentstate++;
-      pc.animateToPage(
-        currentstate,
-        duration: Duration(milliseconds: 300),
-        // Specify the duration of the animation
-        curve: Curves.easeInOut, // Specify the curve of the animation
-      );
+      changepage();
+      userData["job"] = selectedjob;
     } else if (currentstate == 4 && errorList[4] == null && usercopyright) {
       currentstate++;
-      pc.animateToPage(
-        currentstate,
-        duration: Duration(milliseconds: 300),
-        // Specify the duration of the animation
-        curve: Curves.easeInOut, // Specify the curve of the animation
-      );
+      changepage();
+      userData["copyrights"] = usercopyright;
+      tryagain = await us.addUserData(userData);
+      if (tryagain) {
+        var box = await Hive.openBox('UserData');
+        box.add(userData);
+        ofsetupscreen.go(Routesnames.HomeScreen);
+      }
     } else {
       if (currentstate > 0) {
         if (currentstate != 4) {

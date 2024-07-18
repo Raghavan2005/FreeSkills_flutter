@@ -1,10 +1,10 @@
 import 'package:FreeSkills/pages/routes/RoutesNames.dart';
+import 'package:FreeSkills/pages/screens/home_screen.dart';
 import 'package:FreeSkills/pages/screens/service_screens/ChatPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
-import '../screens/home_screen.dart';
 import '../screens/player_screen.dart';
 import '../screens/service_screens/auth_screens/email_verfiy_screen.dart';
 import '../screens/service_screens/auth_screens/signin_screen.dart';
@@ -24,11 +24,15 @@ class AppRoutes {
       GoRoute(
         path: '/',
         //  builder: (context, state) => const HomeScreen(),
-        builder: (context, state) => _userRedirect(),
+        builder: (context, state) => _userRedirect(context),
       ),
       GoRoute(
         path: Routesnames.SignInScreen,
         builder: (context, state) => SigninScreen(),
+      ),
+      GoRoute(
+        path: Routesnames.HomeScreen,
+        builder: (context, state) => HomeScreen(),
       ),
       GoRoute(
         path: Routesnames.SignUpScreen,
@@ -148,7 +152,7 @@ class AppRoutes {
     ],
   );
 
-  static Widget _userRedirect() {
+  static Widget _userRedirect(BuildContext c) {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) {
       return SignupScreen();

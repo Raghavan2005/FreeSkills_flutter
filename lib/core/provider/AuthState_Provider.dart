@@ -54,7 +54,10 @@ class AuthStateLoginProvider extends ChangeNotifier {
       Userlogin userlogin = Userlogin();
       String info = await userlogin.getUserSignIn(
           mailController.text, passController.text);
-      if (info.isNotEmpty) {
+      if (info == "User Logged In") {
+        c.go(Routesnames.HomeScreen);
+        _isLoading = false;
+      } else {
         displaythemsg("Login", info, 4, c);
         _isLoading = false;
       }

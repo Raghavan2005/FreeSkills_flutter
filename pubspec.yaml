@@ -52,6 +52,8 @@ dependencies:
   #Network
   http: ^1.2.1
   flutter_cached_pdfview: 0.4.2
+  cloud_firestore: ^5.1.0
+  supabase_flutter: ^2.5.8
 
 
   #disabled

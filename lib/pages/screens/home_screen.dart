@@ -1,9 +1,12 @@
 import 'package:FreeSkills/core/provider/MainState_Provider.dart';
+import 'package:FreeSkills/pages/routes/RoutesNames.dart';
 import 'package:FreeSkills/pages/shared_widgets/home_widgets/Recommendation_Widget.dart';
 import 'package:FreeSkills/pages/shared_widgets/home_widgets/Recommendationold_Widget.dart';
 import 'package:FreeSkills/pages/shared_widgets/home_widgets/TechNews_Widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hive/hive.dart';
 import 'package:preload_page_view/preload_page_view.dart';
 import 'package:provider/provider.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
@@ -14,8 +17,27 @@ import '../shared_widgets/home_widgets/Channels_List_Widget.dart';
 import '../shared_widgets/home_widgets/User_ProfileBar_Widget.dart';
 import '../shared_widgets/home_widgets/Watch_Widget.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _checkUserData();
+  }
+
+  void _checkUserData() async {
+    var box = await Hive.openBox('UserData');
+    if (box.isEmpty) {
+      context.go(Routesnames.SetupScreen);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

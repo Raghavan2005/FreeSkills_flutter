@@ -29,7 +29,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await Hive.initFlutter();
-  var box = await Hive.openBox('UserData');
   app = await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
