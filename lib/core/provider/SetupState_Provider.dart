@@ -3,17 +3,18 @@ import 'package:FreeSkills/core/utils/Validator.dart';
 import 'package:FreeSkills/pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_3_sub.dart';
 import 'package:FreeSkills/pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_4_sub.dart';
 import 'package:FreeSkills/pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_5_sub.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:toastification/toastification.dart';
 
 import '../../pages/routes/RoutesNames.dart';
 import '../../pages/screens/service_screens/setup_screens/sub_widgets_setup/completed_6_sub.dart';
 import '../../pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_1_sub.dart';
 import '../../pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_2_sub.dart';
+import '../utils/DataTimeinfo.dart';
 
 class SetupstateProvider extends ChangeNotifier {
   List langlist = [];
@@ -38,6 +39,20 @@ class SetupstateProvider extends ChangeNotifier {
   void updateanim() {
     butnanim = !butnanim;
     notifyListeners();
+  }
+
+  void isdispose() {
+    usernameconller.clear();
+    currentstate = 0;
+    currentstate = 0;
+    selectedlevel = -1;
+    selectedlang = -1;
+    selectedjob = -1;
+    usercopyright = false;
+    currentpage = 0;
+    totalpage = 0;
+    butnanim = false;
+    tryagain = false;
   }
 
   List<Widget> setuplistpages = [
@@ -97,12 +112,16 @@ class SetupstateProvider extends ChangeNotifier {
     } else if (currentstate == 4 && errorList[4] == null && usercopyright) {
       currentstate++;
       changepage();
+      User? user = FirebaseAuth.instance.currentUser;
+      userData["email"] = user?.email;
       userData["copyrights"] = usercopyright;
+      userData["lastlogin"] = Datatimeinfo.getCurrentDateTime();
       tryagain = await us.addUserData(userData);
       if (tryagain) {
         var box = await Hive.openBox('UserData');
         box.put("data", userData);
         box.put("info", datainfo);
+        isdispose();
         ofsetupscreen.go(Routesnames.HomeScreen);
       }
     } else {
@@ -121,7 +140,6 @@ class SetupstateProvider extends ChangeNotifier {
   }
 
   void backpage() {
-    final _future = Supabase.instance.client.from('info_table').select();
     if (currentstate >= 0) {
       currentstate--;
       pc.animateToPage(

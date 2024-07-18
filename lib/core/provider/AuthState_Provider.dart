@@ -24,6 +24,7 @@ class AuthStateLoginProvider extends ChangeNotifier {
   bool _isLoading = false;
 
   bool get isPass => _isPass;
+  Map<String, dynamic> userData = {};
 
   bool get isLoading => _isLoading;
 
@@ -53,12 +54,14 @@ class AuthStateLoginProvider extends ChangeNotifier {
     if (error[0] == null && error[1] == null) {
       _isLoading = true;
       Userlogin userlogin = Userlogin();
+      var box = Hive.box('UserData');
       String info = await userlogin.getUserSignIn(
           mailController.text, passController.text);
       if (info == "User Logged In") {
         mailController.clear();
         passController.clear();
-        var box = Hive.box('UserData');
+        await userlogin.fetchAndSaveUserData();
+
         if (box.get('data') == null)
           c.go(Routesnames.SetupScreen);
         else

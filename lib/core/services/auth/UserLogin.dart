@@ -9,7 +9,11 @@
  +                                                                            +
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hive/hive.dart';
+
+import '../../../main.dart';
 
 class Userlogin {
   Future<String> getUserSignIn(String email, String password) async {
@@ -66,5 +70,31 @@ class Userlogin {
       print('An unexpected error occurred: $e');
       return 'An unexpected error occurred: $e';
     }
+  }
+
+  Future<bool> fetchAndSaveUserData() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      DocumentSnapshot userDoc = await FirebaseFirestore.instance
+          .collection('UserData')
+          .doc(user.uid)
+          .get();
+      Map<String, dynamic>? userData = userDoc.data() as Map<String, dynamic>?;
+
+      if (userData != null) {
+        var box = Hive.box('UserData');
+        box.put('data', userData);
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  String? getCurrentUserId() {
+    User? user = auth.currentUser;
+    return user?.uid;
   }
 }

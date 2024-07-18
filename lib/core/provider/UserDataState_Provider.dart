@@ -24,18 +24,18 @@ class UserdatastateProvider extends ChangeNotifier {
   void updatedata() {
     var box = Hive.box("UserData");
     _Username = box.get("data")['username'];
-    print(box.get("info"));
+    //print(box.get("info"));
     //  datainfo = box.get("info");
     //_selectedcourse = box.get("data")["job"].toString();
     //_selectedlang = box.get("data")["lang"].toString();
-    print(box.get("data"));
+    print(_Username);
     interupdata();
-    notifyListeners();
+    //   notifyListeners();
   }
 
   void interupdata() {
     //  _Username = userData['username'];
     //_selectedcourse = userData['job'];
-    notifyListeners();
+    // notifyListeners();
   }
 }
