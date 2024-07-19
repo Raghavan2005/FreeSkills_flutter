@@ -4,11 +4,13 @@ import 'package:hive/hive.dart';
 class UserdatastateProvider extends ChangeNotifier {
   String? _Username = null;
   String? _selectedcourse = '00';
+  String? selectedcoursename = ' ';
   String _selectedlang = 'en-(English)';
   String? _profilephoto = null;
   List<int> _performancevalue = [0, 0, 0, 0, 0, 0, 0];
-  Map<String, dynamic> userData = {};
-  Map<String, dynamic> datainfo = {};
+  Map<dynamic, dynamic> userData = {};
+  Map<dynamic, dynamic> langinfo = {};
+  Map<dynamic, dynamic> jobinfo = {};
 
   String? get getUsername => _Username;
 
@@ -23,19 +25,26 @@ class UserdatastateProvider extends ChangeNotifier {
 
   void updatedata() {
     var box = Hive.box("UserData");
-    _Username = box.get("data")['username'];
-    //print(box.get("info"));
+
+    jobinfo = box.get("info")["jobinfo"];
+    langinfo = box.get("info")["datainfo"];
+    userData = box.get("data");
+    //  print(userData["job"]);
     //  datainfo = box.get("info");
-    //_selectedcourse = box.get("data")["job"].toString();
-    //_selectedlang = box.get("data")["lang"].toString();
-    print(_Username);
+
     interupdata();
-    //   notifyListeners();
+    // notifyListeners();
   }
 
   void interupdata() {
-    //  _Username = userData['username'];
-    //_selectedcourse = userData['job'];
-    // notifyListeners();
+    _Username = userData['username'];
+    _selectedcourse = userData["job"];
+    _selectedlang = userData["lang"];
+    selectedcoursename = searchbykey(jobinfo, _selectedcourse!);
+    //  notifyListeners();
+  }
+
+  String searchbykey(Map<dynamic, dynamic> m, String type) {
+    return m[type];
   }
 }

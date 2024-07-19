@@ -120,7 +120,7 @@ class SetupstateProvider extends ChangeNotifier {
       if (tryagain) {
         var box = await Hive.openBox('UserData');
         box.put("data", userData);
-        box.put("info", datainfo);
+        updatethebox(box);
         isdispose();
         ofsetupscreen.go(Routesnames.HomeScreen);
       }
@@ -139,6 +139,11 @@ class SetupstateProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void updatethebox(var box) {
+    box.put("info", datainfo);
+    notifyListeners();
+  }
+
   void backpage() {
     if (currentstate >= 0) {
       currentstate--;
@@ -152,10 +157,12 @@ class SetupstateProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updatedatainfo(Map<String, dynamic> m) {
+  Future<void> updatedatainfo(Map<String, dynamic> m) async {
     datainfo = m;
+    var box = await Hive.openBox('UserData');
     langlist = datainfo["datainfo"].values.toList();
     jonlist = datainfo["jobinfo"].values.toList();
+    updatethebox(box);
     notifyListeners();
   }
 

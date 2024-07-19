@@ -55,23 +55,15 @@ class HistoryviewWidget extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          width: 0.4.sw,
-                          height: 0.13.sh,
-                          decoration: BoxDecoration(
-                            color: const Color.fromRGBO(90, 90, 90, 100),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.2),
-                                // Shadow color
-                                spreadRadius: 3,
-                                // Spread radius
-                                blurRadius: 5,
-                                // Blur radius
-                                offset: Offset(0, 3), // Shadow offset (x, y)
-                              ),
-                            ],
-                            borderRadius: BorderRadius.circular(12.5),
+                        SizedBox(
+                          height: 0.12.sh,
+                          width: 0.5.sw,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(16.0),
+                            // Adjust the radius as needed
+                            child: Image.network(
+                              "https://img.youtube.com/vi/bIYnu3spU7o/maxresdefault.jpg",
+                            ),
                           ),
                         ),
                         Padding(

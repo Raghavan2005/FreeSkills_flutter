@@ -5,9 +5,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class UserProfilebar_Widget extends StatelessWidget {
-  const UserProfilebar_Widget({super.key, required this.username});
+  const UserProfilebar_Widget(
+      {super.key, required this.username, this.courename});
 
-  final String? username;
+  final String? username, courename;
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +119,7 @@ class UserProfilebar_Widget extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Text("Mobile Application Development",
+                          Text(courename!,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 14.sp,

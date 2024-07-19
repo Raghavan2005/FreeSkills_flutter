@@ -11,6 +11,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:hive/hive.dart';
 
 import '../../shared_widgets/chat_widgets/LineLoadingAnimation.dart';
 
@@ -29,6 +30,7 @@ class _ChatPageState extends State<ChatPage> {
   late final ChatSession _chat;
 
   bool isloading = false;
+  late Box box;
 
   @override
   void initState() {
@@ -39,6 +41,7 @@ class _ChatPageState extends State<ChatPage> {
     _model = GenerativeModel(
         model: 'gemini-pro', apiKey: 'AIzaSyBmkxJUigrir4AtdjQfS_GxnEOrSQ8vj98');
     _chat = _model.startChat();
+    box = Hive.box('UserData');
     super.initState();
   }
 
@@ -54,6 +57,7 @@ class _ChatPageState extends State<ChatPage> {
   final TextEditingController _chatController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
   List<Map<String, dynamic>> _chatHistory = [];
+  List<dynamic> _tempHistory = [];
 
   void _sendMessage() {
     DateTime time = DateTime.now();
@@ -64,7 +68,6 @@ class _ChatPageState extends State<ChatPage> {
           "time": formattedTime,
           "message": _chatController.text,
           "isSender": true,
-          "isImage": false
         });
         getAnswer(_chatController.text);
         _chatController.clear();
@@ -91,8 +94,8 @@ class _ChatPageState extends State<ChatPage> {
           "time": formattedTime,
           "message": response.text,
           "isSender": false,
-          "isImage": false,
         });
+
         isloading = false;
       });
 
@@ -108,7 +111,6 @@ class _ChatPageState extends State<ChatPage> {
           "message":
               "I'm having trouble understanding your input. Could you please rewrite the sentence?",
           "isSender": false,
-          "isImage": false,
         });
         isloading = false;
       });

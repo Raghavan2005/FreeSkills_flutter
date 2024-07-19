@@ -80,8 +80,6 @@ class _PlayerWidgetsState extends State<PlayerWidgets> {
 
   @override
   Widget build(BuildContext context) {
-    final fullscreenProvider =
-        Provider.of<PlayerstateProvider>(context, listen: false);
     return YoutubePlayerBuilder(
       player: YoutubePlayer(
         controller: _controller,

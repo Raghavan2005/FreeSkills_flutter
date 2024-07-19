@@ -18,7 +18,7 @@ import '../../../main.dart';
 class Userlogin {
   Future<String> getUserSignIn(String email, String password) async {
     try {
-      final credential = await FirebaseAuth.instance
+      await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
       return 'User Logged In';
     } on FirebaseAuthException catch (e) {
@@ -44,8 +44,7 @@ class Userlogin {
   Future<String> createUserWithEmailAndPassword(
       String emailAddress, String password) async {
     try {
-      final UserCredential credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailAddress,
         password: password,
       );

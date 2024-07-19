@@ -55,10 +55,16 @@ class Allhistory extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
+                  SizedBox(
                     height: 0.12.sh,
                     width: 0.5.sw,
-                    color: Colors.green,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16.0),
+                      // Adjust the radius as needed
+                      child: Image.network(
+                        "https://img.youtube.com/vi/bIYnu3spU7o/maxresdefault.jpg",
+                      ),
+                    ),
                   ),
                   Expanded(
                     child: Padding(

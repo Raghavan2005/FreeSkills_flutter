@@ -64,7 +64,10 @@ class _HomeState extends State<Home> {
         SingleChildScrollView(
           child: Column(
             children: [
-              UserProfilebar_Widget(username: usp.getUsername),
+              UserProfilebar_Widget(
+                username: usp.getUsername,
+                courename: usp.selectedcoursename,
+              ),
               SizedBox(
                 height: 10.h,
               ),
@@ -84,7 +87,7 @@ class _HomeState extends State<Home> {
               ),
               !set.isoldrecom
                   ? RecommendationWidget(
-                      titlename: 'Modile App Development',
+                      titlename: usp.selectedcoursename!,
                     )
                   : SizedBox(
                       width: double.infinity,

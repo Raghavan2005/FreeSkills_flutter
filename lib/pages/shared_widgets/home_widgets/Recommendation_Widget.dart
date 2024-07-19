@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_slider/card_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,10 +28,14 @@ class RecommendationWidget extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 20),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12.0),
-                color: valuesDataColors[i],
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16.0),
+              // Adjust the radius as needed
+              child: CachedNetworkImage(
+                imageUrl:
+                    "https://img.youtube.com/vi/bIYnu3spU7o/maxresdefault.jpg",
+                placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => Icon(Icons.error),
               ),
             ),
           ),
@@ -39,7 +44,7 @@ class RecommendationWidget extends StatelessWidget {
             child: Text(
               i.toString(),
               style: TextStyle(
-                color: Colors.white,
+                color: Colors.black,
                 fontSize: 100,
                 fontWeight: FontWeight.bold,
               ),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -38,30 +39,21 @@ class WatchWidget extends StatelessWidget {
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(9.0),
-                    child: Container(
-                      width: 0.6.sw,
-                      height: 0.25.sh,
-                      decoration: BoxDecoration(
-                        color: const Color.fromRGBO(90, 90, 90, 100),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            // Shadow color
-                            spreadRadius: 3,
-                            // Spread radius
-                            blurRadius: 5,
-                            // Blur radius
-                            offset: Offset(0, 3), // Shadow offset (x, y)
-                          ),
-                        ],
-                        borderRadius: BorderRadius.circular(12.5),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16.0),
+                      // Adjust the radius as needed
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            "https://img.youtube.com/vi/bIYnu3spU7o/maxresdefault.jpg",
+                        placeholder: (context, url) => Container(),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
                     ),
                   ),
                 );
               },
             ),
-          )
+          ),
         ],
       ),
     );

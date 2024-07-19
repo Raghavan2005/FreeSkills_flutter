@@ -14,10 +14,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
+import 'package:provider/provider.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:toastification/toastification.dart';
 
 import '../../pages/routes/RoutesNames.dart';
 import '../utils/Validator.dart';
+import 'SetupState_Provider.dart';
 
 class AuthStateLoginProvider extends ChangeNotifier {
   bool _isPass = true;
@@ -50,6 +53,13 @@ class AuthStateLoginProvider extends ChangeNotifier {
   void auththeuser(BuildContext c) async {
     validateEmail();
     validatePassword();
+    Future<void> fetchAndPrintData() async {
+      final response =
+          await Supabase.instance.client.from('info_table').select();
+
+      final sup = Provider.of<SetupstateProvider>(c, listen: false);
+      sup.updatedatainfo(response[0]);
+    }
 
     if (error[0] == null && error[1] == null) {
       _isLoading = true;
@@ -61,7 +71,7 @@ class AuthStateLoginProvider extends ChangeNotifier {
         mailController.clear();
         passController.clear();
         await userlogin.fetchAndSaveUserData();
-
+        await fetchAndPrintData();
         if (box.get('data') == null)
           c.go(Routesnames.SetupScreen);
         else
