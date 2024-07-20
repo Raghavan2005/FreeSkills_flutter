@@ -1,8 +1,8 @@
 // ignore_for_file: camel_case_types, file_names
 
+import 'package:FreeSkills/core/provider/MainState_Provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:FreeSkills/core/provider/MainState_Provider.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -56,7 +56,7 @@ class NavBar_Shared extends StatelessWidget {
               text: 'Home',
             ),
             GButton(
-              icon: Icons.record_voice_over_rounded,
+              icon: Icons.graphic_eq,
               text: 'AI Chat',
             ),
             GButton(

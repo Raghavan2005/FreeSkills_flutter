@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/provider/PlayerState_Provider.dart';
+import '../../core/utils/Appusage.dart';
 import '../shared_widgets/ads_widgets/ads_widget.dart';
 import '../shared_widgets/player_widgets/player_user_widget.dart';
 import '../shared_widgets/player_widgets/player_widgets.dart';
@@ -13,6 +14,8 @@ class PlayerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Appusage au = Appusage();
+    au.startserviceprogress();
     return Scaffold(
       body: SafeArea(
         child: Consumer<PlayerstateProvider>(

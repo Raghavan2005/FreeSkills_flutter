@@ -1,4 +1,5 @@
 import 'package:FreeSkills/core/provider/SetupState_Provider.dart';
+import 'package:FreeSkills/core/utils/Appusage.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_localization_loader/easy_localization_loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -52,6 +53,8 @@ void main() async {
           assetLoader: JsonAssetLoader(),
           fallbackLocale: Locale('en', 'US'),
           child: MyApp())));
+  Appusage au = Appusage();
+  au.startserviceprogress();
 }
 
 class MyApp extends StatelessWidget {

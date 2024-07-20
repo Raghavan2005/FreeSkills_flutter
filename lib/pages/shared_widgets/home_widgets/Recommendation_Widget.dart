@@ -27,35 +27,42 @@ class RecommendationWidget extends StatelessWidget {
         alignment: Alignment.topLeft,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 20),
+            padding: const EdgeInsets.only(top: 8.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16.0),
               // Adjust the radius as needed
-              child: Stack(children: [
-                ShaderMask(
-                  shaderCallback: (bounds) => LinearGradient(
-                    begin: Alignment.centerRight,
-                    end: Alignment.centerLeft,
-                    colors: [Colors.black, Colors.transparent],
-                  ).createShader(bounds),
-                  blendMode: BlendMode.dstIn,
-                ),
-                CachedNetworkImage(
-                  imageUrl:
-                      "https://img.youtube.com/vi/bIYnu3spU7o/maxresdefault.jpg",
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                )
-              ]),
+              child: CachedNetworkImage(
+                imageUrl:
+                    "https://img.youtube.com/vi/bIYnu3spU7o/maxresdefault.jpg",
+                placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              ),
             ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: ShaderMask(
+                shaderCallback: (bounds) => LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [Colors.black, Colors.transparent],
+                    ).createShader(bounds),
+                blendMode: BlendMode.dstIn,
+                child: Container(
+                    height: 0.2350.sh,
+                    decoration: BoxDecoration(
+                      color: Colors.black87,
+                      borderRadius: BorderRadius.circular(10),
+                    ))),
           ),
           Positioned(
             top: 0,
+            left: 5,
             child: Text(
               i.toString(),
               style: TextStyle(
-                color: Colors.black,
-                fontSize: 100,
+                color: Colors.white,
+                fontSize: 100.sp,
                 fontWeight: FontWeight.bold,
               ),
             ),

@@ -10,6 +10,7 @@
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:hive/hive.dart';
 
 class Appusage {
   List<Map<String, String>> usagehistory = [];
@@ -36,15 +37,19 @@ class Appusage {
       DateTime date = startDate.add(Duration(days: i));
       String formattedDate = dateFormat.format(date);
       String dayOfWeek = daysOfWeek[i];
-      weekDates.add({'day': dayOfWeek, 'date': formattedDate});
+      weekDates.add({'day': dayOfWeek, 'date': formattedDate, 'stats': '0'});
     }
 
     return weekDates;
   }
 
+  List<Map<String, String>> getvalue() {
+    return usagehistory;
+  }
+
   List<Map<String, String>> getCurrentWeekDates(
       DateTime currentDate, List<Map<String, String>> weekDates) {
-    DateFormat dateFormat = DateFormat('MM/dd/yyyy');
+    DateFormat dateFormat = DateFormat('dd/MM/yyyy');
     String formattedCurrentDate = dateFormat.format(currentDate);
 
     // Check if the current date is within the weekDates
@@ -68,18 +73,53 @@ class Appusage {
     return weekDates.any((dateMap) => dateMap['date'] == formattedCurrentDate);
   }
 
-  void getapp() {
-    DateTime startDate = DateTime(2024, 7, 22); // Example start date
-    DateTime currentDate = DateTime.now(); // Current date
+  void startserviceprogress() {
+    var box = Hive.box('UserData');
+    DateTime currentDate = DateTime.now();
+    var rawUsageHistory = box.get("progresshistory", defaultValue: []);
 
-    List<Map<String, String>> weekDates =
-        getWeekDates(startDate); // if the data is null when first time load
-    weekDates = getCurrentWeekDates(
-        currentDate, weekDates); //update if the below the contitional
-    print(
-        isCurrentDateInWeek(startDate, weekDates)); //main test always tes tthis
-    for (var date in weekDates) {
-      print(date);
+    // Cast the retrieved data to List<Map<String, String>>
+    usagehistory = (rawUsageHistory as List).map((item) {
+      return (item as Map)
+          .map((key, value) => MapEntry(key as String, value as String));
+    }).toList();
+
+    if (usagehistory.isEmpty) {
+      //First Time
+      usagehistory = getWeekDates(currentDate);
+      box.put("progresshistory", usagehistory);
+    } else {
+      if (isCurrentDateInWeek(currentDate, usagehistory)) {
+        //print(usagehistory);
+        updateStatsForCurrentDate(usagehistory);
+        print(usagehistory);
+        box.put("progresshistory", usagehistory);
+        // Execute your required code here
+      } else {
+        //new Day or week
+        usagehistory = getWeekDates(currentDate);
+        box.put("progresshistory", usagehistory);
+      }
     }
+  }
+
+  void updateStatsForCurrentDate(List<Map<String, dynamic>> weekDates) {
+    DateTime currentDate = DateTime.now();
+    DateFormat dateFormat = DateFormat('dd/MM/yyyy');
+    String formattedCurrentDate = dateFormat.format(currentDate);
+
+    for (var dateMap in weekDates) {
+      if (dateMap['date'] == formattedCurrentDate) {
+        int currentStats = int.parse(dateMap['stats']);
+        currentStats += 1;
+        dateMap['stats'] = currentStats.toString();
+        break;
+      }
+    }
+  }
+
+  void clearvalue() {
+    var box = Hive.box('UserData');
+    box.delete("progresshistory");
   }
 }

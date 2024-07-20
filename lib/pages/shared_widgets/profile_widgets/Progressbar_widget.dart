@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/provider/UserDataState_Provider.dart';
@@ -39,6 +40,27 @@ class ProgressBarChartState extends State<ProgressBarChart> {
   final Duration animDuration = const Duration(milliseconds: 250);
 
   int touchedIndex = -1;
+  List<int> tem = [];
+  List<Map<String, String>> usagedisplayer = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    var box = Hive.box('UserData');
+    var rawUsageHistory = box.get("progresshistory", defaultValue: []);
+
+    if (rawUsageHistory != []) {
+      usagedisplayer = (rawUsageHistory as List).map((item) {
+        return (item as Map)
+            .map((key, value) => MapEntry(key as String, value as String));
+      }).toList();
+      for (var dateMap in usagedisplayer) {
+        tem.add(int.parse(dateMap["stats"]!));
+      }
+      print(findMax(tem) + 5);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +100,16 @@ class ProgressBarChartState extends State<ProgressBarChart> {
     );
   }
 
+  int findMax(List<int> numbers) {
+    int max = numbers[0];
+    for (int i = 1; i < numbers.length; i++) {
+      if (numbers[i] > max) {
+        max = numbers[i];
+      }
+    }
+    return max;
+  }
+
   BarChartGroupData makeGroupData(
     int x,
     double y, {
@@ -99,7 +131,7 @@ class ProgressBarChartState extends State<ProgressBarChart> {
               : const BorderSide(color: Colors.white, width: 0),
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
-            toY: 20,
+            toY: findMax(tem) + 20,
             color: widget.barBackgroundColor,
           ),
         ),
@@ -109,28 +141,34 @@ class ProgressBarChartState extends State<ProgressBarChart> {
   }
 
   List<BarChartGroupData> showingGroups() => List.generate(7, (i) {
-        final usp = Provider.of<UserdatastateProvider>(context, listen: false);
         switch (i) {
           case 0:
-            return makeGroupData(0, usp.getperformancevalue?[0].toDouble(),
+            return makeGroupData(
+                0, int.parse(usagedisplayer[0]['stats']!).toDouble(),
                 isTouched: i == touchedIndex);
           case 1:
-            return makeGroupData(1, usp.getperformancevalue?[1].toDouble(),
+            return makeGroupData(
+                1, int.parse(usagedisplayer[1]['stats']!).toDouble(),
                 isTouched: i == touchedIndex);
           case 2:
-            return makeGroupData(2, usp.getperformancevalue?[2].toDouble(),
+            return makeGroupData(
+                2, int.parse(usagedisplayer[2]['stats']!).toDouble(),
                 isTouched: i == touchedIndex);
           case 3:
-            return makeGroupData(3, usp.getperformancevalue?[3].toDouble(),
+            return makeGroupData(
+                3, int.parse(usagedisplayer[3]['stats']!).toDouble(),
                 isTouched: i == touchedIndex);
           case 4:
-            return makeGroupData(4, usp.getperformancevalue?[4].toDouble(),
+            return makeGroupData(
+                4, int.parse(usagedisplayer[4]['stats']!).toDouble(),
                 isTouched: i == touchedIndex);
           case 5:
-            return makeGroupData(5, usp.getperformancevalue?[5].toDouble(),
+            return makeGroupData(
+                5, int.parse(usagedisplayer[5]['stats']!).toDouble(),
                 isTouched: i == touchedIndex);
           case 6:
-            return makeGroupData(6, usp.getperformancevalue?[6].toDouble(),
+            return makeGroupData(
+                6, int.parse(usagedisplayer[6]['stats']!).toDouble(),
                 isTouched: i == touchedIndex);
           default:
             return throw Error();

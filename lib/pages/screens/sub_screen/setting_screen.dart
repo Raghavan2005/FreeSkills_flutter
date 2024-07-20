@@ -29,7 +29,7 @@ class SettingScreen extends StatelessWidget {
     return Consumer<SeetingsstateProvider>(
       builder: (BuildContext context, value, Widget? child) {
         return Scaffold(
-          backgroundColor: Colors.black87,
+          backgroundColor: Colors.black,
           appBar: AppBar(
             foregroundColor: Colors.white,
             centerTitle: true,
@@ -130,17 +130,67 @@ class SettingScreen extends StatelessWidget {
               ),
               Unstyle_Settings_btn(
                 btntext: 'Signout',
-                onTap: () async {
-                  await FirebaseAuth.instance.signOut();
-                  if (FirebaseAuth.instance.currentUser == null) {
-                    var box = await Hive.openBox('UserData');
-                    box.clear();
-                    context.go(Routesnames.SignUpScreen);
-                  }
+                onTap: () {
+                  _showCustomPopup(context);
                 },
               ),
             ],
           ),
+        );
+      },
+    );
+  }
+
+  void _showCustomPopup(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        TextStyle style =
+            TextStyle(color: Colors.white, fontWeight: FontWeight.w900);
+        return AlertDialog(
+          backgroundColor: Colors.black87,
+          title: Text(
+            'Are you sure you want to log out?',
+            style: style,
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(
+                'This will erase all data from your device.',
+                style: style,
+              ),
+              SizedBox(height: 20),
+            ],
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text(
+                'Cancel',
+                style: style,
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all(Colors.red)),
+              child: Text(
+                'Signout',
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+                if (FirebaseAuth.instance.currentUser == null) {
+                  var box = await Hive.openBox('UserData');
+                  box.clear();
+                  context.go(Routesnames.SignUpScreen);
+                }
+              },
+            ),
+          ],
         );
       },
     );

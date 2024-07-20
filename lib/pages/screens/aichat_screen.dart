@@ -1,4 +1,3 @@
-import 'package:FreeSkills/core/utils/Appusage.dart';
 import 'package:FreeSkills/pages/shared_widgets/ads_widgets/ads_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -126,12 +125,7 @@ class AichatScreen extends StatelessWidget {
                 ),
               ),
             ),
-            ElevatedButton(
-                onPressed: () {
-                  Appusage au = Appusage();
-                  au.getapp();
-                },
-                child: Text("dsfsd"))
+
             //TODO:add recent chat item
           ],
         ),

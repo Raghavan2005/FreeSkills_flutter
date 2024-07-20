@@ -58,59 +58,53 @@ class AppRoutes {
       GoRoute(
         path: Routesnames.SettingsScreen,
         builder: (context, state) => SettingScreen(),
-        pageBuilder: (context, state) =>
-            CustomTransitionPage(
-              key: state.pageKey,
-              child: SettingScreen(),
-              transitionsBuilder: (context, animation, secondaryAnimation,
-                  child) {
-                return SizeTransition(
-                  sizeFactor: animation,
-                  child: child,
-                );
-              },
-              transitionDuration: const Duration(milliseconds: 190),
-            ),
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: SettingScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SizeTransition(
+              sizeFactor: animation,
+              child: child,
+            );
+          },
+          transitionDuration: const Duration(milliseconds: 190),
+        ),
       ),
       GoRoute(
         path: Routesnames.AboutScreen,
         builder: (context, state) => AboutScreen(),
-        pageBuilder: (context, state) =>
-            CustomTransitionPage(
-              key: state.pageKey,
-              child: AboutScreen(),
-              transitionsBuilder: (context, animation, secondaryAnimation,
-                  child) {
-                return SlideTransition(
-                  position: Tween<Offset>(
-                    begin: const Offset(-1, 0),
-                    end: Offset.zero,
-                  ).animate(animation),
-                  child: child,
-                );
-              },
-              transitionDuration: const Duration(milliseconds: 190),
-            ),
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: AboutScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(-1, 0),
+                end: Offset.zero,
+              ).animate(animation),
+              child: child,
+            );
+          },
+          transitionDuration: const Duration(milliseconds: 190),
+        ),
       ),
       GoRoute(
         path: Routesnames.NotificationScreen,
         builder: (context, state) => const NotificationScreen(),
-        pageBuilder: (context, state) =>
-            CustomTransitionPage(
-              key: state.pageKey,
-              child: NotificationScreen(),
-              transitionsBuilder: (context, animation, secondaryAnimation,
-                  child) {
-                return SlideTransition(
-                  position: Tween<Offset>(
-                    begin: const Offset(1, 0),
-                    end: Offset.zero,
-                  ).animate(animation),
-                  child: child,
-                );
-              },
-              transitionDuration: const Duration(milliseconds: 190),
-            ),
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: NotificationScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(1, 0),
+                end: Offset.zero,
+              ).animate(animation),
+              child: child,
+            );
+          },
+          transitionDuration: const Duration(milliseconds: 190),
+        ),
       ),
       GoRoute(
         path: Routesnames.PremiumScreen,
@@ -123,46 +117,41 @@ class AppRoutes {
       GoRoute(
         path: Routesnames.UserdataEditScreen,
         builder: (context, state) => UserdataEdit(),
-        pageBuilder: (context, state) =>
-            CustomTransitionPage(
-              key: state.pageKey,
-              child: UserdataEdit(),
-              transitionsBuilder: (context, animation, secondaryAnimation,
-                  child) {
-                return SlideTransition(
-                  position: Tween<Offset>(
-                    begin: const Offset(1, 0),
-                    end: Offset.zero,
-                  ).animate(animation),
-                  child: child,
-                );
-              },
-              transitionDuration: const Duration(milliseconds: 190),
-            ),
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: UserdataEdit(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(1, 0),
+                end: Offset.zero,
+              ).animate(animation),
+              child: child,
+            );
+          },
+          transitionDuration: const Duration(milliseconds: 190),
+        ),
       ),
       GoRoute(
         path: Routesnames.SavedScreen,
         builder: (context, state) => SavedScreen(),
-        pageBuilder: (context, state) =>
-            CustomTransitionPage(
-              key: state.pageKey,
-              child: SavedScreen(),
-              transitionsBuilder: (context, animation, secondaryAnimation,
-                  child) {
-                return SlideTransition(
-                  position: Tween<Offset>(
-                    begin: const Offset(1, 0),
-                    end: Offset.zero,
-                  ).animate(animation),
-                  child: child,
-                );
-              },
-              transitionDuration: const Duration(milliseconds: 190),
-            ),
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: SavedScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(1, 0),
+                end: Offset.zero,
+              ).animate(animation),
+              child: child,
+            );
+          },
+          transitionDuration: const Duration(milliseconds: 190),
+        ),
       ),
     ],
   );
-
 
   static Widget _userRedirect() {
     final user = FirebaseAuth.instance.currentUser;
