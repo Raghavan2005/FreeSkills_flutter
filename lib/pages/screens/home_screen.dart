@@ -20,6 +20,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final usp = Provider.of<UserdatastateProvider>(context, listen: false);
+    usp.updatedata();
     return Consumer<MainstateProvider>(
       builder: (BuildContext context, MainstateProvider value, Widget? child) {
         return ScaffoldGradientBackground(
@@ -59,7 +61,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final set = Provider.of<SeetingsstateProvider>(context, listen: false);
     final usp = Provider.of<UserdatastateProvider>(context, listen: true);
-    usp.updatedata();
     return Stack(
       children: <Widget>[
         SingleChildScrollView(
@@ -68,6 +69,7 @@ class _HomeState extends State<Home> {
               UserProfilebar_Widget(
                 username: usp.getUsername,
                 courename: usp.selectedcoursename,
+                imageurl: usp.userimageurl,
               ),
               SizedBox(
                 height: 10.h,

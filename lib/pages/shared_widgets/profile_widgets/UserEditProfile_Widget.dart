@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -85,12 +86,25 @@ class UsereditprofileWidget extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 15),
                 child: Row(
                   children: [
-                    const SizedBox(
-                      width: 70,
-                      height: 70,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.black,
+                    SizedBox(
+                      width: 60,
+                      height: 60,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(50.0),
+                        // Adjust the radius as needed
+                        child: CachedNetworkImage(
+                          imageUrl: sup.userimageurl!,
+                          placeholder: (context, url) => Container(),
+                          errorWidget: (context, url, error) => Icon(
+                            Icons.error,
+                            color: Colors.red,
+                            size: 40.sp,
+                          ),
+                        ),
                       ),
+                    ),
+                    SizedBox(
+                      width: 10,
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -103,7 +117,7 @@ class UsereditprofileWidget extends StatelessWidget {
                                 sup.getUsername!,
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 17.sp,
+                                  fontSize: 18.sp,
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -112,7 +126,7 @@ class UsereditprofileWidget extends StatelessWidget {
                           Text(sup.selectedcoursename!,
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 14.sp,
+                                fontSize: 18.sp,
                                 fontWeight: FontWeight.w300,
                               ))
                         ],

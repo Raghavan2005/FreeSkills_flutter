@@ -1,14 +1,16 @@
-import 'package:FreeSkills/pages/routes/RoutesNames.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class UserProfilebar_Widget extends StatelessWidget {
-  const UserProfilebar_Widget(
-      {super.key, required this.username, this.courename});
+import '../../routes/RoutesNames.dart';
 
-  final String? username, courename;
+class UserProfilebar_Widget extends StatelessWidget {
+  UserProfilebar_Widget(
+      {super.key, required this.username, this.courename, this.imageurl});
+
+  final String? username, courename, imageurl;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +70,7 @@ class UserProfilebar_Widget extends StatelessWidget {
                             color: const Color.fromRGBO(1, 89, 24, 100),
                           ),
                           child: IconButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 context.push(Routesnames.NotificationScreen);
                               },
                               icon: Icon(
@@ -84,12 +86,25 @@ class UserProfilebar_Widget extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 15),
                 child: Row(
                   children: [
-                    const SizedBox(
-                      width: 70,
-                      height: 70,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.black,
+                    SizedBox(
+                      width: 60,
+                      height: 60,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(50.0),
+                        // Adjust the radius as needed
+                        child: CachedNetworkImage(
+                          imageUrl: imageurl!,
+                          placeholder: (context, url) => Container(),
+                          errorWidget: (context, url, error) => Icon(
+                            Icons.error,
+                            color: Colors.red,
+                            size: 40.sp,
+                          ),
+                        ),
                       ),
+                    ),
+                    SizedBox(
+                      width: 10,
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -103,7 +118,7 @@ class UserProfilebar_Widget extends StatelessWidget {
                                 style: TextStyle(
                                   color: Colors.yellow,
                                   fontSize: 20.sp,
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                               SizedBox(
@@ -113,8 +128,8 @@ class UserProfilebar_Widget extends StatelessWidget {
                                 username!,
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 17.sp,
-                                  fontWeight: FontWeight.w400,
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ],
@@ -122,8 +137,8 @@ class UserProfilebar_Widget extends StatelessWidget {
                           Text(courename!,
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w300,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.w500,
                               ))
                         ],
                       ),

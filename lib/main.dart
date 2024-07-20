@@ -54,7 +54,7 @@ void main() async {
           fallbackLocale: Locale('en', 'US'),
           child: MyApp())));
   Appusage au = Appusage();
-  au.startserviceprogress();
+  au.startserviceprogress(1);
 }
 
 class MyApp extends StatelessWidget {

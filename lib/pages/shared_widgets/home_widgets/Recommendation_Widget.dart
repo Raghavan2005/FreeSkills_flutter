@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_slider/card_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -98,14 +99,32 @@ class RecommendationWidget extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      "Swipe Left",
-                      style: TextStyle(color: Colors.grey, fontSize: 13.sp),
+                    Row(
+                      children: [
+                        Icon(
+                          CupertinoIcons.left_chevron,
+                          color: Colors.grey,
+                          size: 14.sp,
+                        ),
+                        Text(
+                          "Swipe Left",
+                          style: TextStyle(color: Colors.grey, fontSize: 13.sp),
+                        ),
+                      ],
                     ),
                     Spacer(),
-                    Text(
-                      "Swipe Right",
-                      style: TextStyle(color: Colors.grey, fontSize: 13.sp),
+                    Row(
+                      children: [
+                        Text(
+                          "Swipe Right",
+                          style: TextStyle(color: Colors.grey, fontSize: 13.sp),
+                        ),
+                        Icon(
+                          CupertinoIcons.right_chevron,
+                          color: Colors.grey,
+                          size: 14.sp,
+                        ),
+                      ],
                     ),
                   ],
                 ),

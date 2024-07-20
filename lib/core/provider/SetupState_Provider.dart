@@ -1,4 +1,5 @@
 import 'package:FreeSkills/core/services/auth/UserDataPack.dart';
+import 'package:FreeSkills/core/services/datasource/Image_Network_Provider.dart';
 import 'package:FreeSkills/core/utils/Validator.dart';
 import 'package:FreeSkills/pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_3_sub.dart';
 import 'package:FreeSkills/pages/screens/service_screens/setup_screens/sub_widgets_setup/setup_4_sub.dart';
@@ -79,6 +80,8 @@ class SetupstateProvider extends ChangeNotifier {
     );
   }
 
+  ImageNetworkProvider imageNetworkProvider = ImageNetworkProvider();
+
   Future<void> updatethebutton(BuildContext ofsetupscreen) async {
     if (currentstate == 0 && errorList[0] == null) {
       if (username == null) {
@@ -117,6 +120,8 @@ class SetupstateProvider extends ChangeNotifier {
       userData["copyrights"] = usercopyright;
       userData["lastlogin"] = Datatimeinfo.getCurrentDateTime();
       userData["ispro"] = false;
+      userData["userimageurl"] =
+          await imageNetworkProvider.getProfileLink(username!);
       tryagain = await us.addUserData(userData);
       if (tryagain) {
         var box = await Hive.openBox('UserData');

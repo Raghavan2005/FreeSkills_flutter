@@ -14,8 +14,10 @@ class ResponsiveTextContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: fun,
+      borderRadius: BorderRadius.circular(25.0),
+      splashColor: Colors.white12,
       child: Container(
         decoration: BoxDecoration(
           color: Color.fromRGBO(48, 48, 48, 100),
@@ -31,7 +33,7 @@ class ResponsiveTextContainer extends StatelessWidget {
                   Icon(
                     seticon,
                     color: Colors.white,
-                    size: 13.sp,
+                    size: 16.sp,
                   ),
                   const SizedBox(width: 8),
                   Text(
@@ -39,7 +41,7 @@ class ResponsiveTextContainer extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
                       color: Colors.white,
-                      fontSize: 15.sp,
+                      fontSize: 16.5.sp,
                     ),
                   ),
                 ],

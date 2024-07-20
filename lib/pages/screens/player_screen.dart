@@ -15,7 +15,7 @@ class PlayerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Appusage au = Appusage();
-    au.startserviceprogress();
+    au.startserviceprogress(1);
     return Scaffold(
       body: SafeArea(
         child: Consumer<PlayerstateProvider>(

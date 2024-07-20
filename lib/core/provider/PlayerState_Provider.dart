@@ -10,6 +10,8 @@ class PlayerstateProvider extends ChangeNotifier {
 
   double get videoPlayStatus => _videoPlayStatus;
 
+  bool issaved = false;
+
   void updateIsFullscreen(bool isFullscreen) {
     _isFullscreen = isFullscreen;
     notifyListeners();
@@ -17,6 +19,11 @@ class PlayerstateProvider extends ChangeNotifier {
 
   void updatevideostatus(double value) {
     _videoPlayStatus = value;
+    notifyListeners();
+  }
+
+  void updatesave() {
+    issaved = !issaved;
     notifyListeners();
   }
 }

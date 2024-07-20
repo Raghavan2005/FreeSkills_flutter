@@ -73,7 +73,7 @@ class Appusage {
     return weekDates.any((dateMap) => dateMap['date'] == formattedCurrentDate);
   }
 
-  void startserviceprogress() {
+  void startserviceprogress(int addvalue) {
     var box = Hive.box('UserData');
     DateTime currentDate = DateTime.now();
     var rawUsageHistory = box.get("progresshistory", defaultValue: []);
@@ -91,8 +91,7 @@ class Appusage {
     } else {
       if (isCurrentDateInWeek(currentDate, usagehistory)) {
         //print(usagehistory);
-        updateStatsForCurrentDate(usagehistory);
-        print(usagehistory);
+        updateStatsForCurrentDate(usagehistory, addvalue);
         box.put("progresshistory", usagehistory);
         // Execute your required code here
       } else {
@@ -103,7 +102,8 @@ class Appusage {
     }
   }
 
-  void updateStatsForCurrentDate(List<Map<String, dynamic>> weekDates) {
+  void updateStatsForCurrentDate(
+      List<Map<String, dynamic>> weekDates, int addvalue) {
     DateTime currentDate = DateTime.now();
     DateFormat dateFormat = DateFormat('dd/MM/yyyy');
     String formattedCurrentDate = dateFormat.format(currentDate);
@@ -111,7 +111,7 @@ class Appusage {
     for (var dateMap in weekDates) {
       if (dateMap['date'] == formattedCurrentDate) {
         int currentStats = int.parse(dateMap['stats']);
-        currentStats += 1;
+        currentStats += addvalue;
         dateMap['stats'] = currentStats.toString();
         break;
       }

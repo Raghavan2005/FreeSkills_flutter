@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 
 class ImageNetworkProvider {
-  static Future<String> getProfileLink(String username) async {
+  Future<String> getProfileLink(String username) async {
     final String url =
         'https://ui-avatars.com/api/?name=$username&bold=true&size=128';
     final response = await http.get(Uri.parse(url));

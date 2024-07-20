@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -49,13 +50,27 @@ class UserdataEdit extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: 0.1.sh,
-                ),
-                CircleAvatar(
-                  radius: 60,
+                  height: 0.08.sh,
                 ),
                 SizedBox(
-                  height: 0.05.sh,
+                  width: 150,
+                  height: 150,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(50.0),
+                    // Adjust the radius as needed
+                    child: CachedNetworkImage(
+                      imageUrl: usp.userimageurl!,
+                      placeholder: (context, url) => Container(),
+                      errorWidget: (context, url, error) => Icon(
+                        Icons.error,
+                        color: Colors.red,
+                        size: 40.sp,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 0.04.sh,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
