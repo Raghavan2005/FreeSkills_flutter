@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
+
+import '../../../core/provider/UserDataState_Provider.dart';
 
 class UserdataEdit extends StatelessWidget {
   UserdataEdit({super.key});
@@ -10,8 +13,9 @@ class UserdataEdit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final usp = Provider.of<UserdatastateProvider>(context, listen: true);
     isKeyboardOpen = MediaQuery.of(context).viewInsets.bottom != 0;
-    cm.text = "Raghavan";
+    cm.text = usp.getUsername!;
     return Container(
         color: Colors.black,
         child: ScaffoldGradientBackground(
@@ -88,10 +92,10 @@ class UserdataEdit extends StatelessWidget {
                           fontSize: 17.sp,
                           color: Colors.white,
                           fontWeight: FontWeight.w700),
-                      errorText: null,
+                      errorText: cm.text.isEmpty ? "Cant be Empty" : null,
                     ),
                     onSubmitted: (val) {
-                      // value.updatetheusername(val);
+                      usp.changename(val);
                     },
                   ),
                 ),
@@ -108,35 +112,35 @@ class UserdataEdit extends StatelessWidget {
                     ),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton<String>(
-                        value: "Web Technology",
-                        dropdownColor: Colors.black,
-                        elevation: 10,
-                        isExpanded: true,
-                        underline: Container(),
-                        icon: const Icon(
-                          Icons.people,
-                          color: Colors.white,
-                        ),
-                        onChanged: (String? newValue) {},
-                        items: <String>[
-                          'Mobile Application Development',
-                          'Web Technology',
-                          'AI/ML Engineer',
-                          'System Designer'
-                        ].map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(
-                              value,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w500,
+                          value: usp.selectedcoursename,
+                          dropdownColor: Colors.black,
+                          elevation: 10,
+                          isExpanded: true,
+                          underline: Container(),
+                          icon: const Icon(
+                            Icons.people,
+                            color: Colors.white,
+                          ),
+                          onChanged: (String? nv) {
+                            usp.changecourse(nv!);
+                          },
+                          items: usp.jobinfo.values
+                              .toList()
+                              .map<DropdownMenuItem<String>>((dynamic value) {
+                            return DropdownMenuItem<String>(
+                              value: value.toString(),
+                              // Ensure the value is a String
+                              child: Text(
+                                value.toString(),
+                                // Ensure the text is also a String
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
-                            ),
-                          );
-                        }).toList(),
-                      ),
+                            );
+                          }).toList()),
                     ),
                   ),
                 ),
@@ -144,7 +148,9 @@ class UserdataEdit extends StatelessWidget {
                   height: 0.05.sh,
                 ),
                 ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      print(usp.jobinfo.values.toList());
+                    },
                     style: ButtonStyle(
                         foregroundColor: WidgetStateProperty.all(Colors.white),
                         backgroundColor: WidgetStateProperty.all(Colors.blue)),

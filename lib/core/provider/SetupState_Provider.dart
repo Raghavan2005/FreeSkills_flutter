@@ -116,6 +116,7 @@ class SetupstateProvider extends ChangeNotifier {
       userData["email"] = user?.email;
       userData["copyrights"] = usercopyright;
       userData["lastlogin"] = Datatimeinfo.getCurrentDateTime();
+      userData["ispro"] = false;
       tryagain = await us.addUserData(userData);
       if (tryagain) {
         var box = await Hive.openBox('UserData');

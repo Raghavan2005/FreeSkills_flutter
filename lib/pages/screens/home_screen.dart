@@ -10,6 +10,7 @@ import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 import '../../core/provider/SeetingsState_Provider.dart';
 import '../../core/provider/UserDataState_Provider.dart';
 import '../shared_widgets/NavBar_Shared.dart';
+import '../shared_widgets/ads_widgets/ads_widget.dart';
 import '../shared_widgets/home_widgets/Channels_List_Widget.dart';
 import '../shared_widgets/home_widgets/User_ProfileBar_Widget.dart';
 import '../shared_widgets/home_widgets/Watch_Widget.dart';
@@ -57,7 +58,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final set = Provider.of<SeetingsstateProvider>(context, listen: false);
-    final usp = Provider.of<UserdatastateProvider>(context, listen: false);
+    final usp = Provider.of<UserdatastateProvider>(context, listen: true);
     usp.updatedata();
     return Stack(
       children: <Widget>[
@@ -68,6 +69,10 @@ class _HomeState extends State<Home> {
                 username: usp.getUsername,
                 courename: usp.selectedcoursename,
               ),
+              SizedBox(
+                height: 10.h,
+              ),
+              AdsWidgets(height: 0.08),
               SizedBox(
                 height: 10.h,
               ),
@@ -100,6 +105,7 @@ class _HomeState extends State<Home> {
                 height: 10.h,
               ),
               ChannelsListWidget(),
+              AdsWidgets(height: 0.08),
               SizedBox(
                 width: double.infinity,
                 height: 0.26.sh, // or any height you need

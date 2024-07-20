@@ -1,6 +1,9 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+
+import '../../../core/provider/UserDataState_Provider.dart';
 
 class ProgressbarWidget extends StatelessWidget {
   const ProgressbarWidget({super.key});
@@ -39,6 +42,7 @@ class ProgressBarChartState extends State<ProgressBarChart> {
 
   @override
   Widget build(BuildContext context) {
+    final usp = Provider.of<UserdatastateProvider>(context, listen: false);
     return AspectRatio(
       aspectRatio: 1,
       child: Stack(
@@ -105,21 +109,29 @@ class ProgressBarChartState extends State<ProgressBarChart> {
   }
 
   List<BarChartGroupData> showingGroups() => List.generate(7, (i) {
+        final usp = Provider.of<UserdatastateProvider>(context, listen: false);
         switch (i) {
           case 0:
-            return makeGroupData(0, 20, isTouched: i == touchedIndex);
+            return makeGroupData(0, usp.getperformancevalue?[0].toDouble(),
+                isTouched: i == touchedIndex);
           case 1:
-            return makeGroupData(1, 20, isTouched: i == touchedIndex);
+            return makeGroupData(1, usp.getperformancevalue?[1].toDouble(),
+                isTouched: i == touchedIndex);
           case 2:
-            return makeGroupData(2, 20, isTouched: i == touchedIndex);
+            return makeGroupData(2, usp.getperformancevalue?[2].toDouble(),
+                isTouched: i == touchedIndex);
           case 3:
-            return makeGroupData(3, 20, isTouched: i == touchedIndex);
+            return makeGroupData(3, usp.getperformancevalue?[3].toDouble(),
+                isTouched: i == touchedIndex);
           case 4:
-            return makeGroupData(4, 20, isTouched: i == touchedIndex);
+            return makeGroupData(4, usp.getperformancevalue?[4].toDouble(),
+                isTouched: i == touchedIndex);
           case 5:
-            return makeGroupData(5, 20, isTouched: i == touchedIndex);
+            return makeGroupData(5, usp.getperformancevalue?[5].toDouble(),
+                isTouched: i == touchedIndex);
           case 6:
-            return makeGroupData(6, 7, isTouched: i == touchedIndex);
+            return makeGroupData(6, usp.getperformancevalue?[6].toDouble(),
+                isTouched: i == touchedIndex);
           default:
             return throw Error();
         }

@@ -31,12 +31,22 @@ class RecommendationWidget extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16.0),
               // Adjust the radius as needed
-              child: CachedNetworkImage(
-                imageUrl:
-                    "https://img.youtube.com/vi/bIYnu3spU7o/maxresdefault.jpg",
-                placeholder: (context, url) => CircularProgressIndicator(),
-                errorWidget: (context, url, error) => Icon(Icons.error),
-              ),
+              child: Stack(children: [
+                ShaderMask(
+                  shaderCallback: (bounds) => LinearGradient(
+                    begin: Alignment.centerRight,
+                    end: Alignment.centerLeft,
+                    colors: [Colors.black, Colors.transparent],
+                  ).createShader(bounds),
+                  blendMode: BlendMode.dstIn,
+                ),
+                CachedNetworkImage(
+                  imageUrl:
+                      "https://img.youtube.com/vi/bIYnu3spU7o/maxresdefault.jpg",
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                )
+              ]),
             ),
           ),
           Positioned(

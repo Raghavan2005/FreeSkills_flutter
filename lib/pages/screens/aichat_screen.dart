@@ -1,3 +1,5 @@
+import 'package:FreeSkills/core/utils/Appusage.dart';
+import 'package:FreeSkills/pages/shared_widgets/ads_widgets/ads_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -108,7 +110,9 @@ class AichatScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 15),
+            AdsWidgets(height: 0.08),
+            SizedBox(height: 15),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Align(
@@ -122,6 +126,12 @@ class AichatScreen extends StatelessWidget {
                 ),
               ),
             ),
+            ElevatedButton(
+                onPressed: () {
+                  Appusage au = Appusage();
+                  au.getapp();
+                },
+                child: Text("dsfsd"))
             //TODO:add recent chat item
           ],
         ),

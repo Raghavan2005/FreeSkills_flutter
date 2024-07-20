@@ -11,7 +11,7 @@ class UsereditprofileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sup = Provider.of<UserdatastateProvider>(context, listen: false);
+    final sup = Provider.of<UserdatastateProvider>(context, listen: true);
     return SizedBox(
       width: double.infinity,
       height: 0.23.sh,
@@ -109,7 +109,7 @@ class UsereditprofileWidget extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Text("Mobile Application Development",
+                          Text(sup.selectedcoursename!,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 14.sp,
