@@ -64,7 +64,7 @@ class ProgressBarChartState extends State<ProgressBarChart> {
 
   @override
   Widget build(BuildContext context) {
-    final usp = Provider.of<UserdatastateProvider>(context, listen: false);
+    Provider.of<UserdatastateProvider>(context, listen: false);
     return AspectRatio(
       aspectRatio: 1,
       child: Stack(

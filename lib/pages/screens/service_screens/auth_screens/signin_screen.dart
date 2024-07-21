@@ -152,10 +152,10 @@ class SigninScreen extends StatelessWidget {
                               height: 0.06.sh,
                               child: TextButton(
                                 style: ButtonStyle(
-                                    overlayColor: MaterialStateProperty.all(
+                                    overlayColor: WidgetStateProperty.all(
                                         const Color.fromRGBO(0, 94, 25, 100)),
-                                    backgroundColor: MaterialStateProperty.all(
-                                        Colors.green)),
+                                    backgroundColor:
+                                        WidgetStateProperty.all(Colors.green)),
                                 onPressed: !authProvider.isLoading
                                     ? () {
                                         authProvider.auththeuser(context);

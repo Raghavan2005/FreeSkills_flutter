@@ -22,8 +22,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final set = Provider.of<SeetingsstateProvider>(context, listen: false);
-    final usp = Provider.of<UserdatastateProvider>(context, listen: true);
+    Provider.of<SeetingsstateProvider>(context, listen: false);
+    Provider.of<UserdatastateProvider>(context, listen: true);
 
     return ScaffoldGradientBackground(
       body: Consumer<MainstateProvider>(

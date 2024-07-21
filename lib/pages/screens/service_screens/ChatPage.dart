@@ -57,7 +57,6 @@ class _ChatPageState extends State<ChatPage> {
   final TextEditingController _chatController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
   List<Map<String, dynamic>> _chatHistory = [];
-  List<dynamic> _tempHistory = [];
 
   void _sendMessage() {
     DateTime time = DateTime.now();
