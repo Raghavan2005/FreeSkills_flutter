@@ -13,7 +13,7 @@ class UserdatastateProvider extends ChangeNotifier {
   Map<dynamic, dynamic> userData = {};
   Map<dynamic, dynamic> langinfo = {};
   Map<dynamic, dynamic> jobinfo = {};
-  List<Map<dynamic, dynamic>> centraldataset = [];
+  Map<dynamic, dynamic> centraldataset = {};
 
   String? get getUsername => _Username;
 
@@ -27,15 +27,16 @@ class UserdatastateProvider extends ChangeNotifier {
   var box;
   Appusage appusage = Appusage();
 
-  void updatedata() {
+  Future<void> updatedata() async {
     var box = Hive.box("UserData");
 
-    jobinfo = box.get("info")["jobinfo"];
-    langinfo = box.get("info")["datainfo"];
-    //centraldataset = box.get("centraldataset");
-    userData = box.get("data");
-    //print("user_provider" + box.get("centraldataset").toString());
+    jobinfo = await box.get("info")["jobinfo"];
+    langinfo = await box.get("info")["datainfo"];
+    userData = await box.get("data");
+    centraldataset = await box.get("centraldataset");
     interupdata();
+    print("user_provider" + box.get("centraldataset").toString());
+
     appusage.startserviceprogress(2);
   }
 

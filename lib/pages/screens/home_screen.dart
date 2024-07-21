@@ -69,7 +69,9 @@ class _HomeState extends State<Home> {
 
   Future<void> firstUpdate(BuildContext context) async {
     final dy = Provider.of<DataProvider>(context, listen: false);
+    final usp = Provider.of<UserdatastateProvider>(context, listen: false);
     await dy.dailyDataUpdate();
+    await usp.updatedata();
   }
 
   @override

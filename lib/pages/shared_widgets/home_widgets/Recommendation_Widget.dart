@@ -3,6 +3,9 @@ import 'package:card_slider/card_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+
+import '../../../core/provider/UserDataState_Provider.dart';
 
 class RecommendationWidget extends StatelessWidget {
   const RecommendationWidget({super.key, required this.titlename});
@@ -11,65 +14,70 @@ class RecommendationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Color> valuesDataColors = [
-      Colors.purple,
-      Colors.yellow,
-      Colors.green,
-      Colors.red,
-      Colors.grey,
-      Colors.blue,
-      Colors.grey,
-      Colors.blue,
-    ];
-
+    final usp = Provider.of<UserdatastateProvider>(context, listen: true);
+    List<String> test = ["0100011", "0100021", "0100031"];
     List<Widget> valuesWidget = [];
-    for (int i = 1; i < valuesDataColors.length; i++) {
-      valuesWidget.add(Stack(
-        alignment: Alignment.topLeft,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16.0),
-              // Adjust the radius as needed
-              child: CachedNetworkImage(
-                imageUrl:
-                    "https://img.youtube.com/vi/bIYnu3spU7o/maxresdefault.jpg",
-                placeholder: (context, url) => CircularProgressIndicator(),
-                errorWidget: (context, url, error) => Icon(Icons.error),
+
+    for (int i = 0; i < test.length; i++) {
+      var itemKey = test[i].toString();
+      if (usp.centraldataset.containsKey(itemKey)) {
+        var item = usp.centraldataset[itemKey];
+        var videoUrl = item["course_video_url"].toString();
+        var langId = item["lang_id"].toString();
+
+        valuesWidget.add(Stack(
+          alignment: Alignment.topLeft,
+          children: [
+            // Video thumbnail
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16.0),
+                child: CachedNetworkImage(
+                  imageUrl:
+                      "https://img.youtube.com/vi/$videoUrl/maxresdefault.jpg",
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: ShaderMask(
+            // Overlay
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: ShaderMask(
                 shaderCallback: (bounds) => LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [Colors.black, Colors.transparent],
-                    ).createShader(bounds),
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [Colors.black, Colors.transparent],
+                ).createShader(bounds),
                 blendMode: BlendMode.dstIn,
                 child: Container(
-                    height: 0.2350.sh,
-                    decoration: BoxDecoration(
-                      color: Colors.black87,
-                      borderRadius: BorderRadius.circular(10),
-                    ))),
-          ),
-          Positioned(
-            top: 0,
-            left: 5,
-            child: Text(
-              i.toString(),
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 100.sp,
-                fontWeight: FontWeight.bold,
+                  height: 0.2350.sh,
+                  decoration: BoxDecoration(
+                    color: Colors.black87,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
               ),
             ),
-          ),
-        ],
-      ));
+            // Language ID
+            Positioned(
+              top: 0,
+              left: 5,
+              child: Text(
+                langId,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 100.sp,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ));
+      } else {
+        print('Error: Item with key $itemKey not found in centraldataset');
+      }
     }
 
     return Padding(
