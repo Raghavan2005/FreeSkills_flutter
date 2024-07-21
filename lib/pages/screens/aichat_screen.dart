@@ -2,6 +2,7 @@ import 'package:FreeSkills/pages/shared_widgets/ads_widgets/ads_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive/hive.dart';
 
 import '../routes/RoutesNames.dart';
 
@@ -125,7 +126,13 @@ class AichatScreen extends StatelessWidget {
                 ),
               ),
             ),
-
+            ElevatedButton(
+                onPressed: () {
+                  var box = Hive.box("UserData");
+                  box.delete("lastFetchDate");
+                  box.delete("centraldataset");
+                },
+                child: Text("clear"))
             //TODO:add recent chat item
           ],
         ),

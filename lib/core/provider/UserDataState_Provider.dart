@@ -13,6 +13,7 @@ class UserdatastateProvider extends ChangeNotifier {
   Map<dynamic, dynamic> userData = {};
   Map<dynamic, dynamic> langinfo = {};
   Map<dynamic, dynamic> jobinfo = {};
+  List<Map<dynamic, dynamic>> centraldataset = [];
 
   String? get getUsername => _Username;
 
@@ -31,7 +32,9 @@ class UserdatastateProvider extends ChangeNotifier {
 
     jobinfo = box.get("info")["jobinfo"];
     langinfo = box.get("info")["datainfo"];
+    //centraldataset = box.get("centraldataset");
     userData = box.get("data");
+    //print("user_provider" + box.get("centraldataset").toString());
     interupdata();
     appusage.startserviceprogress(2);
   }
