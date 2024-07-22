@@ -57,7 +57,7 @@ class TechnewsWidget extends StatelessWidget {
                                   fontSize: 15.sp,
                                   fontWeight: FontWeight.w600),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Row(
                               children: [
                                 Text(
@@ -67,7 +67,7 @@ class TechnewsWidget extends StatelessWidget {
                                       fontSize: 10.sp,
                                       fontWeight: FontWeight.w200),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Text(
                                   "Date:69/69/6969",
                                   style: TextStyle(

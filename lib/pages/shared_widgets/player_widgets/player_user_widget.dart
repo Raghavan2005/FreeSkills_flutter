@@ -9,7 +9,9 @@ import 'package:provider/provider.dart';
 import '../../../core/provider/PlayerState_Provider.dart';
 
 class PlayerUserWidget extends StatelessWidget {
-  const PlayerUserWidget({super.key});
+  const PlayerUserWidget({super.key, this.itemdata});
+
+  final itemdata;
 
   @override
   Widget build(BuildContext context) {
@@ -23,19 +25,19 @@ class PlayerUserWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "TITLE",
+                  itemdata['course_title'],
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 25.sp,
+                      fontSize: 20.sp,
                       fontWeight: FontWeight.w400),
                 ),
                 SizedBox(
-                  height: 0.1.h,
+                  height: 0.15.h,
                 ),
                 Row(
                   children: [
                     Text(
-                      "@FreeCodeCamp",
+                      itemdata['course_channel_url'],
                       style: TextStyle(
                           color: Colors.grey,
                           fontSize: 13.sp,
@@ -55,7 +57,7 @@ class PlayerUserWidget extends StatelessWidget {
                       width: 5.w,
                     ),
                     Text(
-                      "Tamil",
+                      itemdata['video_views'],
                       style: TextStyle(
                           color: Colors.grey,
                           fontSize: 13.sp,
@@ -75,7 +77,27 @@ class PlayerUserWidget extends StatelessWidget {
                       width: 5.w,
                     ),
                     Text(
-                      "69:69:69",
+                      "English",
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    SizedBox(
+                      width: 5.w,
+                    ),
+                    Text(
+                      "•",
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    SizedBox(
+                      width: 5.w,
+                    ),
+                    Text(
+                      itemdata['video_timing'],
                       style: TextStyle(
                           color: Colors.grey,
                           fontSize: 15.sp,

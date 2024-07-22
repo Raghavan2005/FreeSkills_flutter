@@ -45,7 +45,7 @@ class WatchWidget extends StatelessWidget {
                       child: CachedNetworkImage(
                         imageUrl:
                             "https://img.youtube.com/vi/bIYnu3spU7o/maxresdefault.jpg",
-                        placeholder: (context, url) => Container(),
+                        placeholder: (context, url) => const SizedBox(),
                         errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
                     ),

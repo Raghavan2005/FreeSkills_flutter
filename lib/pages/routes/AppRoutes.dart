@@ -45,7 +45,11 @@ class AppRoutes {
       ),
       GoRoute(
         path: Routesnames.Player_Screen,
-        builder: (context, state) => const PlayerScreen(),
+        builder: (context, state) {
+          final Map<String, dynamic> extra =
+              state.extra as Map<String, dynamic>;
+          return PlayerScreen(item: extra['item']);
+        },
       ),
       GoRoute(
         path: Routesnames.AllhistoryScreen,

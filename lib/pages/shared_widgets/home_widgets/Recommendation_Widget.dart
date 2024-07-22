@@ -1,3 +1,4 @@
+/*
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_slider/card_slider.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,11 +16,19 @@ class RecommendationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final usp = Provider.of<UserdatastateProvider>(context, listen: true);
-    List<String> test = ["0100011", "0100021", "0100031"];
+    List<String> test = [
+      "01005803",
+      "01005603",
+      "01005503",
+      '01002203',
+      '01002303',
+      '01002403',
+    ];
     List<Widget> valuesWidget = [];
 
     for (int i = 0; i < test.length; i++) {
       var itemKey = test[i].toString();
+      print(usp.centraldataset.containsKey(itemKey));
       if (usp.centraldataset.containsKey(itemKey)) {
         var item = usp.centraldataset[itemKey];
         var videoUrl = item["course_video_url"].toString();
@@ -65,7 +74,7 @@ class RecommendationWidget extends StatelessWidget {
               top: 0,
               left: 5,
               child: Text(
-                langId,
+                (i + 1).toString(),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 100.sp,
@@ -144,3 +153,4 @@ class RecommendationWidget extends StatelessWidget {
     );
   }
 }
+*/

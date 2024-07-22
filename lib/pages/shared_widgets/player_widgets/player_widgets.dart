@@ -8,7 +8,9 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../../core/provider/PlayerState_Provider.dart';
 
 class PlayerWidgets extends StatefulWidget {
-  const PlayerWidgets({super.key});
+  const PlayerWidgets({super.key, required this.playerurl});
+
+  final String playerurl;
 
   @override
   State<PlayerWidgets> createState() => _PlayerWidgetsState();
@@ -22,7 +24,7 @@ class _PlayerWidgetsState extends State<PlayerWidgets> {
     super.initState();
 
     _controller = YoutubePlayerController(
-      initialVideoId: 'VPvVD8t02U8',
+      initialVideoId: widget.playerurl,
       flags: const YoutubePlayerFlags(
         showLiveFullscreenButton: false,
         hideControls: false,

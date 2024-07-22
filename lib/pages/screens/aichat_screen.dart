@@ -1,10 +1,11 @@
-import 'package:FreeSkills/pages/shared_widgets/ads_widgets/ads_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive/hive.dart';
 
 import '../routes/RoutesNames.dart';
+import '../shared_widgets/ads_widgets/AdBanner.dart';
 
 class AichatScreen extends StatelessWidget {
   const AichatScreen({super.key});
@@ -111,7 +112,9 @@ class AichatScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 15),
-            AdsWidgets(height: 0.08),
+            AdBanner(
+              adSize: AdSize.fullBanner,
+            ),
             SizedBox(height: 15),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),

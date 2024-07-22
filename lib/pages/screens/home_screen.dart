@@ -2,6 +2,7 @@ import 'package:FreeSkills/core/provider/MainState_Provider.dart';
 import 'package:FreeSkills/core/services/datasource/Data_Provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 import 'package:shimmer/shimmer.dart';
@@ -9,9 +10,8 @@ import 'package:shimmer/shimmer.dart';
 import '../../core/provider/SeetingsState_Provider.dart';
 import '../../core/provider/UserDataState_Provider.dart';
 import '../shared_widgets/NavBar_Shared.dart';
-import '../shared_widgets/ads_widgets/ads_widget.dart';
+import '../shared_widgets/ads_widgets/AdBanner.dart';
 import '../shared_widgets/home_widgets/Channels_List_Widget.dart';
-import '../shared_widgets/home_widgets/Recommendation_Widget.dart';
 import '../shared_widgets/home_widgets/Recommendationold_Widget.dart';
 import '../shared_widgets/home_widgets/TechNews_Widget.dart';
 import '../shared_widgets/home_widgets/User_ProfileBar_Widget.dart';
@@ -152,13 +152,15 @@ class _HomeState extends State<Home> {
                   SizedBox(
                     height: 10.h,
                   ),
-                  AdsWidgets(height: 0.08),
+                  AdBanner(
+                    adSize: AdSize.fullBanner,
+                  ),
                   SizedBox(
                     height: 10.h,
                   ),
                   TechnewsWidget(),
                   Visibility(
-                    visible: true,
+                    visible: false,
                     child: SizedBox(
                       width: double.infinity,
                       height: 0.26.sh, // or any height you need
@@ -170,22 +172,20 @@ class _HomeState extends State<Home> {
                   SizedBox(
                     height: 10.h,
                   ),
-                  !set.isoldrecom
-                      ? RecommendationWidget(
-                          titlename: usp.selectedcoursename!,
-                        )
-                      : SizedBox(
-                          width: double.infinity,
-                          height: 0.26.sh, // or any height you need
-                          child: const WatchOldWidget(
-                            titlename: 'Modile App Development',
-                          ),
-                        ),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 0.26.sh, // or any height you need
+                    child: WatchOldWidget(
+                      titlename: usp.selectedcoursename!,
+                    ),
+                  ),
                   SizedBox(
                     height: 10.h,
                   ),
-                  ChannelsListWidget(),
-                  AdsWidgets(height: 0.08),
+                  const ChannelsListWidget(),
+                  AdBanner(
+                    adSize: AdSize.fullBanner,
+                  ),
                   SizedBox(
                     width: double.infinity,
                     height: 0.26.sh, // or any height you need

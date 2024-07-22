@@ -15,12 +15,11 @@ dependencies:
   #Ui
   flutter_native_splash: ^2.4.1
   dots_indicator: ^3.0.0
-  card_slider: ^1.0.5
   fl_chart: ^0.68.0
   flutter_slidable: ^3.1.0
   material_design_icons_flutter: ^7.0.7296
   scaffold_gradient_background: any
-  toastification: 2.0.0
+  toastification: ^2.1.0
   google_nav_bar: 5.0.6
   carousel_slider: 4.2.1
   cupertino_icons: ^1.0.8
@@ -41,6 +40,7 @@ dependencies:
   #utils
 
   firebase_core: any
+  google_mobile_ads: ^5.1.0
   firebase_auth: ^5.1.2
   youtube_player_flutter: any
   google_generative_ai: ^0.4.3
