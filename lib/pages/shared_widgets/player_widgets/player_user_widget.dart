@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../core/provider/PlayerState_Provider.dart';
 
@@ -125,7 +126,14 @@ class PlayerUserWidget extends StatelessWidget {
                       ResponsiveTextContainer(
                         text: 'Share',
                         seticon: Icons.share,
-                        fun: () => print("object"),
+                        fun: () {
+                          Share.share(
+                              'Start Learn New Tech Today on FreeSkills https://share.freeskills.inapp/share/' +
+                                  itemdata['lang_id'] +
+                                  itemdata['course_id'] +
+                                  itemdata['course_type'],
+                              subject: 'Look what I made!');
+                        },
                       ),
                       SizedBox(
                         width: 8.w,
@@ -135,7 +143,9 @@ class PlayerUserWidget extends StatelessWidget {
                         seticon: value.issaved
                             ? MdiIcons.bookmark
                             : MdiIcons.bookmarkOutline,
-                        fun: () => value.updatesave(),
+                        fun: () => value.updatesave(itemdata['lang_id'] +
+                            itemdata['course_id'] +
+                            itemdata['course_type']),
                       ),
                       SizedBox(
                         width: 8.w,

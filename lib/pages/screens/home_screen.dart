@@ -76,7 +76,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    final set = Provider.of<SeetingsstateProvider>(context, listen: false);
+    //final set = Provider.of<SeetingsstateProvider>(context, listen: false);
     final usp = Provider.of<UserdatastateProvider>(context, listen: true);
 
     return Consumer<DataProvider>(
