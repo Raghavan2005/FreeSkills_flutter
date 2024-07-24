@@ -21,8 +21,14 @@ import '../../../core/provider/PlayerState_Provider.dart';
 class SavedScreen extends StatelessWidget {
   const SavedScreen({super.key});
 
+  Future<void> onstart(BuildContext c) async {
+    final usp = Provider.of<PlayerstateProvider>(c, listen: true);
+    usp.updateonstart();
+  }
+
   @override
   Widget build(BuildContext context) {
+    onstart(context);
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -39,100 +45,108 @@ class SavedScreen extends StatelessWidget {
       body: Consumer<PlayerstateProvider>(
         builder:
             (BuildContext context, PlayerstateProvider value, Widget? child) {
-          return ListView.builder(
-            itemCount: value.savedlist.length,
-            itemBuilder: (BuildContext context, int index) {
-              var itemdata = value.getitemlist(context, index);
-              String videourl = itemdata['course_video_url'];
-              return Slidable(
-                key: ValueKey(index),
-                startActionPane: ActionPane(
-                  motion: const ScrollMotion(),
-                  children: [
-                    SlidableAction(
-                      onPressed: (r) {
-                        Share.share(
-                            'Start Learn New Tech Today on FreeSkills https://share.freeskills.inapp/share/' +
-                                itemdata['lang_id'] +
-                                itemdata['course_id'] +
-                                itemdata['course_type'],
-                            subject: 'Look what I made!');
-                      },
-                      backgroundColor: Color(0xFF21B7CA),
-                      foregroundColor: Colors.white,
-                      icon: Icons.share,
-                      label: 'Share',
-                    ),
-                  ],
-                ),
-                endActionPane: ActionPane(
-                  motion: ScrollMotion(),
-                  dismissible: DismissiblePane(onDismissed: () {
-                    value.swipupdatesave(itemdata['lang_id'] +
-                        itemdata['course_id'] +
-                        itemdata['course_type']);
-                  }),
-                  children: [
-                    SlidableAction(
-                      onPressed: null,
-                      backgroundColor: Colors.red,
-                      foregroundColor: Colors.white,
-                      icon: Icons.archive,
-                      label: 'Remove',
-                    ),
-                  ],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: 0.5.sw,
-                        child: CachedNetworkImage(
-                          imageUrl:
-                              "https://img.youtube.com/vi/$videourl/maxresdefault.jpg",
-                          placeholder: (context, url) => const SizedBox(),
-                          errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
+          return value.savedlist.isNotEmpty
+              ? ListView.builder(
+                  itemCount: value.savedlist.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    var itemdata = value.getitemlist(context, index);
+                    String videourl = itemdata['course_video_url'];
+                    return Slidable(
+                      key: ValueKey(index),
+                      startActionPane: ActionPane(
+                        motion: const ScrollMotion(),
+                        children: [
+                          SlidableAction(
+                            onPressed: (r) {
+                              Share.share(
+                                  'Start Learn New Tech Today on FreeSkills https://share.freeskills.inapp/share/' +
+                                      itemdata['lang_id'] +
+                                      itemdata['course_id'] +
+                                      itemdata['course_type'],
+                                  subject: 'Look what I made!');
+                            },
+                            backgroundColor: Color(0xFF21B7CA),
+                            foregroundColor: Colors.white,
+                            icon: Icons.share,
+                            label: 'Share',
+                          ),
+                        ],
+                      ),
+                      endActionPane: ActionPane(
+                        motion: ScrollMotion(),
+                        dismissible: DismissiblePane(onDismissed: () {
+                          value.swipupdatesave(itemdata['lang_id'] +
+                              itemdata['course_id'] +
+                              itemdata['course_type']);
+                        }),
+                        children: [
+                          SlidableAction(
+                            onPressed: null,
+                            backgroundColor: Colors.red,
+                            foregroundColor: Colors.white,
+                            icon: Icons.archive,
+                            label: 'Remove',
+                          ),
+                        ],
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: 0.5.sw,
+                              child: CachedNetworkImage(
+                                imageUrl:
+                                    "https://img.youtube.com/vi/$videourl/maxresdefault.jpg",
+                                placeholder: (context, url) => const SizedBox(),
+                                errorWidget: (context, url, error) =>
+                                    Icon(Icons.error),
+                              ),
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    RichText(
+                                      maxLines: 2,
+                                      text: TextSpan(
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16.sp),
+                                        text: itemdata['course_title'],
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                      softWrap: true,
+                                    ),
+                                    Text(
+                                      itemdata['course_channel_url'],
+                                      style: TextStyle(
+                                          color: Colors.grey, fontSize: 13.sp),
+                                    ),
+                                    Text(
+                                      "Enlish",
+                                      style: TextStyle(
+                                          color: Colors.grey, fontSize: 13.sp),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
                         ),
                       ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              RichText(
-                                maxLines: 2,
-                                text: TextSpan(
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 16.sp),
-                                  text: itemdata['course_title'],
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                                softWrap: true,
-                              ),
-                              Text(
-                                itemdata['course_channel_url'],
-                                style: TextStyle(
-                                    color: Colors.grey, fontSize: 13.sp),
-                              ),
-                              Text(
-                                "Enlish",
-                                style: TextStyle(
-                                    color: Colors.grey, fontSize: 13.sp),
-                              ),
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
+                    );
+                  },
+                )
+              : Center(
+                  child: Text(
+                    "Save Not Found",
+                    style: TextStyle(color: Colors.grey, fontSize: 20.sp),
                   ),
-                ),
-              );
-            },
-          );
+                );
         },
       ),
     );

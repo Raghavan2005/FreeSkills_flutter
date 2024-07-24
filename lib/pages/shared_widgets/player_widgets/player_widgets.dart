@@ -42,7 +42,7 @@ class _PlayerWidgetsState extends State<PlayerWidgets> {
     final fullscreenProvider =
         Provider.of<PlayerstateProvider>(context, listen: false);
 
-    print(_controller.value.playbackQuality);
+    //print(_controller.value.playbackQuality);
     if (_controller.value.isFullScreen != fullscreenProvider.isFullscreen) {
       fullscreenProvider.updateIsFullscreen(_controller.value.isFullScreen);
     }

@@ -180,7 +180,7 @@ class SetupstateProvider extends ChangeNotifier {
   }
 
   void updatetheusername(String name) {
-    print(errorList);
+    // print(errorList);
     if (Validator.isValidName(name) == null) {
       username = name;
       usernameconller.text = username!;

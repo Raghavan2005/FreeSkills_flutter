@@ -47,7 +47,7 @@ class DataProvider with ChangeNotifier {
         _data = Map<String, dynamic>.from(temp);
         fetchFromServer = false;
       } else {
-        print('Error: No data found in local storage, will fetch from server.');
+        // print('Error: No data found in local storage, will fetch from server.');
       }
     }
 
@@ -63,11 +63,11 @@ class DataProvider with ChangeNotifier {
               'lastFetchDate', currentDate); // Update the last fetch date
           _data = Map<String, dynamic>.from(temp);
         } else {
-          print('Error: Response is empty or null');
+          //  print('Error: Response is empty or null');
           _data = {};
         }
       } catch (error) {
-        print('Error fetching data: $error');
+        //print('Error fetching data: $error');
         _data = {};
       }
     }

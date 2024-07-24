@@ -25,27 +25,29 @@ class HomeScreen extends StatelessWidget {
     Provider.of<SeetingsstateProvider>(context, listen: false);
     Provider.of<UserdatastateProvider>(context, listen: true);
 
-    return ScaffoldGradientBackground(
-      body: Consumer<MainstateProvider>(
-        builder:
-            (BuildContext context, MainstateProvider value, Widget? child) {
-          return PageView(
-            physics: const NeverScrollableScrollPhysics(),
-            controller: value.pageController,
-            children: value.screenlist,
-          );
-        },
-      ),
-      bottomNavigationBar: const NavBar_Shared(),
-      gradient: const LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        tileMode: TileMode.decal,
-        stops: [0.0, 0.70],
-        colors: [
-          Colors.white12,
-          Colors.black12,
-        ],
+    return SafeArea(
+      child: ScaffoldGradientBackground(
+        body: Consumer<MainstateProvider>(
+          builder:
+              (BuildContext context, MainstateProvider value, Widget? child) {
+            return PageView(
+              physics: const NeverScrollableScrollPhysics(),
+              controller: value.pageController,
+              children: value.screenlist,
+            );
+          },
+        ),
+        bottomNavigationBar: const NavBar_Shared(),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          tileMode: TileMode.decal,
+          stops: [0.0, 0.70],
+          colors: [
+            Colors.white12,
+            Colors.black12,
+          ],
+        ),
       ),
     );
   }
@@ -79,133 +81,135 @@ class _HomeState extends State<Home> {
     //final set = Provider.of<SeetingsstateProvider>(context, listen: false);
     final usp = Provider.of<UserdatastateProvider>(context, listen: true);
 
-    return Consumer<DataProvider>(
-      builder: (BuildContext context, DataProvider value, Widget? child) {
-        if (value.isLoading) {
-          BoxDecoration bd = BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(25));
-          return SizedBox(
-            width: double.infinity,
-            height: double.infinity,
-            child: Shimmer.fromColors(
-              baseColor: Colors.white12,
-              highlightColor: Colors.white24,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(9.0),
-                    child: Container(
-                      width: double.infinity,
-                      height: 0.23.sh,
-                      decoration: bd,
+    return SafeArea(
+      child: Consumer<DataProvider>(
+        builder: (BuildContext context, DataProvider value, Widget? child) {
+          if (value.isLoading) {
+            BoxDecoration bd = BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(25));
+            return SizedBox(
+              width: double.infinity,
+              height: double.infinity,
+              child: Shimmer.fromColors(
+                baseColor: Colors.white12,
+                highlightColor: Colors.white24,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(9.0),
+                      child: Container(
+                        width: double.infinity,
+                        height: 0.23.sh,
+                        decoration: bd,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(9.0),
-                    child: Container(
-                      width: double.infinity,
-                      height: 0.08.sh,
-                      decoration: bd,
+                    SizedBox(
+                      height: 10.h,
                     ),
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(9.0),
-                    child: Container(
-                      width: double.infinity,
-                      height: 0.20.sh,
-                      decoration: bd,
+                    Padding(
+                      padding: const EdgeInsets.all(9.0),
+                      child: Container(
+                        width: double.infinity,
+                        height: 0.08.sh,
+                        decoration: bd,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(9.0),
-                    child: Container(
-                      width: double.infinity,
-                      height: 0.30.sh,
-                      decoration: bd,
+                    SizedBox(
+                      height: 10.h,
                     ),
-                  )
-                ],
+                    Padding(
+                      padding: const EdgeInsets.all(9.0),
+                      child: Container(
+                        width: double.infinity,
+                        height: 0.20.sh,
+                        decoration: bd,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(9.0),
+                      child: Container(
+                        width: double.infinity,
+                        height: 0.30.sh,
+                        decoration: bd,
+                      ),
+                    )
+                  ],
+                ),
               ),
-            ),
-          );
-        } else {
-          if (value.data.isEmpty) {
-            return Center(child: Text('No data available'));
+            );
           } else {
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  UserProfilebar_Widget(
-                    username: usp.getUsername,
-                    courename: usp.selectedcoursename,
-                    imageurl: usp.userimageurl,
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  AdBanner(
-                    adSize: AdSize.fullBanner,
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  TechnewsWidget(),
-                  Visibility(
-                    visible: false,
-                    child: SizedBox(
+            if (value.data.isEmpty) {
+              return Center(child: Text('No data available'));
+            } else {
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    UserProfilebar_Widget(
+                      username: usp.getUsername,
+                      courename: usp.selectedcoursename,
+                      imageurl: usp.userimageurl,
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    AdBanner(
+                      adSize: AdSize.fullBanner,
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    TechnewsWidget(),
+                    Visibility(
+                      visible: false,
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: 0.26.sh, // or any height you need
+                        child: const WatchWidget(
+                          titlename: 'Continue Watching',
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 0.26.sh, // or any height you need
+                      child: WatchOldWidget(
+                        titlename: usp.selectedcoursename!,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    const ChannelsListWidget(),
+                    AdBanner(
+                      adSize: AdSize.fullBanner,
+                    ),
+                    SizedBox(
                       width: double.infinity,
                       height: 0.26.sh, // or any height you need
                       child: const WatchWidget(
-                        titlename: 'Continue Watching',
+                        titlename: 'Top Trends',
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 0.26.sh, // or any height you need
-                    child: WatchOldWidget(
-                      titlename: usp.selectedcoursename!,
+                    SizedBox(
+                      width: double.infinity,
+                      height: 0.26.sh, // or any height you need
+                      child: const WatchWidget(
+                        titlename: 'Experiment Yourself',
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  const ChannelsListWidget(),
-                  AdBanner(
-                    adSize: AdSize.fullBanner,
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 0.26.sh, // or any height you need
-                    child: const WatchWidget(
-                      titlename: 'Top Trends',
-                    ),
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 0.26.sh, // or any height you need
-                    child: const WatchWidget(
-                      titlename: 'Experiment Yourself',
-                    ),
-                  ),
-                ],
-              ),
-            );
+                  ],
+                ),
+              );
+            }
           }
-        }
-      },
+        },
+      ),
     );
   }
 }

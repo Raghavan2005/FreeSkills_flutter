@@ -209,6 +209,7 @@ class _SearchFieldWithFilterState extends State<SearchFieldWithFilter> {
 
   @override
   Widget build(BuildContext context) {
+    final value = Provider.of<SearchstateProvider>(context, listen: false);
     return TextField(
       keyboardType: TextInputType.text,
       style: TextStyle(color: Colors.black, fontSize: 14.sp),
@@ -255,7 +256,9 @@ class _SearchFieldWithFilterState extends State<SearchFieldWithFilter> {
             const TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
         errorText: null,
       ),
-      onSubmitted: (t) {},
+      onSubmitted: (t) {
+        value.getsearchlist(t, context);
+      },
     );
   }
 }

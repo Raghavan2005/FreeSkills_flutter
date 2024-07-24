@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive/hive.dart';
 
 import '../../routes/RoutesNames.dart';
 import 'Styled_Setting_Btn.dart';
@@ -46,7 +47,9 @@ class SettingsUnit1 extends StatelessWidget {
           ),
           Styled_Setting_Btn(
             onTap: () {
-              print('object');
+              var box = Hive.box("UserData");
+              print(box.get("historylist"));
+              print(box.get("savedlist"));
             },
             btntext: 'Help and Feedback',
             icondata: Icons.help_center,

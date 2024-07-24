@@ -35,7 +35,7 @@ class UserdatastateProvider extends ChangeNotifier {
     userData = await box.get("data");
     centraldataset = await box.get("centraldataset");
     interupdata();
-    print("user_provider" + box.get("centraldataset").toString());
+    //print("user_provider" + box.get("centraldataset").toString());
 
     appusage.startserviceprogress(2);
   }

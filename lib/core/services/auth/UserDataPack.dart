@@ -36,7 +36,7 @@ class Userdatapack {
       return querySnapshot.docs.isNotEmpty;
     } catch (e) {
       // Handle errors as needed
-      print('Error checking email: $e');
+      // print('Error checking email: $e');
       return false;
     }
   }

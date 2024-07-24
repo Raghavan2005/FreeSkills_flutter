@@ -19,6 +19,7 @@ class PlayerScreen extends StatelessWidget {
     Appusage au = Appusage();
     final usp = Provider.of<PlayerstateProvider>(c, listen: false);
     au.startserviceprogress(1);
+    usp.updateonstart();
     usp.checksatues(item['lang_id'] + item['course_id'] + item['course_type']);
   }
 
