@@ -66,7 +66,7 @@ class PlayerstateProvider extends ChangeNotifier {
 
     historylist = box.get("historylist");
 
-    print(savedlist);
+    //print(savedlist);
   }
 
   getitemlist(BuildContext c, int index) {

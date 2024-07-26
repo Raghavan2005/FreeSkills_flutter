@@ -8,9 +8,10 @@ class SearchItemWidget extends StatelessWidget {
       required this.imageurl,
       required this.titlename,
       required this.videolen,
-      required this.channelname});
+      required this.channelname,
+      required this.langname});
 
-  final String imageurl, titlename, videolen, channelname;
+  final String imageurl, titlename, videolen, channelname, langname;
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +115,7 @@ class SearchItemWidget extends StatelessWidget {
                     width: 5.w,
                   ),
                   Text(
-                    "Tamil",
+                    langname,
                     style: TextStyle(
                         color: Colors.grey,
                         fontSize: 13.sp,

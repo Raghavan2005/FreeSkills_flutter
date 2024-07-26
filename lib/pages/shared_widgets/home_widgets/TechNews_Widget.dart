@@ -5,11 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
+import '../../../core/provider/UserDataState_Provider.dart';
+
 class TechnewsWidget extends StatelessWidget {
   TechnewsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final valuedata =
+        Provider.of<UserdatastateProvider>(context, listen: false);
     return Consumer<MainstateProvider>(
       builder: (BuildContext context, MainstateProvider value, Widget? child) {
         return Padding(
@@ -42,16 +46,21 @@ class TechnewsWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12.5),
                   ),
                   child: CarouselSlider.builder(
-                    itemCount: value.newtemp.length,
+                    itemCount: valuedata.newslist.length,
                     itemBuilder: (BuildContext context, int itemIndex,
                         int pageViewIndex) {
+                      String titlename =
+                          valuedata.newslist[itemIndex]['newstitile'];
+                      String sourcedata =
+                          valuedata.newslist[itemIndex]['source'];
+                      String date = valuedata.newslist[itemIndex]['date'];
                       return Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              value.newtemp[itemIndex],
+                              titlename.toString(),
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 15.sp,
@@ -61,7 +70,7 @@ class TechnewsWidget extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  "Source:google.com",
+                                  "Source:$sourcedata",
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 10.sp,
@@ -69,7 +78,7 @@ class TechnewsWidget extends StatelessWidget {
                                 ),
                                 const Spacer(),
                                 Text(
-                                  "Date:69/69/6969",
+                                  "Date:$date",
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 10.sp,
@@ -92,7 +101,7 @@ class TechnewsWidget extends StatelessWidget {
               ),
               Center(
                 child: new DotsIndicator(
-                  dotsCount: value.newtemp.length,
+                  dotsCount: valuedata.newslist.length,
                   position: value.currentiindexnews,
                   decorator: DotsDecorator(
                     color: Color.fromRGBO(33, 33, 33, 100), // Inactive color

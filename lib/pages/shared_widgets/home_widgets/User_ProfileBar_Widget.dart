@@ -3,7 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
+import '../../../core/provider/UserDataState_Provider.dart';
 import '../../routes/RoutesNames.dart';
 
 class UserProfilebar_Widget extends StatelessWidget {
@@ -14,6 +16,8 @@ class UserProfilebar_Widget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final notvaluedata =
+        Provider.of<UserdatastateProvider>(context, listen: false);
     return SizedBox(
       width: double.infinity,
       height: 0.23.sh,
@@ -73,10 +77,26 @@ class UserProfilebar_Widget extends StatelessWidget {
                               onPressed: () async {
                                 context.push(Routesnames.NotificationScreen);
                               },
-                              icon: Icon(
-                                size: 20.sp,
-                                CupertinoIcons.bell,
-                                color: Colors.grey,
+                              icon: Stack(
+                                alignment: Alignment.topRight,
+                                children: [
+                                  Icon(
+                                    size: 20.sp,
+                                    CupertinoIcons.bell,
+                                    color: Colors.grey,
+                                  ),
+                                  notvaluedata.notlist.isNotEmpty
+                                      ? Icon(
+                                          Icons.circle,
+                                          color: Colors.red,
+                                          size: 6,
+                                        )
+                                      : Icon(
+                                          Icons.circle,
+                                          color: Colors.red,
+                                          size: 0,
+                                        ),
+                                ],
                               ))),
                     ),
                   ],

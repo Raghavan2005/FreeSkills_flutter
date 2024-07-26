@@ -93,50 +93,53 @@ class _HomeState extends State<Home> {
               child: Shimmer.fromColors(
                 baseColor: Colors.white12,
                 highlightColor: Colors.white24,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(9.0),
-                      child: Container(
-                        width: double.infinity,
-                        height: 0.23.sh,
-                        decoration: bd,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(9.0),
+                        child: Container(
+                          width: double.infinity,
+                          height: 0.23.sh,
+                          decoration: bd,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(9.0),
-                      child: Container(
-                        width: double.infinity,
-                        height: 0.08.sh,
-                        decoration: bd,
+                      SizedBox(
+                        height: 5.h,
                       ),
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(9.0),
-                      child: Container(
-                        width: double.infinity,
-                        height: 0.20.sh,
-                        decoration: bd,
+                      Padding(
+                        padding: const EdgeInsets.all(9.0),
+                        child: Container(
+                          width: double.infinity,
+                          height: 0.08.sh,
+                          decoration: bd,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(9.0),
-                      child: Container(
-                        width: double.infinity,
-                        height: 0.30.sh,
-                        decoration: bd,
+                      SizedBox(
+                        height: 10.h,
                       ),
-                    )
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.all(9.0),
+                        child: Container(
+                          width: double.infinity,
+                          height: 0.20.sh,
+                          decoration: bd,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(9.0),
+                        child: Container(
+                          width: double.infinity,
+                          height: 0.30.sh,
+                          decoration: bd,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             );

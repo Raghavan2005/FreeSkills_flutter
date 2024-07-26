@@ -4,13 +4,13 @@ import 'package:provider/provider.dart';
 import 'UserDataState_Provider.dart';
 
 class SearchstateProvider extends ChangeNotifier {
-  List<bool> filterstatus = [false, false, false];
-  List<String> lastword = ["01005503", "01005603"];
+  List<bool> filterstatus = [true, true, true];
+  List<String> lastword = [];
   List<String> searchlist = [];
 
   void updatedfilter(int index) {
     filterstatus[index] = !filterstatus[index];
-
+    print(filterstatus);
     notifyListeners();
   }
 
@@ -29,8 +29,25 @@ class SearchstateProvider extends ChangeNotifier {
 
         // Check if courseTitle contains the given char string
         if (courseTitle.contains(char.toLowerCase())) {
-          searchlist
-              .add(item['lang_id'] + item['course_id'] + item['course_type']);
+          if (filterstatus[0] == true &&
+              filterstatus[1] == true &&
+              filterstatus[2] == true) {
+            searchlist
+                .add(item['lang_id'] + item['course_id'] + item['course_type']);
+          } else {
+            if (filterstatus[0] == false && item['course_type'] == '01') {
+              searchlist.add(
+                  item['lang_id'] + item['course_id'] + item['course_type']);
+            } else if (filterstatus[1] == false &&
+                item['course_type'] == '02') {
+              searchlist.add(
+                  item['lang_id'] + item['course_id'] + item['course_type']);
+            } else if (filterstatus[2] == false &&
+                item['course_type'] == '03') {
+              searchlist.add(
+                  item['lang_id'] + item['course_id'] + item['course_type']);
+            }
+          }
         }
       } else {
         print("Item or course title not found.");

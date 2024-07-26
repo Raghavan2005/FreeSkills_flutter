@@ -10,9 +10,10 @@ import 'package:share_plus/share_plus.dart';
 import '../../../core/provider/PlayerState_Provider.dart';
 
 class PlayerUserWidget extends StatelessWidget {
-  const PlayerUserWidget({super.key, this.itemdata});
+  const PlayerUserWidget({super.key, this.itemdata, required this.lang});
 
   final itemdata;
+  final String lang;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +79,7 @@ class PlayerUserWidget extends StatelessWidget {
                       width: 5.w,
                     ),
                     Text(
-                      "English",
+                      lang,
                       style: TextStyle(
                           color: Colors.grey,
                           fontSize: 13.sp,

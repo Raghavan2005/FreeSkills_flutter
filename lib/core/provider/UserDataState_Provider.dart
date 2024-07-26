@@ -4,7 +4,7 @@ import 'package:hive/hive.dart';
 
 class UserdatastateProvider extends ChangeNotifier {
   String? _Username = null;
-  String? _selectedcourse = '00';
+  String? _selectedcourse = '0001';
   String? selectedcoursename = ' ';
   String _selectedlang = 'en-(English)';
   String? _profilephoto = null;
@@ -14,6 +14,10 @@ class UserdatastateProvider extends ChangeNotifier {
   Map<dynamic, dynamic> langinfo = {};
   Map<dynamic, dynamic> jobinfo = {};
   Map<dynamic, dynamic> centraldataset = {};
+  Map<dynamic, dynamic> centraljoblist = {};
+  Map<String, dynamic> infodatalistset = {};
+  List<dynamic> newslist = [];
+  List<dynamic> notlist = [];
 
   String? get getUsername => _Username;
 
@@ -29,11 +33,13 @@ class UserdatastateProvider extends ChangeNotifier {
 
   Future<void> updatedata() async {
     var box = Hive.box("UserData");
-
     jobinfo = await box.get("info")["jobinfo"];
     langinfo = await box.get("info")["datainfo"];
     userData = await box.get("data");
     centraldataset = await box.get("centraldataset");
+    centraljoblist = await box.get("centraljoblistdata");
+    infodatalistset = await box.get("infodatalistset");
+
     interupdata();
     //print("user_provider" + box.get("centraldataset").toString());
 
@@ -45,9 +51,14 @@ class UserdatastateProvider extends ChangeNotifier {
     _selectedcourse = userData["job"];
     _selectedlang = userData["lang"];
     userimageurl = userData["userimageurl"];
+    notlist = infodatalistset["not"];
+    newslist = infodatalistset['technews'];
+    print(centraldataset.keys.runtimeType);
+
     selectedcoursename = searchbykey(jobinfo, _selectedcourse!);
   }
 
+//  List<String> newslist = [];
   String searchbykey(Map<dynamic, dynamic> m, String type) {
     return m[type];
   }

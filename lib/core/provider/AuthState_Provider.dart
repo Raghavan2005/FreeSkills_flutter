@@ -50,33 +50,37 @@ class AuthStateLoginProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  var box = Hive.box('UserData');
+
+  Future<void> fetchAndPrintData(BuildContext c) async {
+    final response = await Supabase.instance.client.from('info_table').select();
+
+    final sup = Provider.of<SetupstateProvider>(c, listen: false);
+    sup.updatedatainfo(response[0]);
+  }
+
+  Userlogin userlogin = Userlogin();
+
   void auththeuser(BuildContext c) async {
     validateEmail();
     validatePassword();
-    Future<void> fetchAndPrintData() async {
-      final response =
-          await Supabase.instance.client.from('info_table').select();
-
-      final sup = Provider.of<SetupstateProvider>(c, listen: false);
-      sup.updatedatainfo(response[0]);
-    }
-
     if (error[0] == null && error[1] == null) {
       _isLoading = true;
-      Userlogin userlogin = Userlogin();
-      var box = Hive.box('UserData');
       String info = await userlogin.getUserSignIn(
           mailController.text, passController.text);
       if (info == "User Logged In") {
-        mailController.clear();
-        passController.clear();
         await userlogin.fetchAndSaveUserData();
-        await fetchAndPrintData();
-        if (box.get('data') == null)
+        await fetchAndPrintData(c);
+        if (box.get('data') == null) {
           c.go(Routesnames.SetupScreen);
-        else
+          mailController.clear();
+          passController.clear();
+        } else {
           c.go(Routesnames.HomeScreen);
-        _isLoading = false;
+          mailController.clear();
+          passController.clear();
+          _isLoading = false;
+        }
       } else {
         displaythemsg("Login", info, 4, c);
         _isLoading = false;
@@ -115,6 +119,20 @@ class AuthStateLoginProvider extends ChangeNotifier {
       ),
       autoCloseDuration: const Duration(seconds: 2),
     );
+  }
+
+  Future<void> googlesign(BuildContext context) async {
+    Userlogin ul = Userlogin();
+    var islogged = await ul.signInWithGoogle();
+    if (islogged != null) {
+      await userlogin.fetchAndSaveUserData();
+      await fetchAndPrintData(context);
+      if (box.get('data') == null) {
+        context.go(Routesnames.SetupScreen);
+      } else {
+        context.go(Routesnames.HomeScreen);
+      }
+    }
   }
 }
 
@@ -238,5 +256,11 @@ class AuthstateCreateProvider extends ChangeNotifier {
       ),
       autoCloseDuration: const Duration(seconds: 2),
     );
+  }
+
+  Future<void> googlesign(BuildContext context) async {
+    Userlogin ul = Userlogin();
+    var islogged = await ul.signInWithGoogle();
+    if (islogged != null) context.push(Routesnames.SetupScreen);
   }
 }

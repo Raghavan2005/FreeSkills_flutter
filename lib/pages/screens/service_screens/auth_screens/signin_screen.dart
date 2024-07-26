@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
@@ -228,15 +229,23 @@ class SigninScreen extends StatelessWidget {
                 height: 0.1.sh,
               ),
               Padding(
-                padding: EdgeInsets.only(bottom: 50.h),
-                child: Text(
-                  "Google",
-                  style: TextStyle(
+                padding: EdgeInsets.only(bottom: 40.h),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(50),
+                  radius: 20,
+                  onTap: () async {
+                    await authProvider.googlesign(context);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Icon(
+                      MdiIcons.google,
                       color: Colors.white,
-                      fontSize: 40.sp,
-                      backgroundColor: Colors.blue),
+                      size: 60,
+                    ),
+                  ),
                 ),
-              )
+              ),
             ],
           ),
         ),

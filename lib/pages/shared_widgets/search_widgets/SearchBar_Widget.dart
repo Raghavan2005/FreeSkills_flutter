@@ -168,8 +168,11 @@ class _SearchFieldWithFilterState extends State<SearchFieldWithFilter> {
                     value:
                         Provider.of<SearchstateProvider>(context, listen: false)
                             .filterstatus[0],
-                    onChanged: (s) {}),
-                Text("Option 1"),
+                    onChanged: (s) {
+                      Provider.of<SearchstateProvider>(context, listen: false)
+                          .filterstatus[0] = s!;
+                    }),
+                Text("Programming"),
               ],
             )),
         PopupMenuItem<int>(
@@ -177,12 +180,15 @@ class _SearchFieldWithFilterState extends State<SearchFieldWithFilter> {
             child: Row(
               children: [
                 Checkbox(
-                    semanticLabel: 'Option 2',
+                    semanticLabel: 'Framework',
                     value:
                         Provider.of<SearchstateProvider>(context, listen: false)
                             .filterstatus[1],
-                    onChanged: (s) {}),
-                Text("Option 2"),
+                    onChanged: (s) {
+                      Provider.of<SearchstateProvider>(context, listen: false)
+                          .filterstatus[1] = s!;
+                    }),
+                Text("Framework"),
               ],
             )),
         PopupMenuItem<int>(
@@ -193,8 +199,11 @@ class _SearchFieldWithFilterState extends State<SearchFieldWithFilter> {
                     value:
                         Provider.of<SearchstateProvider>(context, listen: false)
                             .filterstatus[2],
-                    onChanged: (s) {}),
-                Text("Option 3"),
+                    onChanged: (s) {
+                      Provider.of<SearchstateProvider>(context, listen: false)
+                          .filterstatus[2] = s!;
+                    }),
+                Text("CrashCourse"),
               ],
             )),
       ],
@@ -257,7 +266,19 @@ class _SearchFieldWithFilterState extends State<SearchFieldWithFilter> {
         errorText: null,
       ),
       onSubmitted: (t) {
-        value.getsearchlist(t, context);
+        if (t.isNotEmpty) {
+          value.getsearchlist(t, context);
+          if (!value.lastword.contains(t)) {
+            value.lastword.add(t);
+            if (value.lastword.length >= 5) {
+              //  value.lastword.elementAt(value.lastword.first) ;
+              value.lastword.removeAt(value.lastword.length - 6);
+            }
+          }
+        }
+        if (t.isEmpty) {
+          value.searchlist.clear();
+        }
       },
     );
   }

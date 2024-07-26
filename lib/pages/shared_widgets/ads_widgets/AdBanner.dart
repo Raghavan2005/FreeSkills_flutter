@@ -28,7 +28,7 @@ class _AdBannerState extends State<AdBanner> {
     super.initState();
 
     _bannerAd = BannerAd(
-      adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+      adUnitId: 'ca-addpp-pub-3940256099942544/6300978111',
       // Replace with your actual ad unit ID
       size: widget.adSize,
       request: AdRequest(),
@@ -50,7 +50,7 @@ class _AdBannerState extends State<AdBanner> {
   Widget build(BuildContext context) {
     return _bannerAd == null
         ? SizedBox(
-            height: 20,
+            height: 5,
           )
         : Container(
             width: _bannerAd!.size.width.toDouble(),

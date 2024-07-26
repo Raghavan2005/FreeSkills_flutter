@@ -12,89 +12,93 @@ class WatchOldWidget extends StatelessWidget {
 
   WatchOldWidget({super.key, required this.titlename});
 
-  List<String> test = [
-    "01005803",
-    "01005603",
-    "01005503",
-    '01002203',
-    '01002303',
-    '01002403',
-  ];
+  List joblist = [];
+
+  onstartupdatedatatset(dynamic c, String cousekey) {
+    print(c[cousekey]);
+    joblist = c[cousekey];
+  }
 
   @override
   Widget build(BuildContext context) {
     final usp = Provider.of<UserdatastateProvider>(context, listen: true);
-    return Padding(
-      padding: const EdgeInsets.all(9.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            titlename,
-            style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
-                fontSize: 20.sp),
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: test.length,
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.all(1),
-              itemBuilder: (BuildContext context, int index) {
-                var itemKey = test[index].toString();
-                var item = usp.centraldataset[itemKey];
-                var videoUrl = item["course_video_url"].toString();
-                return GestureDetector(
-                  onTap: () {
-                    context
-                        .push(Routesnames.Player_Screen, extra: {"item": item});
-                  },
-                  child: Stack(
-                    alignment: Alignment.bottomLeft,
-                    children: [
-                      Row(
+    return FutureBuilder(
+      future: onstartupdatedatatset(usp.centraljoblist, usp.getSelectedcource!),
+      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        return Padding(
+          padding: const EdgeInsets.all(9.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                titlename,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 20.sp),
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: joblist.length,
+                  scrollDirection: Axis.horizontal,
+                  padding: EdgeInsets.all(1),
+                  itemBuilder: (BuildContext context, int index) {
+                    var itemKey = joblist[index].toString();
+                    var item = usp.centraldataset[itemKey];
+                    var videoUrl = item["course_video_url"].toString();
+                    return GestureDetector(
+                      onTap: () {
+                        context.push(Routesnames.Player_Screen,
+                            extra: {"item": item});
+                      },
+                      child: Stack(
+                        alignment: Alignment.bottomLeft,
                         children: [
-                          Text(
-                            (index + 1).toString(),
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 100.sp,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            width: 0.009.sw,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(9.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(16.0),
-                              // Adjust the radius as needed
-                              child: CachedNetworkImage(
-                                imageUrl:
-                                    "https://img.youtube.com/vi/$videoUrl/maxresdefault.jpg",
-                                placeholder: (context, url) => const SizedBox(),
-                                errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
+                          Row(
+                            children: [
+                              Text(
+                                (index + 1).toString(),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 100.sp,
+                                    fontWeight: FontWeight.bold),
                               ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 0.05.sw,
+                              SizedBox(
+                                width: 0.009.sw,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(9.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(16.0),
+                                  // Adjust the radius as needed
+                                  child: CachedNetworkImage(
+                                    imageUrl:
+                                        "https://img.youtube.com/vi/$videoUrl/maxresdefault.jpg",
+                                    placeholder: (context, url) =>
+                                        const SizedBox(),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 0.05.sw,
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                );
-              },
-            ),
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

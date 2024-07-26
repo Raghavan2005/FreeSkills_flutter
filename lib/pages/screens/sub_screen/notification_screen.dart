@@ -10,8 +10,10 @@
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
+import '../../../core/provider/UserDataState_Provider.dart';
 import '../../shared_widgets/home_widgets/Notification_item.dart';
 
 class NotificationScreen extends StatelessWidget {
@@ -19,6 +21,8 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final notvaluedata =
+        Provider.of<UserdatastateProvider>(context, listen: false);
     return Container(
       color: Colors.black,
       child: ScaffoldGradientBackground(
@@ -45,7 +49,15 @@ class NotificationScreen extends StatelessWidget {
                 fontSize: 40),
           ),
         ),
-        body: Notification_item(),
+        body: ListView.builder(
+          itemCount: notvaluedata.notlist.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Notification_item(
+              itemtitle: notvaluedata.notlist[index]['title'],
+              imageurl: notvaluedata.notlist[index]['imageurl'],
+            );
+          },
+        ),
       ),
     );
   }

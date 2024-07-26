@@ -1,10 +1,15 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Notification_item extends StatelessWidget {
   const Notification_item({
     super.key,
+    required this.imageurl,
+    required this.itemtitle,
   });
+
+  final String imageurl, itemtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +23,14 @@ class Notification_item extends StatelessWidget {
           children: [
             SizedBox(
               width: 0.2.sw,
-              child: Placeholder(),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16.0),
+                child: CachedNetworkImage(
+                  imageUrl: imageurl,
+                  placeholder: (context, url) => const SizedBox(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
+              ),
             ),
             Expanded(
               child: Padding(
@@ -27,7 +39,7 @@ class Notification_item extends StatelessWidget {
                   textAlign: TextAlign.start,
                   textWidthBasis: TextWidthBasis.parent,
                   text: TextSpan(
-                    text: "Updated and added new Course On your Application",
+                    text: itemtitle,
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w600,

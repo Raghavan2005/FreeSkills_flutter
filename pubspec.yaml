@@ -58,6 +58,7 @@ dependencies:
   flutter_cached_pdfview: 0.4.2
   cloud_firestore: ^5.1.0
   supabase_flutter: ^2.5.8
+  google_sign_in: ^6.2.1
 
 
   #disabled

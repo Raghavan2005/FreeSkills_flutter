@@ -6,6 +6,8 @@ class DataProvider with ChangeNotifier {
   bool _isInitialized = false;
   bool _isLoading = false;
   Map<String, dynamic> _data = {};
+  Map<String, dynamic> joblistdata = {};
+  Map<String, dynamic> infodatalistset = {};
 
   bool get isInitialized => _isInitialized;
 
@@ -58,7 +60,12 @@ class DataProvider with ChangeNotifier {
             await Supabase.instance.client.from('main_table').select();
         if (response != null && response.isNotEmpty) {
           Map<String, dynamic> temp = response[0]['json_data'];
+          Map<String, dynamic> temp1 = response[1]['json_data'];
+          Map<String, dynamic> temp2 = response[2]['json_data'];
+
           await box.put('centraldataset', temp);
+          await box.put('centraljoblistdata', temp1);
+          await box.put('infodatalistset', temp2);
           await box.put(
               'lastFetchDate', currentDate); // Update the last fetch date
           _data = Map<String, dynamic>.from(temp);

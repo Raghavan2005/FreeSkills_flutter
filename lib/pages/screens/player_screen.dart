@@ -4,6 +4,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/provider/PlayerState_Provider.dart';
+import '../../core/provider/UserDataState_Provider.dart';
 import '../../core/utils/Appusage.dart';
 import '../shared_widgets/ads_widgets/AdBanner.dart';
 import '../shared_widgets/player_widgets/player_user_widget.dart';
@@ -11,7 +12,7 @@ import '../shared_widgets/player_widgets/player_widgets.dart';
 import '../shared_widgets/player_widgets/ytdisplayer_widget.dart';
 
 class PlayerScreen extends StatelessWidget {
-  const PlayerScreen({super.key, this.item});
+  PlayerScreen({super.key, this.item});
 
   final item;
 
@@ -25,6 +26,8 @@ class PlayerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final up = Provider.of<UserdatastateProvider>(context, listen: false);
+
     return Scaffold(
       body: FutureBuilder(
         future: onplayerstart(context),
@@ -62,6 +65,8 @@ class PlayerScreen extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: PlayerUserWidget(
                               itemdata: item,
+                              lang:
+                                  up.searchbykey(up.langinfo, item['lang_id']),
                             ),
                           ),
                           SizedBox(
