@@ -172,6 +172,7 @@ class _HomeState extends State<Home> {
                         height: 0.26.sh, // or any height you need
                         child: const WatchWidget(
                           titlename: 'Continue Watching',
+                          getlist: [],
                         ),
                       ),
                     ),
@@ -197,6 +198,7 @@ class _HomeState extends State<Home> {
                       height: 0.26.sh, // or any height you need
                       child: const WatchWidget(
                         titlename: 'Top Trends',
+                        getlist: [],
                       ),
                     ),
                     SizedBox(
@@ -204,6 +206,7 @@ class _HomeState extends State<Home> {
                       height: 0.26.sh, // or any height you need
                       child: const WatchWidget(
                         titlename: 'Experiment Yourself',
+                        getlist: [],
                       ),
                     ),
                   ],

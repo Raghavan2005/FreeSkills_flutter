@@ -7,6 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -21,6 +22,7 @@ import 'core/provider/SearchState_Provider.dart';
 import 'core/provider/SeetingsState_Provider.dart';
 import 'core/provider/ShortsState_Provider.dart';
 import 'core/provider/UserDataState_Provider.dart';
+import 'core/provider/VideoDataState_Provider.dart';
 import 'core/services/datasource/Data_Provider.dart';
 import 'pages/routes/AppRoutes.dart';
 
@@ -32,7 +34,7 @@ late final FirebaseAuth auth;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  //MobileAds.instance.initialize();
+  MobileAds.instance.initialize();
   await Hive.initFlutter();
   app = await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -93,6 +95,7 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider(create: (_) => AuthStateLoginProvider()),
             ChangeNotifierProvider(create: (_) => AuthstateCreateProvider()),
             ChangeNotifierProvider(create: (_) => UserdatastateProvider()),
+            ChangeNotifierProvider(create: (_) => VideodatastateProvider()),
             ChangeNotifierProvider(
                 create: (_) => DataProvider()..initializeUserData()),
 

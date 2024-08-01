@@ -49,8 +49,8 @@ class _AdBannerState extends State<AdBanner> {
   @override
   Widget build(BuildContext context) {
     return _bannerAd == null
-        ? SizedBox(
-            height: 5,
+        ? Offstage(
+            offstage: true,
           )
         : Container(
             width: _bannerAd!.size.width.toDouble(),

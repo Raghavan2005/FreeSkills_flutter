@@ -9,6 +9,7 @@ class MainstateProvider extends ChangeNotifier {
   int currentnavtab = 0;
   int currentiindexnews = 0;
   final PageController pageController = PageController(keepPage: true);
+
   List<Color> nav_select = [
     Colors.blue,
     Colors.red,

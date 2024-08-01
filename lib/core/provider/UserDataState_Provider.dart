@@ -10,6 +10,7 @@ class UserdatastateProvider extends ChangeNotifier {
   String? _profilephoto = null;
   String? userimageurl = '';
   List _performancevalue = [0, 0, 0, 10, 0, 0, 2];
+
   Map<dynamic, dynamic> userData = {};
   Map<dynamic, dynamic> langinfo = {};
   Map<dynamic, dynamic> jobinfo = {};
