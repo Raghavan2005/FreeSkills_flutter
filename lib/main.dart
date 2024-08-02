@@ -34,7 +34,9 @@ late final FirebaseAuth auth;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  MobileAds.instance.initialize();
+  try {
+    await MobileAds.instance.initialize();
+  } catch (e) {}
   await Hive.initFlutter();
   app = await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

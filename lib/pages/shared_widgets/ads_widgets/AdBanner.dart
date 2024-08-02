@@ -28,7 +28,7 @@ class _AdBannerState extends State<AdBanner> {
     super.initState();
 
     _bannerAd = BannerAd(
-      adUnitId: 'ca-addpp-pub-3940256099942544/6300978111',
+      adUnitId: 'ca-app-pub-3940256099942544/6300978111',
       // Replace with your actual ad unit ID
       size: widget.adSize,
       request: AdRequest(),
@@ -48,14 +48,13 @@ class _AdBannerState extends State<AdBanner> {
 
   @override
   Widget build(BuildContext context) {
-    return _bannerAd == null
-        ? Offstage(
-            offstage: true,
-          )
-        : Container(
-            width: _bannerAd!.size.width.toDouble(),
-            height: _bannerAd!.size.height.toDouble(),
-            child: AdWidget(ad: _bannerAd!),
-          );
+    return Offstage(
+      offstage: _bannerAd == null,
+      child: Container(
+        width: _bannerAd!.size.width.toDouble(),
+        height: _bannerAd!.size.height.toDouble(),
+        child: AdWidget(ad: _bannerAd!),
+      ),
+    );
   }
 }

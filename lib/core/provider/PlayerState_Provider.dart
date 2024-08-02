@@ -1,4 +1,5 @@
 import 'dart:core';
+import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
@@ -18,6 +19,7 @@ class PlayerstateProvider extends ChangeNotifier {
 
   List savedlist = [];
   List historylist = [];
+  List videolist = [];
   bool issaved = false;
 
   void updateIsFullscreen(bool isFullscreen) {
@@ -38,7 +40,7 @@ class PlayerstateProvider extends ChangeNotifier {
     else
       savedlist.remove(videoid);
     if (savedlist.isNotEmpty) box.put("savedlist", savedlist);
-    //print(savedlist);
+    print(savedlist);
 
     notifyListeners();
   }
@@ -60,13 +62,24 @@ class PlayerstateProvider extends ChangeNotifier {
     issaved = savedlist.contains(id);
   }
 
-  void updateonstart() {
+  void updateonstart(BuildContext c) {
     var box = Hive.box("UserData");
-    savedlist = box.get("savedlist");
 
-    historylist = box.get("historylist");
-
+    savedlist = box.get("savedlist", defaultValue: []);
+    historylist = box.get("historylist", defaultValue: []);
+    updatethevideolist(c);
     //print(savedlist);
+  }
+
+  void updatethevideolist(BuildContext c) {
+    final values = Provider.of<UserdatastateProvider>(c, listen: true);
+    var random = Random();
+    List randomNumbers = List.generate(
+        6, (_) => random.nextInt(values.centraldataset.keys.toList().length));
+    List test = values.centraldataset.keys.toList();
+    randomNumbers.forEach((value) {
+      videolist.add(test[value]);
+    });
   }
 
   getitemlist(BuildContext c, int index) {
@@ -82,7 +95,6 @@ class PlayerstateProvider extends ChangeNotifier {
     if (box.get("historylist") != null) historylist = box.get("historylist");
     final usp = Provider.of<UserdatastateProvider>(c, listen: true);
     var itemKey = historylist[index].toString();
-
     return item = usp.centraldataset[itemKey];
   }
 

@@ -9,6 +9,7 @@ import 'package:shimmer/shimmer.dart';
 
 import '../../core/provider/SeetingsState_Provider.dart';
 import '../../core/provider/UserDataState_Provider.dart';
+import '../../core/provider/VideoDataState_Provider.dart';
 import '../shared_widgets/NavBar_Shared.dart';
 import '../shared_widgets/ads_widgets/AdBanner.dart';
 import '../shared_widgets/home_widgets/Channels_List_Widget.dart';
@@ -72,13 +73,14 @@ class _HomeState extends State<Home> {
   Future<void> firstUpdate(BuildContext context) async {
     final dy = Provider.of<DataProvider>(context, listen: false);
     final usp = Provider.of<UserdatastateProvider>(context, listen: false);
+    final video = Provider.of<VideodatastateProvider>(context, listen: false);
     await dy.dailyDataUpdate();
     await usp.updatedata();
+    video.onstartandloadthelist(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    //final set = Provider.of<SeetingsstateProvider>(context, listen: false);
     final usp = Provider.of<UserdatastateProvider>(context, listen: true);
 
     return SafeArea(
@@ -193,21 +195,29 @@ class _HomeState extends State<Home> {
                     AdBanner(
                       adSize: AdSize.fullBanner,
                     ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 0.26.sh, // or any height you need
-                      child: const WatchWidget(
-                        titlename: 'Top Trends',
-                        getlist: [],
-                      ),
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 0.26.sh, // or any height you need
-                      child: const WatchWidget(
-                        titlename: 'Experiment Yourself',
-                        getlist: [],
-                      ),
+                    Consumer<VideodatastateProvider>(
+                      builder: (BuildContext context,
+                          VideodatastateProvider value, Widget? child) {
+                        return Column(
+                          children: [
+                            SizedBox(
+                              width: double.infinity,
+                              height: 0.26.sh, // or any height you need
+                              child: WatchWidget(
+                                  titlename: 'Top Trends',
+                                  getlist: value.toptrendslist),
+                            ),
+                            SizedBox(
+                              width: double.infinity,
+                              height: 0.26.sh, // or any height you need
+                              child: WatchWidget(
+                                titlename: 'Experiment Yourself',
+                                getlist: value.expreimentyour,
+                              ),
+                            ),
+                          ],
+                        );
+                      },
                     ),
                   ],
                 ),

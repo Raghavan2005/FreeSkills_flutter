@@ -27,12 +27,11 @@ class ProfileScreen extends StatelessWidget {
           ),
           Consumer<PlayerstateProvider>(
             builder: (BuildContext context, value, Widget? child) {
-              print(value.historylist == []);
-              return Visibility(
-                visible: value.historylist.isNotEmpty ? true : false,
+              return Offstage(
+                offstage: value.historylist.isNotEmpty ? false : true,
                 child: SizedBox(
                   width: double.infinity,
-                  height: 0.35.sh, // or any height you need
+                  height: 0.30.sh, // or any height you need
                   child: HistoryviewWidget(
                     titlename: 'Recent Activity',
                   ),

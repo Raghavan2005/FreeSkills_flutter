@@ -23,7 +23,7 @@ class SavedScreen extends StatelessWidget {
 
   Future<void> onstart(BuildContext c) async {
     final usp = Provider.of<PlayerstateProvider>(c, listen: true);
-    usp.updateonstart();
+    usp.updateonstart(c);
   }
 
   @override
@@ -127,7 +127,7 @@ class SavedScreen extends StatelessWidget {
                                           color: Colors.grey, fontSize: 13.sp),
                                     ),
                                     Text(
-                                      "Enlish",
+                                      itemdata['lang_id'],
                                       style: TextStyle(
                                           color: Colors.grey, fontSize: 13.sp),
                                     ),

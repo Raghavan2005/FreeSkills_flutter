@@ -20,13 +20,23 @@ class PlayerScreen extends StatelessWidget {
     Appusage au = Appusage();
     final usp = Provider.of<PlayerstateProvider>(c, listen: false);
     au.startserviceprogress(1);
-    usp.updateonstart();
+    usp.updateonstart(c);
     usp.checksatues(item['lang_id'] + item['course_id'] + item['course_type']);
+  }
+
+  dynamic getitemdatavalue(BuildContext c, String id) {
+    final value = Provider.of<UserdatastateProvider>(c, listen: false);
+    // print(getlist.length);
+    return value.centraldataset[id];
   }
 
   @override
   Widget build(BuildContext context) {
     final up = Provider.of<UserdatastateProvider>(context, listen: false);
+
+    /*physics: value.isFullscreen
+        ? NeverScrollableScrollPhysics()
+        : null,*/
 
     return Scaffold(
       body: FutureBuilder(
@@ -34,76 +44,79 @@ class PlayerScreen extends StatelessWidget {
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           return Consumer<PlayerstateProvider>(
             builder: (BuildContext context, value, Widget? child) {
-              return SingleChildScrollView(
-                physics:
-                    value.isFullscreen ? NeverScrollableScrollPhysics() : null,
-                scrollDirection: Axis.vertical,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Center(
-                        child: PlayerWidgets(
-                      playerurl: item["course_video_url"].toString(),
-                    )),
-                    Offstage(
-                      offstage: value.isFullscreen,
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 2.h,
-                          ),
-                          AdBanner(
-                            adSize: AdSize.fullBanner,
-                          ),
-                          SizedBox(
-                            height: 2.h,
-                          ),
-                          const Divider(
-                            color: Colors.grey,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: PlayerUserWidget(
-                              itemdata: item,
-                              lang:
-                                  up.searchbykey(up.langinfo, item['lang_id']),
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Center(
+                      child: PlayerWidgets(
+                    playerurl: item["course_video_url"].toString(),
+                  )),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Offstage(
+                        offstage: value.isFullscreen,
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 2.h,
                             ),
-                          ),
-                          SizedBox(
-                            height: 25.h,
-                          ),
-                          AdBanner(
-                            adSize: AdSize.mediumRectangle,
-                          ),
-                          SizedBox(
-                            height: 15.h,
-                          ),
-                          const Divider(
-                            color: Colors.grey,
-                          ),
-                          SizedBox(
-                            height: 15.h,
-                          ),
-                          const YtdisplayerWidget(
-                            title: 'sdfsdf',
-                            channelname: 'dsfsdf',
-                            lang: 'dsfdsfsd',
-                          ),
-                          const YtdisplayerWidget(
-                            title: 'sdfsdf',
-                            channelname: 'dsfsdf',
-                            lang: 'dsfdsfsd',
-                          ),
-                          const YtdisplayerWidget(
-                            title: 'sdfsdf',
-                            channelname: 'dsfsdf',
-                            lang: 'dsfdsfsd',
-                          ),
-                        ],
+                            AdBanner(
+                              adSize: AdSize.fullBanner,
+                            ),
+                            SizedBox(
+                              height: 2.h,
+                            ),
+                            const Divider(
+                              color: Colors.grey,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: PlayerUserWidget(
+                                itemdata: item,
+                                lang: up.searchbykey(
+                                    up.langinfo, item['lang_id']),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 2.h,
+                            ),
+                            AdBanner(
+                              adSize: AdSize.mediumRectangle,
+                            ),
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            const Divider(
+                              color: Colors.grey,
+                            ),
+                            SizedBox(
+                              height: 15.h,
+                            ),
+                            SizedBox(
+                              width: double.infinity,
+                              height: 2.16.sh,
+                              child: ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                scrollDirection: Axis.vertical,
+                                itemCount: value.videolist.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  var data = getitemdatavalue(
+                                      context, value.videolist[index]);
+                                  return YtdisplayerWidget(
+                                    title: data['course_title'],
+                                    channelname: index.toString(),
+                                    lang: index.toString(),
+                                    date: data['video_timing'],
+                                  );
+                                },
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               );
             },
           );

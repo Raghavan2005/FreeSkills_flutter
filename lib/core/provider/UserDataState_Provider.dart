@@ -16,7 +16,7 @@ class UserdatastateProvider extends ChangeNotifier {
   Map<dynamic, dynamic> jobinfo = {};
   Map<dynamic, dynamic> centraldataset = {};
   Map<dynamic, dynamic> centraljoblist = {};
-  Map<String, dynamic> infodatalistset = {};
+  Map<dynamic, dynamic> infodatalistset = {};
   List<dynamic> newslist = [];
   List<dynamic> notlist = [];
 
@@ -40,7 +40,7 @@ class UserdatastateProvider extends ChangeNotifier {
     centraldataset = await box.get("centraldataset");
     centraljoblist = await box.get("centraljoblistdata");
     infodatalistset = await box.get("infodatalistset");
-
+    print("Data Updated");
     interupdata();
     //print("user_provider" + box.get("centraldataset").toString());
 
@@ -54,8 +54,7 @@ class UserdatastateProvider extends ChangeNotifier {
     userimageurl = userData["userimageurl"];
     notlist = infodatalistset["not"];
     newslist = infodatalistset['technews'];
-    print(centraldataset.keys.runtimeType);
-
+    print("Data Getting");
     selectedcoursename = searchbykey(jobinfo, _selectedcourse!);
   }
 
