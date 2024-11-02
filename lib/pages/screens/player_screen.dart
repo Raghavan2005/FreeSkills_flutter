@@ -26,17 +26,12 @@ class PlayerScreen extends StatelessWidget {
 
   dynamic getitemdatavalue(BuildContext c, String id) {
     final value = Provider.of<UserdatastateProvider>(c, listen: false);
-    // print(getlist.length);
     return value.centraldataset[id];
   }
 
   @override
   Widget build(BuildContext context) {
     final up = Provider.of<UserdatastateProvider>(context, listen: false);
-
-    /*physics: value.isFullscreen
-        ? NeverScrollableScrollPhysics()
-        : null,*/
 
     return Scaffold(
       body: FutureBuilder(
@@ -49,8 +44,8 @@ class PlayerScreen extends StatelessWidget {
                 children: [
                   Center(
                       child: PlayerWidgets(
-                    playerurl: item["course_video_url"].toString(),
-                  )),
+                        playerurl: item["course_video_url"].toString(),
+                      )),
                   Expanded(
                     child: SingleChildScrollView(
                       child: Offstage(
@@ -73,8 +68,7 @@ class PlayerScreen extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: PlayerUserWidget(
                                 itemdata: item,
-                                lang: up.searchbykey(
-                                    up.langinfo, item['lang_id']),
+                                lang: up.searchbykey(up.langinfo, item['lang_id']),
                               ),
                             ),
                             SizedBox(
@@ -94,23 +88,19 @@ class PlayerScreen extends StatelessWidget {
                             ),
                             SizedBox(
                               width: double.infinity,
-                              height: 2.16.sh,
-                              child: ListView.builder(
-                                physics: NeverScrollableScrollPhysics(),
-                                scrollDirection: Axis.vertical,
-                                itemCount: value.videolist.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  var data = getitemdatavalue(
-                                      context, value.videolist[index]);
+                              child: Column(
+                                children: List.generate(value.videolist.length, (index) {
+                                  var data = getitemdatavalue(context, value.videolist[index]);
                                   return YtdisplayerWidget(
                                     title: data['course_title'],
-                                    channelname: index.toString(),
-                                    lang: index.toString(),
+                                    channelname: data['course_channel_url'],
+                                    lang: data['lang_id'],
                                     date: data['video_timing'],
+                                    videourl: data['course_video_url'],
                                   );
-                                },
+                                }),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),

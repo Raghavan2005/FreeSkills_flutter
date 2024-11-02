@@ -72,15 +72,22 @@ class PlayerstateProvider extends ChangeNotifier {
   }
 
   void updatethevideolist(BuildContext c) {
+    videolist.clear();
     final values = Provider.of<UserdatastateProvider>(c, listen: true);
     var random = Random();
-    List randomNumbers = List.generate(
-        6, (_) => random.nextInt(values.centraldataset.keys.toList().length));
+
+    // Use a Set to keep track of unique random numbers
+    Set<int> randomNumbers = {};
+    while (randomNumbers.length < 6) {
+      randomNumbers.add(random.nextInt(values.centraldataset.keys.toList().length));
+    }
+
     List test = values.centraldataset.keys.toList();
     randomNumbers.forEach((value) {
       videolist.add(test[value]);
     });
   }
+
 
   getitemlist(BuildContext c, int index) {
     var box = Hive.box("UserData");

@@ -1,7 +1,4 @@
-// player_widgets.dart
-
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -24,11 +21,11 @@ class _PlayerWidgetsState extends State<PlayerWidgets> {
     super.initState();
 
     _controller = YoutubePlayerController(
-      initialVideoId: widget.playerurl,
+      initialVideoId: YoutubePlayer.convertUrlToId(widget.playerurl)!,
       flags: const YoutubePlayerFlags(
-        showLiveFullscreenButton: false,
+        showLiveFullscreenButton: true,
         hideControls: false,
-        controlsVisibleAtStart: false,
+        controlsVisibleAtStart: true,
         autoPlay: false,
         useHybridComposition: true,
         disableDragSeek: false,
@@ -40,9 +37,8 @@ class _PlayerWidgetsState extends State<PlayerWidgets> {
 
   void listener() {
     final fullscreenProvider =
-        Provider.of<PlayerstateProvider>(context, listen: false);
+    Provider.of<PlayerstateProvider>(context, listen: false);
 
-    //print(_controller.value.playbackQuality);
     if (_controller.value.isFullScreen != fullscreenProvider.isFullscreen) {
       fullscreenProvider.updateIsFullscreen(_controller.value.isFullScreen);
     }
@@ -55,27 +51,12 @@ class _PlayerWidgetsState extends State<PlayerWidgets> {
     super.dispose();
   }
 
-  double getwidth() {
-    final fullscreenProvider =
-        Provider.of<PlayerstateProvider>(context, listen: false);
-    double width;
-    if (fullscreenProvider.isFullscreen) {
-      width = MediaQuery.of(context).size.width -
-          0.2 * MediaQuery.of(context).size.width;
-    } else {
-      // If not in fullscreen mode, use the full width.
-      width = MediaQuery.of(context).size.width;
-    }
-
-    return width;
-  }
-
   void forceHD() {
     final webViewController = _controller.value.webViewController;
 
     if (webViewController != null) {
       webViewController.evaluateJavascript(
-        source: 'player.setPlaybackQuality("hd720");',
+        source: 'player.setPlaybackQuality("hd1080");',
       );
     }
   }
@@ -86,7 +67,6 @@ class _PlayerWidgetsState extends State<PlayerWidgets> {
       player: YoutubePlayer(
         controller: _controller,
         showVideoProgressIndicator: true,
-        width: getwidth(),
         progressIndicatorColor: Colors.amber,
         progressColors: const ProgressBarColors(
           playedColor: Colors.amber,
@@ -95,11 +75,10 @@ class _PlayerWidgetsState extends State<PlayerWidgets> {
         topActions: [
           Opacity(
             opacity: 0.5,
-            // Change this value to set the desired opacity (0.0 to 1.0)
             child: Image.asset(
               "assets/icon/logo.png",
-              width: 20.w,
-              height: 20.h,
+              width: 20,
+              height: 20,
             ),
           )
         ],
@@ -107,20 +86,16 @@ class _PlayerWidgetsState extends State<PlayerWidgets> {
           CurrentPosition(),
           ProgressBar(
               isExpanded: true,
-              colors: ProgressBarColors(
+              colors: const ProgressBarColors(
                   handleColor: Colors.greenAccent,
                   bufferedColor: Colors.grey,
                   playedColor: Colors.greenAccent,
                   backgroundColor: Colors.white38)),
           RemainingDuration(),
-          SizedBox(
-            width: 6,
-          ),
+          const SizedBox(width: 6),
           IconButton(
-            onPressed: () {
-              forceHD();
-            },
-            icon: Icon(
+            onPressed: forceHD,
+            icon: const Icon(
               Icons.hd,
               color: Colors.white,
             ),
@@ -128,10 +103,9 @@ class _PlayerWidgetsState extends State<PlayerWidgets> {
           PlaybackSpeedButton(),
           FullScreenButton(),
         ],
-        bufferIndicator: CircularProgressIndicator(),
+        bufferIndicator: const CircularProgressIndicator(),
         onReady: () {
           _controller.addListener(listener);
-          _controller.play();
         },
       ),
       builder: (context, player) {

@@ -42,7 +42,7 @@ dependencies:
   firebase_core: any
   google_mobile_ads: 5.1.0
   firebase_auth: ^5.3.0
-  youtube_player_flutter: ^9.1.0
+  youtube_player_flutter: ^9.1.1
   google_generative_ai: ^0.4.6
   palette_generator: 0.3.3+4
   share_plus: ^10.0.2
