@@ -1,3 +1,4 @@
+import 'package:FreeSkills/core/services/auth/UserLogin.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -110,6 +111,7 @@ class UserdataEdit extends StatelessWidget {
                       errorText: cm.text.isEmpty ? "Cant be Empty" : null,
                     ),
                     onSubmitted: (val) {
+                      if(val.isNotEmpty)
                       usp.changename(val);
                     },
                   ),
@@ -163,8 +165,15 @@ class UserdataEdit extends StatelessWidget {
                   height: 0.05.sh,
                 ),
                 ElevatedButton(
-                    onPressed: () {
-                      print(usp.jobinfo.values.toList());
+                    onPressed: () async {
+                     //print(usp.jobinfo.values.toList());
+                      Userlogin un = new Userlogin();
+                      _showLoadingDialog(context);
+                      //print(usp.getSelectedcource);
+                       if(await un.updateUsernameById(usp.getUsername!,usp.getSelectedcource!)){
+                        Navigator.of(context).pop();
+                      }
+                      Navigator.of(context).pop();
                     },
                     style: ButtonStyle(
                         foregroundColor: WidgetStateProperty.all(Colors.white),
@@ -185,4 +194,24 @@ class UserdataEdit extends StatelessWidget {
           ),
         ));
   }
+
+  void _showLoadingDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false, // Prevent dismissing by tapping outside
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.black,
+          content: SizedBox(
+            width: 50,
+            height: 50,
+            child: const Center(
+              child: CircularProgressIndicator(),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
 }

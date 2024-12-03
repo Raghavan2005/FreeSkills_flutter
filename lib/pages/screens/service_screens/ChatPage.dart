@@ -101,7 +101,7 @@ class _ChatPageState extends State<ChatPage> {
       _scrollController.jumpTo(
         _scrollController.position.maxScrollExtent,
       );
-    } on FormatException catch (e) {
+    } on FormatException {
       setState(() {
         DateTime time = DateTime.now();
         String formattedTime = '${time.hour}:${time.minute}';

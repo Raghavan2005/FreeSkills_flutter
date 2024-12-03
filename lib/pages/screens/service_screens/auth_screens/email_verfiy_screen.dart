@@ -23,25 +23,27 @@ class _EmailVerifyScreenState extends State<EmailVerifyScreen> {
     // TODO: implement initState
     super.initState();
     FirebaseAuth.instance.currentUser?.sendEmailVerification();
-    timer =
-        Timer.periodic(const Duration(seconds: 3), (_) => checkEmailVerified());
+    //timer = Timer.periodic(const Duration(seconds: 3), (_) => checkEmailVerified());
   }
 
   checkEmailVerified() async {
     await FirebaseAuth.instance.currentUser?.reload();
+
+    if (!mounted) return; // Check if the widget is still in the tree before calling setState.
 
     setState(() {
       isEmailVerified = FirebaseAuth.instance.currentUser!.emailVerified;
     });
 
     if (isEmailVerified) {
-      // TODO: implement your code after email verification
+      // Email successfully verified.
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("Email Successfully Verified")));
       timer?.cancel();
       context.go(Routesnames.SetupScreen);
     }
   }
+
 
   @override
   void dispose() {

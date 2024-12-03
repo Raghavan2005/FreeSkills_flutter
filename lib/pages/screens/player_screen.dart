@@ -94,7 +94,7 @@ class PlayerScreen extends StatelessWidget {
                                   return YtdisplayerWidget(
                                     title: data['course_title'],
                                     channelname: data['course_channel_url'],
-                                    lang: data['lang_id'],
+                                    lang: up.searchbykey(up.langinfo, data['lang_id']),
                                     date: data['video_timing'],
                                     videourl: data['course_video_url'],
                                   );

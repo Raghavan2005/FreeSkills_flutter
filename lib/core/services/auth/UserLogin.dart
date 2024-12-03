@@ -42,10 +42,9 @@ class Userlogin {
     }
   }
 
-  Future<String> createUserWithEmailAndPassword(
-      String emailAddress, String password) async {
-    try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+  Future<String> createUserWithEmailAndPassword(String emailAddress, String password) async {
+     try {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailAddress,
         password: password,
       );
@@ -115,6 +114,23 @@ class Userlogin {
       // TODO
       print('exception->$e');
       return null;
+    }
+  }
+
+  Future<bool> updateUsernameById( String newUsername,String jobid) async {
+    try {
+      // Get a reference to the collection
+      final collectionRef = FirebaseFirestore.instance.collection('UserData');
+
+      // Find the document by ID and update the username
+      await collectionRef.doc(getCurrentUserId()).update({
+        'username': newUsername,
+        'job':jobid
+      });
+
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 }

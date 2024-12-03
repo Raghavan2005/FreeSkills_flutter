@@ -1,14 +1,3 @@
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- +   Freeskills (Andorid&iso)                                                 +
- +   Copyright (c) 2024 Raghavan                                              +
- +   GitHub: https://github.com/raghavan2005                                  +
- +   All rights reserved..                                                    +
- +                                                                            +
- +                                                                            +
- +                                                                            +
- +                                                                            +
- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
@@ -19,29 +8,41 @@ import 'UserDataState_Provider.dart';
 class VideodatastateProvider extends ChangeNotifier {
   List<String> toptrendslist = [];
   List<String> expreimentyour = [];
-  dynamic cclist = [];
 
   void onstartandloadthelist(BuildContext c) {
     getaitemdata(c);
-    print(toptrendslist.length);
-    print(expreimentyour.length);
   }
 
-  dynamic getaitemdata(BuildContext c) {
+  void getaitemdata(BuildContext c) {
     final value = Provider.of<UserdatastateProvider>(c, listen: false);
-    //getting the cc only data
-    value.centraldataset.forEach((key, value) {
-      if (expreimentyour.length < 10 && value['course_type'] == '03') {
-        expreimentyour.add(key);
+    final centralDataset = value.centraldataset;
+
+    // Clear previous lists
+    toptrendslist.clear();
+    expreimentyour.clear();
+
+    // Getting `expreimentyour` data
+    centralDataset.forEach((key, data) {
+      if (expreimentyour.length < 10 && data['course_type'] == '03') {
+        expreimentyour.add(key as String); // Cast key to String
       }
     });
-    //print(expreimentyour);
+
+    // Get keys not in `expreimentyour`
+    List<String> remainingKeys = centralDataset.keys
+        .where((key) => !expreimentyour.contains(key as String))
+        .map((key) => key as String)
+        .toList();
+
+    // Generate random unique selections for `toptrendslist`
     var random = Random();
-    List randomNumbers = List.generate(
-        10, (_) => random.nextInt(value.centraldataset.keys.toList().length));
-    List test = value.centraldataset.keys.toList();
-    randomNumbers.forEach((value) {
-      toptrendslist.add(test[value]);
-    });
+    while (toptrendslist.length < 10 && remainingKeys.isNotEmpty) {
+      int randomIndex = random.nextInt(remainingKeys.length);
+      toptrendslist.add(remainingKeys[randomIndex]);
+      remainingKeys.removeAt(randomIndex); // Ensure no repetition
+    }
+
+    // Notify listeners in case the UI is dependent on these lists
+    notifyListeners();
   }
 }

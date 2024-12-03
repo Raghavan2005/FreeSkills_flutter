@@ -160,17 +160,17 @@ class AppRoutes {
   static Widget _userRedirect() {
     final user = FirebaseAuth.instance.currentUser;
     var box = Hive.box('UserData');
-
     if (user == null) {
       return SignupScreen();
     } else {
       if (FirebaseAuth.instance.currentUser!.emailVerified) {
-        //    print(box.get('data')['username']);
+
         if (box.get('data') == null)
           return SetupmainScreen();
         else
           return HomeScreen();
       } else {
+
         return EmailVerifyScreen();
       }
     }

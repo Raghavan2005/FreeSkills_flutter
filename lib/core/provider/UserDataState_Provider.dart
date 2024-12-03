@@ -77,6 +77,7 @@ class UserdatastateProvider extends ChangeNotifier {
   void changecourse(String itemname) {
     selectedcoursename = itemname;
     userData['job'] = getRoleCode(jobinfo, itemname);
+    _selectedcourse= getRoleCode(jobinfo, itemname);
     notifyListeners();
   }
 

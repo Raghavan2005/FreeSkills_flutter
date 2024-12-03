@@ -52,13 +52,14 @@ class HistoryviewWidget extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   padding: EdgeInsets.all(1),
                   itemBuilder: (BuildContext context, int index) {
-                    var itemdata = value.getitemhistorlist(context, index);
+                   var itemdata = value.getitemhistorlist(context, index);
                     String videourl = itemdata['course_video_url'];
                     String videotitle = itemdata['course_title'];
                     return GestureDetector(
                       onTap: () {
+                        print(itemdata.runtimeType);
                         context.push(Routesnames.Player_Screen,
-                            extra: itemdata);
+                            extra: {"item": itemdata});
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),

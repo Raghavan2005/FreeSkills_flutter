@@ -58,7 +58,7 @@ class DataProvider with ChangeNotifier {
         // Attempt to fetch data from Supabase
         final response =
             await Supabase.instance.client.from('main_table').select();
-        if (response != null && response.isNotEmpty) {
+        if (response.isNotEmpty) {
           Map<String, dynamic> temp = response[0]['json_data'];
           Map<String, dynamic> temp1 = response[1]['json_data'];
           Map<String, dynamic> temp2 = response[2]['json_data'];
