@@ -15,3 +15,13 @@ Freeskill made by Raghavan android & iso
 
 # **Backend**
 ![Firebase](https://img.shields.io/badge/firebase-a08021?style=for-the-badge&logo=firebase&logoColor=ffcd34)  ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+
+## Configuration Versions
+
+Here are the versions being used in this project:
+
+| **Configuration**   | **Current Version** |
+|---------------------|---------------------|
+| **Java Version**    | 17                  |
+| **Gradle Version**  | 8.11.1              |
+| **Kotlin Version**  | 2.1.0               |
