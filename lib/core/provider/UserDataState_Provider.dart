@@ -4,10 +4,10 @@ import 'package:hive/hive.dart';
 
 class UserdatastateProvider extends ChangeNotifier {
   String? _Username = null;
+  String? _email = null;
   String? _selectedcourse = '0001';
   String? selectedcoursename = ' ';
   String _selectedlang = 'en-(English)';
-  String? _profilephoto = null;
   String? userimageurl = '';
   List _performancevalue = [0, 0, 0, 10, 0, 0, 2];
 
@@ -23,10 +23,10 @@ class UserdatastateProvider extends ChangeNotifier {
   String? get getUsername => _Username;
 
   String? get getSelectedcource => _selectedcourse;
-
+  String? get getSelectedemail => _email;
   String? get getSelectedlang => _selectedlang;
 
-  String? get getprofilephoto => _profilephoto;
+  String? get getuserimageurl => userimageurl;
 
   List? get getperformancevalue => _performancevalue;
   var box;
@@ -54,7 +54,8 @@ class UserdatastateProvider extends ChangeNotifier {
     userimageurl = userData["userimageurl"];
     notlist = infodatalistset["not"];
     newslist = infodatalistset['technews'];
-    print("Data Getting");
+    _email = userData['email'];
+    //print("Data Getting");
     selectedcoursename = searchbykey(jobinfo, _selectedcourse!);
   }
 
@@ -78,6 +79,12 @@ class UserdatastateProvider extends ChangeNotifier {
     selectedcoursename = itemname;
     userData['job'] = getRoleCode(jobinfo, itemname);
     _selectedcourse= getRoleCode(jobinfo, itemname);
+    notifyListeners();
+  }
+
+  void changeimageurl(String url){
+    userimageurl = url;
+    userData['userimageurl'] = userimageurl;
     notifyListeners();
   }
 

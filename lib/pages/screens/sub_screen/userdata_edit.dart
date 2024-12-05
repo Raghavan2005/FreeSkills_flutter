@@ -1,9 +1,10 @@
 import 'package:FreeSkills/core/services/auth/UserLogin.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:FreeSkills/core/utils/ImageSelector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
+import 'package:toastification/toastification.dart';
 
 import '../../../core/provider/UserDataState_Provider.dart';
 
@@ -58,20 +59,34 @@ class UserdataEdit extends StatelessWidget {
                   height: 150,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(50.0),
-                    // Adjust the radius as needed
-                    child: CachedNetworkImage(
-                      imageUrl: usp.userimageurl!,
-                      placeholder: (context, url) => Container(),
-                      errorWidget: (context, url, error) => Icon(
-                        Icons.error,
-                        color: Colors.red,
-                        size: 40.sp,
-                      ),
-                    ),
+                    // Adjust the radius as neededwh
+                    child: Image.network(
+                    usp.getuserimageurl!,
+                    fit: BoxFit.cover, // Adjust the fit property as needed (cover, contain, fill, etc.)
+                  ),
                   ),
                 ),
                 SizedBox(
-                  height: 0.04.sh,
+                  height: 0.02.sh,
+                ),
+                OutlinedButton(
+                    onPressed: () async {
+                      Userlogin un = new Userlogin();
+                      final cm = Provider.of<UserdatastateProvider>(context, listen: false);
+                      ImageSelector imageSelector = ImageSelector();
+                      _showLoadingDialog(context);
+                      final String? imageUrl = await imageSelector.pickImageFromGallery();
+
+    if (imageUrl != null) {
+      cm.changeimageurl(imageUrl);
+      un.updateImageById(imageUrl);
+    }
+                      Navigator.of(context).pop();
+                      showUploadToast(context, imageUrl);
+
+                    }, child: Text("Upload",style: TextStyle(fontSize: 10,color: Colors.white),)),
+                SizedBox(
+                  height: 0.02.sh,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -194,7 +209,9 @@ class UserdataEdit extends StatelessWidget {
           ),
         ));
   }
-
+  void showUploadToast(BuildContext context, String? imageUrl) {
+    toastification.show( context: context,
+      title: Text(imageUrl != null ? "Upload Successful" : "Upload Failed"), description: Text(imageUrl != null ? "Profile image uploaded" : "Failed to upload profile image."), backgroundColor: imageUrl != null ? Colors.green : Colors.red, autoCloseDuration: Duration(seconds: 3), ); }
   void _showLoadingDialog(BuildContext context) {
     showDialog(
       context: context,

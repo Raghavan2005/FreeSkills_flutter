@@ -20,12 +20,12 @@ Freeskill made by Raghavan android & iso
 
 Here are the versions being used in this project:
 
-| **Configuration**   | **Current Version** |
-|---------------------|---------------------|
-| **Java Version**    | 19                  |
-| **Gradle Version**  | 8.11.1              |
-| **Kotlin Version**  | 2.1.0               |
-| **Flutter Version** | 3.24.4              |
-| **DevTools Version** | 2.37.3              |
-| **Dart SDK Version** | 3.5.4 (stable)      |
-| **DevTools Version** | 2.37.3              |
+| **Configuration**    | **Current Version**         |
+|----------------------|-----------------------------|
+| **Java Version**     | 19                          |
+| **Gradle Version**   | 8.11.1                      |
+| **Kotlin Version**   | 1.9.0(Downgrade) on 6.12.24 |
+| **Flutter Version**  | 3.24.4                      |
+| **DevTools Version** | 2.37.3                      |
+| **Dart SDK Version** | 3.5.4 (stable)              |
+| **DevTools Version** | 2.37.3                      |

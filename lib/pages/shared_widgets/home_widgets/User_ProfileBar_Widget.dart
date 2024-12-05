@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -112,15 +111,11 @@ class UserProfilebar_Widget extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(50.0),
                         // Adjust the radius as needed
-                        child: CachedNetworkImage(
-                          imageUrl: imageurl!,
-                          placeholder: (context, url) => Container(),
-                          errorWidget: (context, url, error) => Icon(
-                            Icons.error,
-                            color: Colors.red,
-                            size: 40.sp,
-                          ),
+                        child: Image.network(
+                          imageurl!,
+                          fit: BoxFit.cover, // Adjust the fit property as needed (cover, contain, fill, etc.)
                         ),
+
                       ),
                     ),
                     SizedBox(

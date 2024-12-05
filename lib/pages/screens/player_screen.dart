@@ -96,7 +96,7 @@ class PlayerScreen extends StatelessWidget {
                                     channelname: data['course_channel_url'],
                                     lang: up.searchbykey(up.langinfo, data['lang_id']),
                                     date: data['video_timing'],
-                                    videourl: data['course_video_url'],
+                                    videourl: data['course_video_url'], aka: data,
                                   );
                                 }),
                               ),

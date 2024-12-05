@@ -16,6 +16,13 @@ class MainstateProvider extends ChangeNotifier {
     Colors.green,
     Colors.purple
   ];
+
+
+  void reset(){
+    currentiindexnews=0;
+    currentnavtab=0;
+    notifyListeners();
+  }
   List<Widget> screenlist = [
     const Home(),
     // const ShortsScreen(),

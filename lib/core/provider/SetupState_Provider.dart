@@ -33,6 +33,7 @@ class SetupstateProvider extends ChangeNotifier {
   bool usercopyright = false;
   int currentpage = 0;
   int totalpage = 0;
+  //int badges =1;
   bool butnanim = false;
   bool tryagain = false;
   Userdatapack us = Userdatapack();

@@ -1,4 +1,11 @@
+import 'package:FreeSkills/core/provider/MainState_Provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hive/hive.dart';
+import 'package:provider/provider.dart';
+
+import '../../pages/routes/RoutesNames.dart';
 
 class SeetingsstateProvider extends ChangeNotifier {
   List<String> ListAppLang = [
@@ -8,6 +15,8 @@ class SeetingsstateProvider extends ChangeNotifier {
   bool autoplay = true;
   String AppUIlang = 'en-(English)';
   bool isoldrecom = false;
+
+
 
   void updateAppUILang(String ui) {
     AppUIlang = ui;
@@ -23,4 +32,17 @@ class SeetingsstateProvider extends ChangeNotifier {
     autoplay = !autoplay;
     notifyListeners();
   }
+
+  void signout(BuildContext c) async {
+    await FirebaseAuth.instance.signOut();
+    if (FirebaseAuth.instance.currentUser == null) {
+      var box = await Hive.openBox('UserData');
+      box.clear();
+
+      Provider.of<MainstateProvider>(c, listen: false).reset();
+      c.go(Routesnames.SignUpScreen);
+    }
+  }
+
+
 }
