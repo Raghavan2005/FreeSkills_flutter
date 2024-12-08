@@ -38,8 +38,10 @@ class _ChatPageState extends State<ChatPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       FocusScope.of(context).requestFocus(_focusNode);
     });
+    //AIzaSyBQHSBviCsefriZudVw8z8mdQwsB-odkqc
+    //AIzaSyBmkxJUigrir4AtdjQfS_GxnEOrSQ8vj98
     _model = GenerativeModel(
-        model: 'gemini-pro', apiKey: 'AIzaSyBmkxJUigrir4AtdjQfS_GxnEOrSQ8vj98');
+        model: 'gemini-pro', apiKey: 'AIzaSyBQHSBviCsefriZudVw8z8mdQwsB-odkqc');
     _chat = _model.startChat();
     box = Hive.box('UserData');
     super.initState();

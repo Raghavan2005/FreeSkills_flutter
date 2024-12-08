@@ -47,6 +47,12 @@ class UserdatastateProvider extends ChangeNotifier {
     appusage.startserviceprogress(2);
   }
 
+  void loaddatauser() {
+    var box = Hive.box("UserData");
+     box.put("data", userData);
+
+  }
+
   void interupdata() {
     _Username = userData['username'];
     _selectedcourse = userData["job"];
@@ -79,18 +85,22 @@ class UserdatastateProvider extends ChangeNotifier {
     selectedcoursename = itemname;
     userData['job'] = getRoleCode(jobinfo, itemname);
     _selectedcourse= getRoleCode(jobinfo, itemname);
+
     notifyListeners();
+    loaddatauser();
   }
 
   void changeimageurl(String url){
     userimageurl = url;
     userData['userimageurl'] = userimageurl;
     notifyListeners();
+    loaddatauser();
   }
 
   void changename(String name) {
     userData['username'] = name;
     _Username = userData['username'];
     notifyListeners();
+    loaddatauser();
   }
 }
