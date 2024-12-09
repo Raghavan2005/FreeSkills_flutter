@@ -1,4 +1,5 @@
 import 'package:FreeSkills/core/provider/MainState_Provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
@@ -18,8 +19,12 @@ class SeetingsstateProvider extends ChangeNotifier {
 
 
 
-  void updateAppUILang(String ui) {
+  void updateAppUILang(String ui,BuildContext c) {
     AppUIlang = ui;
+    if(ui.contains('en'))
+    c.setLocale(Locale('en', 'US'));
+    else
+      c.setLocale(Locale('ta', 'IN'));
     notifyListeners();
   }
 

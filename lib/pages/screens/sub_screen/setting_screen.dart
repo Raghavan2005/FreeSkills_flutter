@@ -74,7 +74,7 @@ class SettingScreen extends StatelessWidget {
                   // After selecting the desired option,it will
                   // change button value to selected value
                   onChanged: (String? newValue) {
-                    value.updateAppUILang(newValue!);
+                    value.updateAppUILang(newValue!,context);
                   },
                 ),
               ),

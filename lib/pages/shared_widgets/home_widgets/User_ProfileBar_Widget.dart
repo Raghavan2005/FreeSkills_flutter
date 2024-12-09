@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/provider/UserDataState_Provider.dart';
+import '../../../core/services/datasource/Image_Network_Provider.dart';
 import '../../routes/RoutesNames.dart';
 
 class UserProfilebar_Widget extends StatelessWidget {
@@ -111,10 +113,19 @@ class UserProfilebar_Widget extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(50.0),
                         // Adjust the radius as needed
-                        child: Image.network(
+                        child :Image.network(
                           imageurl!,
-                          fit: BoxFit.cover, // Adjust the fit property as needed (cover, contain, fill, etc.)
+                          fit: BoxFit.cover, // Adjust fit as needed: BoxFit.cover, BoxFit.contain, etc.
+                          errorBuilder: (context, error, stackTrace) {
+                            ImageNetworkProvider nm = ImageNetworkProvider();
+                           String? name= nm.getProfileLink(username!).toString();
+                           print(error);
+                            return Image.network(
+                              name,
+                                fit: BoxFit.cover,);
+                          },
                         ),
+
 
                       ),
                     ),
@@ -164,9 +175,9 @@ class UserProfilebar_Widget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 10.0, top: 10.0),
                 child: Text(
-                  "FreeSkills",
+                  "freeskills",
                   style: TextStyle(fontSize: 14.sp, color: Colors.white54),
-                ),
+                ).tr(),
               )
             ],
           ),

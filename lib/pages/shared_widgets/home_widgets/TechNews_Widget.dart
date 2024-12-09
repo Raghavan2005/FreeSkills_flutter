@@ -1,6 +1,8 @@
 import 'package:FreeSkills/core/provider/MainState_Provider.dart';
+import 'package:FreeSkills/core/utils/Appusage.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -22,12 +24,12 @@ class TechnewsWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Tech News",
+                "title",
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
                     fontSize: 19.sp),
-              ),
+              ).tr(),
               SizedBox(height: 10.h),
               SizedBox(
                 width: double.infinity,
