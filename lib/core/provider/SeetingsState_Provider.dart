@@ -14,19 +14,29 @@ class SeetingsstateProvider extends ChangeNotifier {
     'ta-(Tamil)',
   ];
   bool autoplay = true;
-  String AppUIlang = 'en-(English)';
+  String? AppUIlang = 'en-(English)';
   bool isoldrecom = false;
 
+void onlaoding(){
+  var box = Hive.box("UserData");
 
+  AppUIlang= box.get("uilang")!;
+  notifyListeners();
+}
 
   void updateAppUILang(String ui,BuildContext c) {
+    var box = Hive.box("UserData");
     AppUIlang = ui;
+     box.put("uilang",AppUIlang);
+
     if(ui.contains('en'))
     c.setLocale(Locale('en', 'US'));
     else
       c.setLocale(Locale('ta', 'IN'));
     notifyListeners();
   }
+
+
 
   void updateoldrecom() {
     isoldrecom = !isoldrecom;
@@ -43,7 +53,7 @@ class SeetingsstateProvider extends ChangeNotifier {
     if (FirebaseAuth.instance.currentUser == null) {
       var box = await Hive.openBox('UserData');
       box.clear();
-
+AppUIlang = 'en-(English)';
       Provider.of<MainstateProvider>(c, listen: false).reset();
       c.go(Routesnames.SignUpScreen);
     }

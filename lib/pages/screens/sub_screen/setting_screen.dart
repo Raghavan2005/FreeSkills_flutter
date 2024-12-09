@@ -27,6 +27,7 @@ class SettingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<SeetingsstateProvider>(
       builder: (BuildContext context, value, Widget? child) {
+        value.onlaoding();
         return Scaffold(
           backgroundColor: Colors.black,
           appBar: AppBar(

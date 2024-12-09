@@ -1,6 +1,9 @@
 import 'package:FreeSkills/core/utils/Appusage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
+import 'package:provider/provider.dart';
+
+import 'SeetingsState_Provider.dart';
 
 class UserdatastateProvider extends ChangeNotifier {
   String? _Username = null;
@@ -32,7 +35,9 @@ class UserdatastateProvider extends ChangeNotifier {
   var box;
   Appusage appusage = Appusage();
 
+
   Future<void> updatedata() async {
+
     var box = Hive.box("UserData");
     jobinfo = await box.get("info")["jobinfo"];
     langinfo = await box.get("info")["datainfo"];
