@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:FreeSkills/core/provider/SetupState_Provider.dart';
 import 'package:FreeSkills/core/utils/Appusage.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_localization_loader/easy_localization_loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,6 +14,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:workmanager/workmanager.dart';
 
 //import 'package:youtube_shorts/youtube_shorts.dart';
 
@@ -23,6 +27,7 @@ import 'core/provider/SeetingsState_Provider.dart';
 import 'core/provider/ShortsState_Provider.dart';
 import 'core/provider/UserDataState_Provider.dart';
 import 'core/provider/VideoDataState_Provider.dart';
+import 'core/services/NotificationService.dart';
 import 'core/services/datasource/Data_Provider.dart';
 import 'pages/routes/AppRoutes.dart';
 
@@ -30,6 +35,19 @@ bool shouldUseFirebaseEmulator = false;
 
 late final FirebaseApp app;
 late final FirebaseAuth auth;
+
+const notificationTask = "notificationTask";
+
+
+void callbackDispatcher() {
+  Workmanager().executeTask((task, inputData) async {
+    if (task == 'notificationTask') {
+      await NotificationService().showNotificationBasedOnTime();
+    }
+    return Future.value(true);
+  });
+}
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,9 +70,20 @@ void main() async {
   );
   await Hive.openBox("UserData");
 
+  await NotificationService().initializeNotifications();
+
+  Workmanager().initialize(callbackDispatcher, isInDebugMode: true);
+
+  // Schedule background tasks
+  Workmanager().registerPeriodicTask(
+    "1",
+    notificationTask,
+    frequency: const Duration(hours: 5),
+  );
+
   // MediaKit.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
-      (value) => runApp(EasyLocalization(
+          (value) => runApp(EasyLocalization(
           supportedLocales: const [Locale('en', 'US'), Locale('ta', 'IN')],
           path: 'assets/translations',
           assetLoader: JsonAssetLoader(),
@@ -62,6 +91,8 @@ void main() async {
           child: MyApp())));
   Appusage au = Appusage();
   au.startserviceprogress(1);
+
+
 }
 
 class MyApp extends StatelessWidget {

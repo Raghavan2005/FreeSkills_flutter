@@ -53,8 +53,9 @@ dependencies:
   #intl: ^0.17.0
   image_picker: ^1.1.2
   path: ^1.8.2
+  awesome_notifications: ^0.10.0
   #flutter_local_notifications: ^18.0.1
- # workmanager: ^0.5.2
+  workmanager: ^0.5.2
 
 
   #Network

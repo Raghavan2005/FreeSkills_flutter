@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive/hive.dart';
 
+import '../../core/services/NotificationService.dart';
 import '../routes/RoutesNames.dart';
 import '../shared_widgets/ads_widgets/AdBanner.dart';
 
@@ -131,10 +133,11 @@ class AichatScreen extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-                onPressed: () {
-                  var box = Hive.box("UserData");
-                  box.delete("lastFetchDate");
-                  box.delete("centraldataset");
+                onPressed: ()  {
+                //  var box = Hive.box("UserData");
+                 // box.delete("lastFetchDate");
+                //  box.delete("centraldataset");
+                   NotificationService().showNotificationBasedOnTime();
                 },
                 child: Text("clear"))
             //TODO:add recent chat item
