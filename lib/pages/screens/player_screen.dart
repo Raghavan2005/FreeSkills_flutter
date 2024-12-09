@@ -33,18 +33,18 @@ class PlayerScreen extends StatelessWidget {
 
   // Function to handle back press
   Future<bool> onBackPressed(BuildContext context) async {
-    context.push(Routesnames.HomeScreen);// Navigate back to the previous screen
-    return Future.value(false); // Prevent default behavior (going back to the system's default back action)
+    //context.push(Routesnames.HomeScreen);// Navigate back to the previous screen
+    return false;
+    //return Future.value(false); // Prevent default behavior (going back to the system's default back action)
   }
 
   @override
   Widget build(BuildContext context) {
     final up = Provider.of<UserdatastateProvider>(context, listen: false);
 
-    return WillPopScope(
-      onWillPop: () => onBackPressed(context), // Override back press action
-      child: Scaffold(
-        body: FutureBuilder(
+    return Scaffold(
+      body: SafeArea(
+        child: FutureBuilder(
           future: onplayerstart(context),
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
             return Consumer<PlayerstateProvider>(
@@ -130,8 +130,8 @@ class PlayerScreen extends StatelessWidget {
             );
           },
         ),
-        backgroundColor: Colors.black,
       ),
+      backgroundColor: Colors.black,
     );
   }
 }

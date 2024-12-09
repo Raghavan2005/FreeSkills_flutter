@@ -175,9 +175,9 @@ class UserProfilebar_Widget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 10.0, top: 10.0),
                 child: Text(
-                  "freeskills",
+                  "FreeSkills",
                   style: TextStyle(fontSize: 14.sp, color: Colors.white54),
-                ).tr(),
+                ),
               )
             ],
           ),

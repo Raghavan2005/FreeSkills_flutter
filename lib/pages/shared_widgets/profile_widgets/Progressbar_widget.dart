@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -75,13 +76,13 @@ class ProgressBarChartState extends State<ProgressBarChart> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 const Text(
-                  'Weekly Performance',
+                  'weekly_performance',
                   style: TextStyle(
                     color: Colors.green,
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
-                ),
+                ).tr(),
                 Expanded(
                   child: Padding(
                     padding:
@@ -186,25 +187,25 @@ class ProgressBarChartState extends State<ProgressBarChart> {
             String weekDay;
             switch (group.x) {
               case 0:
-                weekDay = 'Monday';
+                weekDay = context.tr('monday');
                 break;
               case 1:
-                weekDay = 'Tuesday';
+                weekDay = context.tr('tuesday');
                 break;
               case 2:
-                weekDay = 'Wednesday';
+                weekDay = context.tr('wednesday');
                 break;
               case 3:
-                weekDay = 'Thursday';
+                weekDay = context.tr('thursday');
                 break;
               case 4:
-                weekDay = 'Friday';
+                weekDay = context.tr('friday');
                 break;
               case 5:
-                weekDay = 'Saturday';
+                weekDay = context.tr('saturday');
                 break;
               case 6:
-                weekDay = 'Sunday';
+                weekDay = context.tr('sunday');
                 break;
               default:
                 throw Error();
@@ -279,25 +280,25 @@ class ProgressBarChartState extends State<ProgressBarChart> {
     Widget text;
     switch (value.toInt()) {
       case 0:
-        text = const Text('M', style: style);
+        text = const Text('m', style: style).tr();
         break;
       case 1:
-        text = const Text('T', style: style);
+        text = const Text('t', style: style).tr();
         break;
       case 2:
-        text = const Text('W', style: style);
+        text = const Text('w', style: style).tr();
         break;
       case 3:
-        text = const Text('T', style: style);
+        text = const Text('t', style: style).tr();
         break;
       case 4:
-        text = const Text('F', style: style);
+        text = const Text('f', style: style).tr();
         break;
       case 5:
-        text = const Text('S', style: style);
+        text = const Text('s', style: style).tr();
         break;
       case 6:
-        text = const Text('S', style: style);
+        text = const Text('s', style: style).tr();
         break;
       default:
         text = const Text('', style: style);

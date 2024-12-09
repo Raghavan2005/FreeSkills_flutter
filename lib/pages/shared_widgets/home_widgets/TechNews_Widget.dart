@@ -24,7 +24,7 @@ class TechnewsWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "title",
+                "tech_news",
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w400,

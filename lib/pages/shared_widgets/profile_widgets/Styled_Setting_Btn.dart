@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -41,7 +42,7 @@ class Styled_Setting_Btn extends StatelessWidget {
                     color: Colors.white,
                     fontSize: 17.sp,
                     fontWeight: FontWeight.w500),
-              ),
+              ).tr(),
             ],
           ),
         ),

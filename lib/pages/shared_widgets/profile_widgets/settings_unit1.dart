@@ -19,7 +19,7 @@ class SettingsUnit1 extends StatelessWidget {
             onTap: () {
               context.push(Routesnames.SavedScreen);
             },
-            btntext: 'Saved Videos',
+            btntext: 'saved_videos',
             icondata: Icons.video_collection_outlined,
           ),
           SizedBox(
@@ -29,7 +29,7 @@ class SettingsUnit1 extends StatelessWidget {
             onTap: () {
               context.push(Routesnames.PremiumScreen);
             },
-            btntext: 'Get Premium',
+            btntext: 'get_premium',
             icondata: Icons.workspace_premium,
           ),
           SizedBox(
@@ -39,7 +39,7 @@ class SettingsUnit1 extends StatelessWidget {
             onTap: () {
               context.push(Routesnames.SettingsScreen);
             },
-            btntext: 'Settings',
+            btntext: 'settings',
             icondata: Icons.settings,
           ),
           SizedBox(
@@ -51,7 +51,7 @@ class SettingsUnit1 extends StatelessWidget {
               print(box.get("historylist"));
               print(box.get("savedlist"));
             },
-            btntext: 'Help and Feedback',
+            btntext: 'help_and_feedback',
             icondata: Icons.help_center,
           ),
         ],

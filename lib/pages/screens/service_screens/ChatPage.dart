@@ -8,6 +8,7 @@
  +                                                                            +
  +                                                                            +
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
@@ -164,23 +165,23 @@ class _ChatPageState extends State<ChatPage> {
                 ).createShader(bounds);
               },
               child: Text(
-                "Indhu",
+                "indhu",
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 60.sp,
                     fontWeight: FontWeight.w600), // Adjust text color here
-              ),
+              ).tr(),
             ),
             SizedBox(
               width: 10,
             ),
             Text(
-              "Beta",
+              "beta",
               style: TextStyle(
                   color: Colors.grey,
                   fontSize: 20.sp,
                   fontWeight: FontWeight.w600), // Adjust text color here
-            )
+            ).tr()
           ],
         ),
       ),
@@ -195,10 +196,10 @@ class _ChatPageState extends State<ChatPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: Center(
                       child: Text(
-                        "Begin chatting with Indhu",
+                        "chat3",
                         style:
                             TextStyle(color: Colors.white38, fontSize: 25.sp),
-                      ),
+                      ).tr(),
                     ),
                   ),
                 )
@@ -312,8 +313,8 @@ class _ChatPageState extends State<ChatPage> {
                           },
                           style: TextStyle(color: Colors.white),
                           cursorColor: Colors.purpleAccent,
-                          decoration: const InputDecoration(
-                            hintText: "Type a message",
+                          decoration:  InputDecoration(
+                            hintText: context.tr("chat4"),
                             hintStyle: TextStyle(color: Colors.white),
                             border: InputBorder.none,
                             contentPadding: EdgeInsets.all(8.0),

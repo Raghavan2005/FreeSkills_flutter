@@ -204,14 +204,14 @@ class _HomeState extends State<Home> {
                               width: double.infinity,
                               height: 0.26.sh, // or any height you need
                               child: WatchWidget(
-                                  titlename: 'Top Trends',
+                                  titlename: 'top_Trends',
                                   getlist: value.toptrendslist),
                             ),
                             SizedBox(
                               width: double.infinity,
                               height: 0.26.sh, // or any height you need
                               child: WatchWidget(
-                                titlename: 'Experiment Yourself',
+                                titlename: 'experiment_yourself',
                                 getlist: value.expreimentyour,
                               ),
                             ),

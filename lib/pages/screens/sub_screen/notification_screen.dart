@@ -9,6 +9,7 @@
  +                                                                            +
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
@@ -42,12 +43,12 @@ class NotificationScreen extends StatelessWidget {
           toolbarHeight: 100.0,
           backgroundColor: Colors.black87,
           title: Text(
-            "Notification",
+            "notification",
             style: TextStyle(
                 color: Colors.white54,
                 fontWeight: FontWeight.bold,
                 fontSize: 40),
-          ),
+          ).tr(),
         ),
         body: ListView.builder(
           itemCount: notvaluedata.notlist.length,

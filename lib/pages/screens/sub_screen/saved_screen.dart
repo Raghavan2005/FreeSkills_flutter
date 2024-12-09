@@ -10,6 +10,7 @@
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -41,10 +42,10 @@ class SavedScreen extends StatelessWidget {
         toolbarHeight: 100.0,
         backgroundColor: Colors.black87,
         title: Text(
-          "Your Favorites",
+          "your_favorites",
           style: TextStyle(
               color: Colors.white54, fontWeight: FontWeight.bold, fontSize: 40),
-        ),
+        ).tr(),
       ),
       body: Consumer<PlayerstateProvider>(
         builder:

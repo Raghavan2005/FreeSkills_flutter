@@ -10,6 +10,7 @@
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 import 'package:FreeSkills/pages/routes/RoutesNames.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -34,17 +35,17 @@ class SettingScreen extends StatelessWidget {
             toolbarHeight: 100.0,
             backgroundColor: Colors.black87,
             title: Text(
-              "Settings",
+              "settings",
               style: TextStyle(
                   color: Colors.white54,
                   fontWeight: FontWeight.bold,
                   fontSize: 40),
-            ),
+            ).tr(),
           ),
           body: Column(
             children: [
               Custom_Settings_item_btn(
-                titlename: 'App Language',
+                titlename: 'app_language',
                 endwidget: DropdownButton(
                   underline: Container(),
                   // Initial Value
@@ -79,7 +80,7 @@ class SettingScreen extends StatelessWidget {
                 ),
               ),
               Custom_Settings_item_btn(
-                titlename: 'Autoplay',
+                titlename: 'autoplay',
                 endwidget: SizedBox(
                   child: Switch.adaptive(
                     activeColor: Colors.purpleAccent,
@@ -93,7 +94,7 @@ class SettingScreen extends StatelessWidget {
                 ),
               ),
               Custom_Settings_item_btn(
-                titlename: 'Classic View',
+                titlename: 'classic_view',
                 endwidget: SizedBox(
                   child: Switch.adaptive(
                     activeColor: Colors.greenAccent,
@@ -107,27 +108,27 @@ class SettingScreen extends StatelessWidget {
                 ),
               ),
               Unstyle_Settings_btn(
-                btntext: 'Notification',
+                btntext: 'notification',
                 onTap: () {},
               ),
               Unstyle_Settings_btn(
-                btntext: 'Manage all history',
+                btntext: 'manage_all_history',
                 onTap: () {
                   context.push(Routesnames.AllhistoryScreen);
                 },
               ),
               Unstyle_Settings_btn(
-                btntext: 'Purchase Premium',
+                btntext: 'purchase_premium',
                 onTap: () {},
               ),
               Unstyle_Settings_btn(
-                btntext: 'About',
+                btntext: 'about',
                 onTap: () {
                   context.push(Routesnames.AboutScreen);
                 },
               ),
               Unstyle_Settings_btn(
-                btntext: 'Signout',
+                btntext: 'signout',
                 onTap: () {
                   _showCustomPopup(context);
                 },
@@ -175,10 +176,10 @@ class SettingScreen extends StatelessWidget {
               style: ButtonStyle(
                   backgroundColor: WidgetStateProperty.all(Colors.red)),
               child: Text(
-                'Signout',
+                'signout',
                 style:
                     TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              ),
+              ).tr(),
               onPressed: () async {
                 final cm = Provider.of<SeetingsstateProvider>(context, listen: false);
                     cm.signout(context);

@@ -1,5 +1,6 @@
 import 'package:FreeSkills/core/services/auth/UserLogin.dart';
 import 'package:FreeSkills/core/utils/ImageSelector.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -38,12 +39,12 @@ class UserdataEdit extends StatelessWidget {
             toolbarHeight: 100.0,
             backgroundColor: Colors.black87,
             title: Text(
-              "Profile",
+              "profile",
               style: TextStyle(
                   color: Colors.white54,
                   fontWeight: FontWeight.bold,
                   fontSize: 40),
-            ),
+            ).tr(),
           ),
           body: SingleChildScrollView(
             physics: isKeyboardOpen ? null : NeverScrollableScrollPhysics(),
@@ -84,7 +85,7 @@ class UserdataEdit extends StatelessWidget {
                       Navigator.of(context).pop();
                       showUploadToast(context, imageUrl);
 
-                    }, child: Text("Upload",style: TextStyle(fontSize: 10,color: Colors.white),)),
+                    }, child: Text("upload",style: TextStyle(fontSize: 10,color: Colors.white),).tr()),
                 SizedBox(
                   height: 0.02.sh,
                 ),
@@ -117,7 +118,7 @@ class UserdataEdit extends StatelessWidget {
                         Icons.person,
                         color: Colors.grey,
                       ),
-                      labelText: "Username",
+                      labelText: context.tr("username"),
                       hintStyle: const TextStyle(color: Colors.white),
                       labelStyle: TextStyle(
                           fontSize: 17.sp,
@@ -198,10 +199,10 @@ class UserdataEdit extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          "Save & Submit",
+                          "save_submit",
                           style: TextStyle(
                               fontWeight: FontWeight.w600, fontSize: 15.sp),
-                        ),
+                        ).tr(),
                       ),
                     ))
               ],

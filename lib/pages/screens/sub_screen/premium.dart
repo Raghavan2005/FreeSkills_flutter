@@ -8,6 +8,7 @@
  +                                                                            +
  +                                                                            +
  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -84,12 +85,12 @@ class Premium extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            "UPGRADE TO",
+                            "upgrade_to",
                             style: TextStyle(
                                 color: Colors.orange,
                                 fontSize: 15.sp,
                                 fontWeight: FontWeight.w900),
-                          ),
+                          ).tr(),
                           Spacer(),
                           Container(
                             decoration: BoxDecoration(
@@ -97,12 +98,23 @@ class Premium extends StatelessWidget {
                                 border: Border.all(color: Colors.orange)),
                             child: Padding(
                               padding: const EdgeInsets.all(4.0),
-                              child: Text(
-                                "1 Month",
-                                style: TextStyle(
-                                    color: Colors.orange,
-                                    fontSize: 13.sp,
-                                    fontWeight: FontWeight.w900),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    "1 ",
+                                    style: TextStyle(
+                                        color: Colors.orange,
+                                        fontSize: 13.sp,
+                                        fontWeight: FontWeight.w900),
+                                  ),
+                                  Text(
+                                    "month",
+                                    style: TextStyle(
+                                        color: Colors.orange,
+                                        fontSize: 13.sp,
+                                        fontWeight: FontWeight.w900),
+                                  ).tr(),
+                                ],
                               ),
                             ),
                           ),
@@ -180,20 +192,21 @@ class Premium extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: SizedBox(
-                width: 0.5.sw,
+                width: 0.6.sw,
                 height: 0.07.sh,
                 child: ElevatedButton(
                     style: ButtonStyle(
+                      alignment: Alignment.center,
                         backgroundColor:
                             WidgetStateProperty.all(Colors.purple)),
                     onPressed: () {},
                     child: Text(
-                      "Get Premium",
+                      "get_premium",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 20.sp,
                           fontWeight: FontWeight.bold),
-                    )),
+                    ).tr()),
               ),
             )
           ],

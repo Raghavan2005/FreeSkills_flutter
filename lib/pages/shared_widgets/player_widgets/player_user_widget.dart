@@ -117,7 +117,7 @@ class PlayerUserWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ResponsiveTextContainer(
-                        text: 'Donate',
+                        text: 'donate',
                         seticon: MdiIcons.cup,
                         fun: () => print("object"),
                       ),
@@ -125,7 +125,7 @@ class PlayerUserWidget extends StatelessWidget {
                         width: 8.w,
                       ),
                       ResponsiveTextContainer(
-                        text: 'Share',
+                        text: 'share',
                         seticon: Icons.share,
                         fun: () {
                           Share.share(
@@ -140,7 +140,7 @@ class PlayerUserWidget extends StatelessWidget {
                         width: 8.w,
                       ),
                       ResponsiveTextContainer(
-                        text: 'Save',
+                        text: 'save',
                         seticon: value.issaved
                             ? MdiIcons.bookmark
                             : MdiIcons.bookmarkOutline,
@@ -152,7 +152,7 @@ class PlayerUserWidget extends StatelessWidget {
                         width: 8.w,
                       ),
                       ResponsiveTextContainer(
-                        text: 'Stop Ads',
+                        text: 'stop_ads',
                         seticon: MdiIcons.stopCircleOutline,
                         fun: () => context.push(Routesnames.PremiumScreen),
                       ),
@@ -160,7 +160,7 @@ class PlayerUserWidget extends StatelessWidget {
                         width: 8.w,
                       ),
                       ResponsiveTextContainer(
-                        text: 'Report',
+                        text: 'report',
                         seticon: MdiIcons.flag,
                         fun: () => print("object"),
                       ),

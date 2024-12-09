@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart'
     '';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,13 +25,18 @@ class Unstyle_Settings_btn extends StatelessWidget {
           padding: const EdgeInsets.all(15.0),
           child: Row(
             children: [
-              Text(
-                btntext,
-                style: TextStyle(
+              Flexible(
+                child: Text(
+                  btntext,
+                  style: TextStyle(
                     color: Colors.white,
                     fontSize: 16.sp,
-                    fontWeight: FontWeight.w600),
-              ),
+                    fontWeight: FontWeight.w600,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ).tr(),
+              )
+              ,
             ],
           ),
         ),

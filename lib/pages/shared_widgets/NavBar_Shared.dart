@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types, file_names
 
 import 'package:FreeSkills/core/provider/MainState_Provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -50,27 +51,29 @@ class NavBar_Shared extends StatelessWidget {
           // selected tab background color
           padding: const EdgeInsets.all(15),
           // navigation bar padding
-          tabs: const [
+          tabs:  [
             GButton(
               icon: Icons.home,
-              text: 'Home',
+              text: context.tr('home'),
             ),
             GButton(
               icon: Icons.graphic_eq,
-              text: 'AI Chat',
+              text: context.tr('ai_chat'),
             ),
             GButton(
               icon: Icons.search,
-              text: 'Search',
+              text: context.tr('search'),
             ),
             GButton(
               icon: Icons.person,
-              text: 'Profile',
+              text: context.tr('profile'),
             )
           ],
           selectedIndex: mainStateProvider.currentnavtab,
           onTabChange: (index) {
-            mainStateProvider.updatenavstate(index);
+            if (mainStateProvider.currentnavtab != index) {
+              mainStateProvider.updatenavstate(index);
+            }
           },
         );
       },

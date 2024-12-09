@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -26,7 +27,7 @@ class HistoryviewWidget extends StatelessWidget {
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
                     fontSize: 19.sp),
-              ),
+              ).tr(),
               Spacer(),
               OutlinedButton(
                   onPressed: () {
@@ -34,9 +35,9 @@ class HistoryviewWidget extends StatelessWidget {
                   },
                   style: ButtonStyle(splashFactory: NoSplash.splashFactory),
                   child: Text(
-                    "View all",
+                    "view_all",
                     style: TextStyle(color: Colors.white, fontSize: 10.sp),
-                  ))
+                  ).tr())
             ],
           ),
           SizedBox(

@@ -28,6 +28,7 @@ if (flutterVersionName == null) {
 }
 
 android {
+
     namespace = "com.freeskills.raghavan.app.freeskills"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "25.1.8937393"

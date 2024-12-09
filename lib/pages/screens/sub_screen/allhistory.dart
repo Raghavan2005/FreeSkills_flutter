@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -24,10 +25,10 @@ class Allhistory extends StatelessWidget {
         toolbarHeight: 100.0,
         backgroundColor: Colors.black87,
         title: Text(
-          "History",
+          "history",
           style: TextStyle(
               color: Colors.white54, fontWeight: FontWeight.bold, fontSize: 40),
-        ),
+        ).tr(),
       ),
       body: Consumer<PlayerstateProvider>(
         builder: (BuildContext context, value, Widget? child) {
@@ -63,7 +64,7 @@ class Allhistory extends StatelessWidget {
                               backgroundColor: Color(0xFF21B7CA),
                               foregroundColor: Colors.white,
                               icon: Icons.share,
-                              label: 'Share',
+                              label: context.tr("share"),
                             ),
                           ],
                         ),
@@ -79,7 +80,7 @@ class Allhistory extends StatelessWidget {
                                 backgroundColor: Colors.red,
                                 foregroundColor: Colors.white,
                                 icon: Icons.archive,
-                                label: 'Remove',
+                                label: context.tr("remove"),
                               ),
                             ],
                           ),

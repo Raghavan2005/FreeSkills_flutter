@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -33,7 +34,7 @@ class WatchWidget extends StatelessWidget {
                 color: Colors.white,
                 fontWeight: FontWeight.w400,
                 fontSize: 19.sp),
-          ),
+          ).tr(),
           SizedBox(
             height: 10.h,
           ),
