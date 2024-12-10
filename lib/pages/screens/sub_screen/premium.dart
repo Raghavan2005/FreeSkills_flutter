@@ -14,6 +14,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
+import '../../routes/AppRoutes.dart';
+import '../../routes/RoutesNames.dart';
+import 'UpiPaymentPage.dart';
+
 class Premium extends StatelessWidget {
   const Premium({super.key});
 
@@ -199,7 +203,9 @@ class Premium extends StatelessWidget {
                       alignment: Alignment.center,
                         backgroundColor:
                             WidgetStateProperty.all(Colors.purple)),
-                    onPressed: () {},
+                    onPressed: () {
+                      context.push(Routesnames.PaymentScreen);
+                    },
                     child: Text(
                       "get_premium",
                       style: TextStyle(

@@ -11,6 +11,7 @@ import '../screens/service_screens/auth_screens/email_verfiy_screen.dart';
 import '../screens/service_screens/auth_screens/signin_screen.dart';
 import '../screens/service_screens/auth_screens/signup_screen.dart';
 import '../screens/service_screens/setup_screens/setupmain_screen.dart';
+import '../screens/sub_screen/UpiPaymentPage.dart';
 import '../screens/sub_screen/about_screen.dart';
 import '../screens/sub_screen/allhistory.dart';
 import '../screens/sub_screen/notification_screen.dart';
@@ -30,6 +31,10 @@ class AppRoutes {
       GoRoute(
         path: Routesnames.SignInScreen,
         builder: (context, state) => SigninScreen(),
+      ),
+      GoRoute(
+        path: Routesnames.PaymentScreen,
+        builder: (context, state) => UpiPaymentPage(),
       ),
       GoRoute(
         path: Routesnames.HomeScreen,

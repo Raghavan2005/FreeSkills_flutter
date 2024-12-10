@@ -20,6 +20,7 @@ class NotificationService {
       'resource://mipmap/ic_launcher', // App icon
       [
         NotificationChannel(
+
           channelKey: 'basic_channel',
           channelName: 'Basic Notifications',
           channelDescription: 'Notification channel for periodic notifications',

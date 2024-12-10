@@ -118,6 +118,7 @@ class SetupstateProvider extends ChangeNotifier {
       changepage();
       User? user = FirebaseAuth.instance.currentUser;
       userData["email"] = user?.email;
+      userData["ispremium"] = false;
       userData["copyrights"] = usercopyright;
       userData["lastlogin"] = Datatimeinfo.getCurrentDateTime();
       userData["ispro"] = false;

@@ -13,6 +13,7 @@ class UserdatastateProvider extends ChangeNotifier {
   String _selectedlang = 'en-(English)';
   String? userimageurl = '';
   List _performancevalue = [0, 0, 0, 10, 0, 0, 2];
+  bool? isprime = null;
 
   Map<dynamic, dynamic> userData = {};
   Map<dynamic, dynamic> langinfo = {};
@@ -32,7 +33,6 @@ class UserdatastateProvider extends ChangeNotifier {
   String? get getuserimageurl => userimageurl;
 
   List? get getperformancevalue => _performancevalue;
-  var box;
   Appusage appusage = Appusage();
 
 
@@ -66,7 +66,8 @@ class UserdatastateProvider extends ChangeNotifier {
     notlist = infodatalistset["not"];
     newslist = infodatalistset['technews'];
     _email = userData['email'];
-    //print("Data Getting");
+    isprime=userData['ispremium'];
+    //print(isprime);
     selectedcoursename = searchbykey(jobinfo, _selectedcourse!);
   }
 

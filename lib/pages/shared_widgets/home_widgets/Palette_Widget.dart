@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:palette_generator/palette_generator.dart';
@@ -47,7 +48,12 @@ class _PaletterGenState extends State<PaletterGen> {
                 height: 60.h,
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(50),
-                    child: Image.network(widget.imageUrl)))),
+                    child: CachedNetworkImage(
+                      imageUrl:
+                      widget.imageUrl,
+                      placeholder: (context, url) => const SizedBox(),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    )))),
       ],
     );
   }

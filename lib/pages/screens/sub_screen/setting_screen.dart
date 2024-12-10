@@ -61,6 +61,7 @@ class SettingScreen extends StatelessWidget {
 
                   // Array list of items
                   items: value.ListAppLang.map((String items) {
+
                     return DropdownMenuItem(
                       value: items,
                       child: Padding(

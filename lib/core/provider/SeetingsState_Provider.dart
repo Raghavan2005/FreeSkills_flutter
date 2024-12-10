@@ -20,8 +20,12 @@ class SeetingsstateProvider extends ChangeNotifier {
 void onlaoding(){
   var box = Hive.box("UserData");
 
-  AppUIlang= box.get("uilang")!;
-  notifyListeners();
+  if(box.get("uilang")==null){
+    box.put("uilang",AppUIlang);
+  }else{
+    AppUIlang=box.get("uilang");
+  }
+  //notifyListeners();
 }
 
   void updateAppUILang(String ui,BuildContext c) {

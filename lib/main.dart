@@ -7,6 +7,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_localization_loader/easy_localization_loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,6 +32,7 @@ import 'core/services/NotificationService.dart';
 import 'core/services/datasource/Data_Provider.dart';
 import 'pages/routes/AppRoutes.dart';
 
+
 bool shouldUseFirebaseEmulator = false;
 
 late final FirebaseApp app;
@@ -38,62 +40,85 @@ late final FirebaseAuth auth;
 
 const notificationTask = "notificationTask";
 
-
 void callbackDispatcher() {
   Workmanager().executeTask((task, inputData) async {
-    if (task == 'notificationTask') {
+    if (task == notificationTask) {
       await NotificationService().showNotificationBasedOnTime();
     }
     return Future.value(true);
   });
 }
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  try {
-    await MobileAds.instance.initialize();
-  } catch (e) {}
-  await Hive.initFlutter();
+
+  // Initialize Firebase and Supabase
+  await initAsync();
+
+  // Run other async initialization tasks
+  await runAppAsync();
+
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
+        (value) => runApp(
+      EasyLocalization(
+        supportedLocales: const [Locale('en', 'US'), Locale('ta', 'IN')],
+        path: 'assets/translations',
+        assetLoader: JsonAssetLoader(),
+        fallbackLocale: Locale('en', 'US'),
+        child: MyApp(),
+      ),
+    ),
+  );
+}
+
+Future<void> initAsync() async {
+  // Initialize Firebase
   app = await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   auth = FirebaseAuth.instanceFor(app: app);
+
   if (shouldUseFirebaseEmulator) {
     await auth.useAuthEmulator('localhost', 9099);
   }
+
+  // Initialize Supabase
   await Supabase.initialize(
     url: 'https://tbvsfzhfdziuqoghbatx.supabase.co',
     anonKey:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRidnNmemhmZHppdXFvZ2hiYXR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjEyODU3OTksImV4cCI6MjAzNjg2MTc5OX0.pPhq3PFu8pOyznrXzZI-A-5O3oJML_wgajkUwQkfmzY',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRidnNmemhmZHppdXFvZ2hiYXR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjEyODU3OTksImV4cCI6MjAzNjg2MTc5OX0.pPhq3PFu8pOyznrXzZI-A-5O3oJML_wgajkUwQkfmzY',
   );
-  await Hive.openBox("UserData");
-
-  await NotificationService().initializeNotifications();
-
-  Workmanager().initialize(callbackDispatcher, isInDebugMode: true);
-
-  // Schedule background tasks
-  Workmanager().registerPeriodicTask(
-    "1",
-    notificationTask,
-    frequency: const Duration(hours: 5),
-  );
-
-  // MediaKit.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
-          (value) => runApp(EasyLocalization(
-          supportedLocales: const [Locale('en', 'US'), Locale('ta', 'IN')],
-          path: 'assets/translations',
-          assetLoader: JsonAssetLoader(),
-          fallbackLocale: Locale('en', 'US'),
-          child: MyApp())));
-  Appusage au = Appusage();
-  au.startserviceprogress(1);
-
-
 }
+
+Future<void> runAppAsync() async {
+  try {
+    // Initialize Mobile Ads
+    await MobileAds.instance.initialize();
+
+    // Initialize Hive
+    await Hive.initFlutter();
+    await Hive.openBox("UserData");
+
+    // Initialize Notifications
+    await NotificationService().initializeNotifications();
+
+    // Setup WorkManager
+    Workmanager().initialize(callbackDispatcher, isInDebugMode: false);
+    Workmanager().registerPeriodicTask(
+      "1",
+      notificationTask,
+      frequency: const Duration(hours: 5),
+    );
+
+    // Start App Usage Monitoring
+    Appusage au = Appusage();
+    au.startserviceprogress(1);
+  } catch (e) {
+    debugPrint('Error in runAppAsync: $e');
+  }
+}
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
