@@ -10,6 +10,7 @@ import 'package:shimmer/shimmer.dart';
 import '../../core/provider/SeetingsState_Provider.dart';
 import '../../core/provider/UserDataState_Provider.dart';
 import '../../core/provider/VideoDataState_Provider.dart';
+import '../../core/utils/DeepLinkHandler.dart';
 import '../shared_widgets/NavBar_Shared.dart';
 import '../shared_widgets/ads_widgets/AdBanner.dart';
 import '../shared_widgets/home_widgets/Channels_List_Widget.dart';
@@ -18,8 +19,26 @@ import '../shared_widgets/home_widgets/TechNews_Widget.dart';
 import '../shared_widgets/home_widgets/User_ProfileBar_Widget.dart';
 import '../shared_widgets/home_widgets/Watch_Widget.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final DeepLinkHandler _deepLinkHandler = DeepLinkHandler();
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeDeepLink(); // Call the helper function that handles async code
+  }
+
+  // Helper method to handle async operations inside initState
+  Future<void> _initializeDeepLink() async {
+    await _deepLinkHandler.initializeDeepLink(context);
+  }
 
   @override
   Widget build(BuildContext context) {

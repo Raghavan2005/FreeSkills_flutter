@@ -129,7 +129,7 @@ class PlayerUserWidget extends StatelessWidget {
                         seticon: Icons.share,
                         fun: () {
                           Share.share(
-                              'Start Learn New Tech Today on FreeSkills https://share.freeskills.inapp/share/' +
+                              'Start Learn New Tech Today on FreeSkills https://freeskills.raghavan.tech/share/' +
                                   itemdata['lang_id'] +
                                   itemdata['course_id'] +
                                   itemdata['course_type'],

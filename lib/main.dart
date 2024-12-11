@@ -30,6 +30,7 @@ import 'core/provider/UserDataState_Provider.dart';
 import 'core/provider/VideoDataState_Provider.dart';
 import 'core/services/NotificationService.dart';
 import 'core/services/datasource/Data_Provider.dart';
+import 'core/utils/DeepLinkHandler.dart';
 import 'pages/routes/AppRoutes.dart';
 
 

@@ -46,6 +46,7 @@ dependencies:
   google_generative_ai: ^0.4.6
   palette_generator: ^0.3.3+5
   share_plus: ^10.0.2
+  app_links: ^6.3.2
   provider: 6.1.2
   hive: 2.2.3
   hive_flutter: 1.1.0
