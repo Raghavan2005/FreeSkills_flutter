@@ -1,4 +1,4 @@
-# **FreeSkills** [![Flutter CI](https://github.com/Raghavan2005/freeskills_flutter_android_iso/actions/workflows/FlutterCI.yml/badge.svg?branch=main)](https://github.com/Raghavan2005/freeskills_flutter_android_iso/actions/workflows/FlutterCI.yml)
+# **FreeSkills** [![Build Android APK](https://github.com/Raghavan2005/FreeSkills_flutter/actions/workflows/FlutterCI.yml/badge.svg)](https://github.com/Raghavan2005/FreeSkills_flutter/actions/workflows/FlutterCI.yml)
 
 ![logo](https://github.com/Raghavan2005/freeskills_flutter_android_iso/assets/78393373/b5863d9c-979a-465c-8b74-5cd7dcd3c9bd)
 
