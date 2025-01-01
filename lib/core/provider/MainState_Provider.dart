@@ -32,20 +32,20 @@ class MainstateProvider extends ChangeNotifier {
   ];
 
   List<String> channeltempurl = [
-    "https://yt3.googleusercontent.com/ytc/AIdro_kt_IEZATxzTDsyEt3JM9QNiJ_Iz8EHd-8WY2WKdkfTR2g=s160-c-k-c0x00ffffff-no-rj",
-    "https://yt3.googleusercontent.com/_2c41sEkRR3V5KxC6Ta-OTZE2gSVB0p5gMhVsHY9lzskm3xYcsXl4PIYVWc5q-3ASJl30RIktA=s160-c-k-c0x00ffffff-no-rj",
-    "https://yt3.googleusercontent.com/ytc/AIdro_kwuzOzplcCg5m4Pkb_5bwJE7mg6yFiMcjIhSd251DAxw=s160-c-k-c0x00ffffff-no-rj",
-    "https://yt3.googleusercontent.com/BH2h8XDQujtBNCdDYiYv7QezPwOmqZGWAnfmQVvN49rrsPENMt383ZSClki4hS9AABAlaU-WyQ=s160-c-k-c0x00ffffff-no-rj",
-    "https://yt3.googleusercontent.com/zgMN9BuSQByG1SrpmLwcNB3MQhjDhS_pl9H1h7TaRievMfS4UpU7Z36j77z5_hnIW4N8uFX3NA=s160-c-k-c0x00ffffff-no-rj",
-    "https://yt3.googleusercontent.com/o59vIBnJHWO6W3sD6frUdGLKNvDOBaeqe45U3wAn1jo4i95zHfntj29oIwc1PhY-tuXf0nXl=s160-c-k-c0x00ffffff-no-rj",
-    "https://yt3.googleusercontent.com/ytc/AIdro_n8JEk_OKyvAE7tq8xZHT9NbmfeICRvz5RicySVMtFymQ=s160-c-k-c0x00ffffff-no-rj"
-  ];
+    "https://img.youtube.com/vi/zN8YNNHcaZc/maxresdefault.jpg",
+    "https://img.youtube.com/vi/zN8YNNHcaZc/maxresdefault.jpg",
+    "https://img.youtube.com/vi/zN8YNNHcaZc/maxresdefault.jpg","https://img.youtube.com/vi/zN8YNNHcaZc/maxresdefault.jpg"];
 
   void updatenavstate(int index) {
     currentnavtab = index;
-    pageController.jumpToPage(currentnavtab);
+    pageController.animateToPage(
+      currentnavtab,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
     notifyListeners();
   }
+
 
   void updatestatenews(int i) {
     currentiindexnews = i;

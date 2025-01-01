@@ -47,8 +47,8 @@ class UserdatastateProvider extends ChangeNotifier {
     infodatalistset = await box.get("infodatalistset");
     print("Data Updated");
     interupdata();
-    //print("user_provider" + box.get("centraldataset").toString());
-
+   // print("user_provider" + box.get("centraldataset").toString());
+print(newslist);
     appusage.startserviceprogress(2);
   }
 
@@ -63,6 +63,7 @@ class UserdatastateProvider extends ChangeNotifier {
     _selectedcourse = userData["job"];
     _selectedlang = userData["lang"];
     userimageurl = userData["userimageurl"];
+    //print(infodatalistset);
     notlist = infodatalistset["not"];
     newslist = infodatalistset['technews'];
     _email = userData['email'];

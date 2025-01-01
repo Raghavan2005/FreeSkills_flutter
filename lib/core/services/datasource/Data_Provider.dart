@@ -60,9 +60,10 @@ class DataProvider with ChangeNotifier {
             await Supabase.instance.client.from('main_table').select();
         if (response.isNotEmpty) {
           Map<String, dynamic> temp = response[0]['json_data'];
-          Map<String, dynamic> temp1 = response[1]['json_data'];
-          Map<String, dynamic> temp2 = response[2]['json_data'];
-
+          Map<String, dynamic> temp1 = response[2]['json_data'];
+          Map<String, dynamic> temp2 = response[1]['json_data'];
+// fixed somehow just change the superbase row index (may be i drag it down and done this mess not sure
+// now it fixed :)))
           await box.put('centraldataset', temp);
           await box.put('centraljoblistdata', temp1);
           await box.put('infodatalistset', temp2);

@@ -134,10 +134,10 @@ class AichatScreen extends StatelessWidget {
             ),
             ElevatedButton(
                 onPressed: ()  {
-                //  var box = Hive.box("UserData");
-                 // box.delete("lastFetchDate");
-                //  box.delete("centraldataset");
-                   NotificationService().showNotificationBasedOnTime();
+                  var box = Hive.box("UserData");
+                  box.delete("lastFetchDate");
+                  box.delete("centraldataset");
+                   //NotificationService().showNotificationBasedOnTime();
                 },
                 child: Text("clear"))
             //TODO:add recent chat item
